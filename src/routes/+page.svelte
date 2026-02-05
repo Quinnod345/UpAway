@@ -53,7 +53,7 @@
 </script>
 
 <svelte:head>
-  <title>Quinn O'Donnell | I Build Cool Shit with AI</title>
+  <title>Quinn O'Donnell | I Build Cool Stuff with AI</title>
   <meta name="description" content="20-year-old developer with patents pending and apps in production. I turn wild AI ideas into real products people actually use." />
 </svelte:head>
 
@@ -78,7 +78,7 @@
       
       <div class="hero-headline" class:visible={mounted}>
         <h1>
-          I Build <span class="text-gradient">Cool Shit</span><br/>
+          I Build <span class="text-gradient">Cool Stuff</span><br/>
           With <span class="highlight">AI</span>
         </h1>
       </div>
