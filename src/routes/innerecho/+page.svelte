@@ -795,7 +795,6 @@
   }
   
   .line.short { width: 60%; }
-  .line.medium { width: 80%; }
   
   .go-deeper-prompt {
     margin-top: 1.5rem;
