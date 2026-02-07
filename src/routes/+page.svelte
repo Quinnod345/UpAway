@@ -25,8 +25,19 @@
   // Stats easter egg - bonus clicks
   let statsBonuses = { apps: 0, patents: 0 };
   
+  // InnerEcho video reference
+  let innerEchoVideo;
+  
   onMount(() => {
     mounted = true;
+    
+    // Restart InnerEcho video every 25 seconds
+    if (innerEchoVideo) {
+      setInterval(() => {
+        innerEchoVideo.currentTime = 0;
+        innerEchoVideo.play();
+      }, 25000);
+    }
   });
   
   function handleSubmit(e) {
@@ -49,6 +60,12 @@
       statsBonuses[statId] = bonus;
       statsBonuses = statsBonuses; // trigger reactivity
     }
+  }
+  
+  // Navigate to page and scroll to top
+  async function navigateToTop(path) {
+    await goto(path);
+    window.scrollTo(0, 0);
   }
 </script>
 
@@ -285,30 +302,12 @@
             on:mouseenter={handlePhoneHoverStart}
             on:mouseleave={handlePhoneHoverEnd}
           >
-            <button class="phone-mockup innerecho-phone" data-cursor-text="View" on:click={() => goto('/innerecho')}>
+            <button class="phone-mockup innerecho-phone" data-cursor-text="View" on:click={() => navigateToTop('/innerecho')}>
               <div class="phone-frame">
-                <div class="phone-screen">
-                  <div class="app-preview">
-                    <div class="app-header-preview">
-                      <span class="app-title">InnerEcho</span>
-                      <span class="app-date">Today</span>
-                    </div>
-                    <div class="app-prompt">
-                      <p>How are you feeling today?</p>
-                    </div>
-                    <div class="mood-buttons" >
-                      <div class="mood-btn">😊</div>
-                      <div class="mood-btn">😌</div>
-                      <div class="mood-btn active">🤔</div>
-                      <div class="mood-btn">😔</div>
-                      <div class="mood-btn">😤</div>
-                    </div>
-                    <div class="journal-entry">
-                      <div class="entry-line"></div>
-                      <div class="entry-line short"></div>
-                      <div class="entry-line"></div>
-                    </div>
-                  </div>
+                <div class="phone-screen phone-screen-video">
+                  <video bind:this={innerEchoVideo} autoplay muted playsinline>
+                    <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSlzElUKqJ7XgKw8pAvltdMibEu5D3aPBkqeOyr" type="video/mp4" />
+                  </video>
                 </div>
               </div>
               <div class="phone-glow"></div>
@@ -367,42 +366,10 @@
       <div class="eosai-visual">
         <ScrollReveal animation="fade-left" delay={0.2}>
           <div>
-            <button class="browser-mockup eos-glow-animated" data-cursor-text="View" on:click={() => goto('/eosai')}>
-              <div class="browser-header">
-                <div class="browser-dots">
-                  <span class="dot red"></span>
-                  <span class="dot yellow"></span>
-                  <span class="dot green"></span>
-                </div>
-                <div class="browser-url">eosbot.ai</div>
-              </div>
-              <div class="browser-content">
-                <div class="chat-interface">
-                  <div class="chat-sidebar">
-                    <div class="sidebar-item active"></div>
-                    <div class="sidebar-item"></div>
-                    <div class="sidebar-item"></div>
-                  </div>
-                  <div class="chat-main">
-                    <div class="chat-message ai">
-                      <div class="message-avatar"></div>
-                      <div class="message-bubble">
-                        <div class="message-line"></div>
-                        <div class="message-line short"></div>
-                      </div>
-                    </div>
-                    <div class="chat-message user">
-                      <div class="message-bubble user-bubble">
-                        <div class="message-line"></div>
-                      </div>
-                    </div>
-                    <div class="chat-input">
-                      <div class="input-field"></div>
-                      <div class="input-btn"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <button class="video-mockup eos-glow-animated" data-cursor-text="View" on:click={() => navigateToTop('/eosai')}>
+              <video autoplay muted loop playsinline>
+                <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSlZh2bRM4QMvPdCIVU87oDpXmtxe3b1jFyKLzG" type="video/mp4" />
+              </video>
             </button>
           </div>
         </ScrollReveal>
@@ -531,7 +498,7 @@
       <div class="curb-cta">
         <span data-cursor-expand>
           <MagneticButton href="/curb" variant="primary">
-            View Full Case Study
+            View Project
             <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -697,7 +664,7 @@
         
         <div class="footer-col">
           <span class="footer-col-title">Social</span>
-          <a href="https://www.linkedin.com/in/quinn-odonnell/" target="_blank" rel="noopener" data-cursor-text="Link">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/quinn-o-donnell-0315bb29b/" target="_blank" rel="noopener" data-cursor-text="Link">LinkedIn</a>
           <a href="https://github.com/Quinnod345" target="_blank" rel="noopener" data-cursor-text="Link">GitHub</a>
         </div>
       </div>
@@ -1138,8 +1105,8 @@
     width: 280px;
     height: 580px;
     background: #1a1a1a;
-    border-radius: 40px;
-    padding: 12px;
+    border-radius: 36px;
+    padding: 6px;
     box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
   }
   
@@ -1147,8 +1114,22 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(180deg, #1e3a2f 0%, #0f1f1a 100%);
-    border-radius: 32px;
+    border-radius: 30px;
     overflow: hidden;
+  }
+  
+  .phone-screen-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+  
+  .phone-screen-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px;
   }
   
   .app-preview {
@@ -1995,6 +1976,30 @@
   .browser-content {
     padding: 1.5rem;
     min-height: 350px;
+  }
+  
+  .video-mockup {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .video-mockup:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 35px 100px rgba(0, 0, 0, 0.5);
+  }
+  
+  .video-mockup video {
+    width: 100%;
+    height: 450px;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.1);
   }
   
   .chat-interface {

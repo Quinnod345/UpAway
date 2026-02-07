@@ -1,10 +1,50 @@
 <script>
   import { onMount } from 'svelte';
   import TextReveal from '$lib/components/TextReveal.svelte';
+  import Grainient from '$lib/components/Grainient.svelte';
   
   let mounted = false;
   let secretPhrase = '';
   let showBreatheSecret = false;
+  
+  // Video references
+  let smartJournalingVideo;
+  let aiPromptsVideo;
+  let insightsVideo;
+  
+  // Video playing states
+  let smartJournalingPlaying = false;
+  let aiPromptsPlaying = false;
+  let insightsPlaying = false;
+  
+  // Colors matched to each icon
+  const smartJournalingColors = ['#7B949C', '#536C7C', '#213C4E']; // Navy/teal (original icon)
+  const aiPromptsColors = ['#6B5B95', '#9B8FBF', '#4B3F72']; // Lavender/purple (lavender icon)
+  const insightsColors = ['#8FA89A', '#5B9A9A', '#B8929A']; // Sage/teal/mauve (pastel icon)
+  
+  // Random logo animation params for each card
+  const logoAnimParams = [
+    { duration: 6 + Math.random() * 4, tilt: 5 + Math.random() * 10, delay: Math.random() * 2 },
+    { duration: 6 + Math.random() * 4, tilt: 5 + Math.random() * 10, delay: Math.random() * 2 },
+    { duration: 6 + Math.random() * 4, tilt: 5 + Math.random() * 10, delay: Math.random() * 2 }
+  ];
+  
+  function playVideo(video, videoName) {
+    if (video) {
+      if (video.paused) {
+        video.play();
+        if (videoName === 'smart') smartJournalingPlaying = true;
+        if (videoName === 'prompts') aiPromptsPlaying = true;
+        if (videoName === 'insights') insightsPlaying = true;
+      } else {
+        video.pause();
+        video.currentTime = 0;
+        if (videoName === 'smart') smartJournalingPlaying = false;
+        if (videoName === 'prompts') aiPromptsPlaying = false;
+        if (videoName === 'insights') insightsPlaying = false;
+      }
+    }
+  }
   
   function scrollToSection(selector) {
     const section = document.querySelector(selector);
@@ -93,8 +133,8 @@
 {/if}
 
 <svelte:head>
-  <title>InnerEcho | AI-Powered Mental Health Journaling with Your Personal Therapist</title>
-  <meta name="description" content="InnerEcho is an AI-powered mental health app with a fully customizable AI therapist, intelligent journaling with real-time insights, dream analysis, mood tracking, and 28 beautiful themes. Your mind, your companion, your growth." />
+  <title>InnerEcho | AI-Powered Mental Health Journaling</title>
+  <meta name="description" content="InnerEcho is an AI-powered mental health journaling app with real-time insights, dream analysis, mood tracking, and 28 beautiful themes. Your mind, your growth." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -125,9 +165,9 @@
       <div class="hero-title" class:visible={mounted}>
         <h1>Inner<span class="text-accent">Echo</span></h1>
       </div>
-      <p class="hero-subtitle" class:visible={mounted}>Your AI Therapist, Customized to You</p>
+      <p class="hero-subtitle" class:visible={mounted}>AI-Powered Mental Health Journaling</p>
       <p class="hero-tagline" class:visible={mounted}>
-        The only journaling app with a fully customizable AI therapist. Journal, track your mood, analyze your dreams, and discover patterns—all with an AI companion that learns how you think.
+        Journal, track your mood, analyze your dreams, and discover patterns—all with intelligent AI insights that help you understand yourself better.
       </p>
       <div class="hero-cta" class:visible={mounted}>
         <a href="https://apps.apple.com/us/app/innerecho-mental-health/id6683282892" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-cursor-expand data-cursor-text="Link">
@@ -146,7 +186,7 @@
   <div class="container">
     <div class="intro-content">
       <p class="section-label">More than a journal</p>
-      <TextReveal text="InnerEcho combines the therapeutic power of journaling with a fully customizable AI therapist named Echo—who you can rename, personalize, or let the AI create based on your writing style." tag="h2" class_name="intro-headline" />
+      <TextReveal text="InnerEcho combines the therapeutic power of journaling with intelligent AI insights—helping you understand your emotions, track patterns, and grow through self-reflection." tag="h2" class_name="intro-headline" />
     </div>
   </div>
 </section>
@@ -161,69 +201,115 @@
     
     <div class="screenshots-grid">
       <div class="screenshot-card">
-        <button class="screenshot-placeholder" data-cursor-text="View" on:click={() => scrollToSection('.how-it-works')}>
-          <div class="phone-ui">
-            <div class="phone-header">
-              <span>Echo</span>
-              <span class="phone-date">AI Therapist</span>
-            </div>
-            <div class="phone-content">
-              <div class="chat-preview">
-                <div class="chat-bubble ai">How are you feeling today?</div>
-                <div class="chat-bubble user">I've been stressed about work...</div>
-                <div class="chat-bubble ai typing">
-                  <span class="dot"></span>
-                  <span class="dot"></span>
-                  <span class="dot"></span>
+        <button class="screenshot-placeholder video-card" data-cursor-text="Play" on:click={() => playVideo(smartJournalingVideo, 'smart')}>
+          <div class="video-phone-frame">
+            <div class="video-phone-screen">
+              <video bind:this={smartJournalingVideo} muted playsinline>
+                <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSlzMI5vBJ7XgKw8pAvltdMibEu5D3aPBkqeOyr" type="video/mp4" />
+              </video>
+              <div class="video-gradient-overlay" class:fade-out={smartJournalingPlaying}>
+                <Grainient 
+                  color1={smartJournalingColors[0]}
+                  color2={smartJournalingColors[1]}
+                  color3={smartJournalingColors[2]}
+                  timeSpeed={0.12}
+                  warpStrength={1.2}
+                  warpFrequency={6}
+                  warpSpeed={1}
+                  warpAmplitude={120}
+                  blendSoftness={0.15}
+                  grainAmount={0.02}
+                  grainScale={1.5}
+                  contrast={1.4}
+                  saturation={1.1}
+                />
+              </div>
+              <div class="video-logo-overlay" class:hidden={smartJournalingPlaying}>
+                <img src="/innerecho-icon.png" alt="InnerEcho" class="floating-logo" style="--duration: {logoAnimParams[0].duration}s; --tilt: {logoAnimParams[0].tilt}deg; --delay: {logoAnimParams[0].delay}s;" />
+              </div>
+              <div class="video-play-overlay" class:hidden={smartJournalingPlaying}>
+                <div class="play-button">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
+                <span class="play-text">Click to play</span>
               </div>
             </div>
           </div>
         </button>
-        <p class="screenshot-label">AI Therapist Chat</p>
+        <p class="screenshot-label">Smart Journaling</p>
       </div>
       
       <div class="screenshot-card">
-        <button class="screenshot-placeholder" data-cursor-text="View" on:click={() => scrollToSection('.how-it-works')}>
-          <div class="phone-ui">
-            <div class="phone-header">
-              <span>Journal</span>
-              <span class="phone-date">Go Deeper</span>
-            </div>
-            <div class="phone-content">
-              <div class="journal-lines">
-                <div class="line"></div>
-                <div class="line short"></div>
-                <div class="line"></div>
+        <button class="screenshot-placeholder video-card" data-cursor-text="Play" on:click={() => playVideo(aiPromptsVideo, 'prompts')}>
+          <div class="video-phone-frame">
+            <div class="video-phone-screen">
+              <video bind:this={aiPromptsVideo} muted playsinline>
+                <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSl0T39gLzP3g1BAun7HCfzaUTd4txKe2JXWmhE" type="video/mp4" />
+              </video>
+              <div class="video-gradient-overlay" class:fade-out={aiPromptsPlaying}>
+                <Grainient 
+                  color1={aiPromptsColors[0]}
+                  color2={aiPromptsColors[1]}
+                  color3={aiPromptsColors[2]}
+                  timeSpeed={0.15}
+                  warpStrength={1.5}
+                  warpFrequency={7}
+                  warpSpeed={1.2}
+                  warpAmplitude={100}
+                  blendSoftness={0.12}
+                  grainAmount={0.02}
+                  grainScale={1.8}
+                  contrast={1.4}
+                  saturation={1.1}
+                />
               </div>
-              <div class="go-deeper-prompt">
-                <span class="prompt-icon">✨</span>
-                <span>What emotions come up when you think about this?</span>
+              <div class="video-logo-overlay" class:hidden={aiPromptsPlaying}>
+                <img src="/innerecho-lavender.png" alt="InnerEcho" class="floating-logo" style="--duration: {logoAnimParams[1].duration}s; --tilt: {logoAnimParams[1].tilt}deg; --delay: {logoAnimParams[1].delay}s;" />
+              </div>
+              <div class="video-play-overlay" class:hidden={aiPromptsPlaying}>
+                <div class="play-button">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="play-text">Click to play</span>
               </div>
             </div>
           </div>
         </button>
-        <p class="screenshot-label">Real-Time AI Prompts</p>
+        <p class="screenshot-label">Go Deeper in Your Journalling</p>
       </div>
       
       <div class="screenshot-card">
-        <button class="screenshot-placeholder" data-cursor-text="View" on:click={() => scrollToSection('.how-it-works')}>
-          <div class="phone-ui">
-            <div class="phone-header">
-              <span>Insights</span>
-              <span class="phone-date">Weekly</span>
-            </div>
-            <div class="phone-content">
-              <div class="chart-placeholder">
-                <div class="bar" style="height: 40%"></div>
-                <div class="bar" style="height: 60%"></div>
-                <div class="bar" style="height: 80%"></div>
-                <div class="bar" style="height: 55%"></div>
-                <div class="bar" style="height: 70%"></div>
+        <button class="screenshot-placeholder video-card" data-cursor-text="Play" on:click={() => playVideo(insightsVideo, 'insights')}>
+          <div class="video-phone-frame">
+            <div class="video-phone-screen">
+              <video bind:this={insightsVideo} muted playsinline>
+                <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSl3tSBesRwM0GmlQyR6dIhbO9K5BgHrvx2quas" type="video/mp4" />
+              </video>
+              <div class="video-gradient-overlay" class:fade-out={insightsPlaying}>
+                <Grainient 
+                  color1={insightsColors[0]}
+                  color2={insightsColors[1]}
+                  color3={insightsColors[2]}
+                  timeSpeed={0.1}
+                  warpStrength={1.3}
+                  warpFrequency={5}
+                  warpSpeed={0.8}
+                  warpAmplitude={110}
+                  blendSoftness={0.18}
+                  grainAmount={0.02}
+                  grainScale={1.6}
+                  contrast={1.4}
+                  saturation={1.1}
+                />
               </div>
-              <div class="insight-tags">
-                <span class="tag">😊 Joy 34%</span>
-                <span class="tag">🤔 Thoughtful 28%</span>
+              <div class="video-logo-overlay" class:hidden={insightsPlaying}>
+                <img src="/innerecho-pastel.png" alt="InnerEcho" class="floating-logo" style="--duration: {logoAnimParams[2].duration}s; --tilt: {logoAnimParams[2].tilt}deg; --delay: {logoAnimParams[2].delay}s;" />
+              </div>
+              <div class="video-play-overlay" class:hidden={insightsPlaying}>
+                <div class="play-button">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="play-text">Click to play</span>
               </div>
             </div>
           </div>
@@ -234,70 +320,21 @@
   </div>
 </section>
 
-<!-- AI Therapist Section -->
-<section class="ai-therapist section">
-  <div class="container">
-    <div class="ai-header">
-      <p class="section-label">Meet Echo</p>
-      <TextReveal text="Your AI Therapist, Three Ways to Customize" tag="h2" />
-      <p class="ai-description">
-        Echo is your personal AI therapist—but unlike any other app, you're in complete control of how Echo thinks, talks, and helps you.
-      </p>
-    </div>
-    
-    <div class="customize-grid">
-      <div class="customize-card">
-        <span class="customize-number">01</span>
-        <div class="customize-icon">⚡</div>
-        <h3>Quick Presets</h3>
-        <p>Choose from 6 expert-designed personalities: Compassionate Guide, Wise Mentor, Motivational Coach, Clinical Professional, Mindful Companion, or Anxiety Specialist.</p>
-      </div>
-      
-      <div class="customize-card">
-        <span class="customize-number">02</span>
-        <div class="customize-icon">🎛️</div>
-        <h3>Manual Customization</h3>
-        <p>Fine-tune everything: personality type, communication style, therapeutic focus (CBT, mindfulness, trauma-informed), and even write a custom personality description.</p>
-      </div>
-      
-      <div class="customize-card">
-        <span class="customize-number">03</span>
-        <div class="customize-icon">🧠</div>
-        <h3>AI-Generated Match</h3>
-        <p>After 10+ journal entries, let the AI analyze your writing style and emotional patterns to create a therapist personality perfectly matched to you—with a unique name and approach.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- How It Works Section (Sticky) -->
 <section class="how-it-works section section-navy">
   <div class="container sticky-container">
     <div class="sticky-visual">
       <div class="sticky-wrapper">
-        <button class="phone-mockup-large" data-cursor-text="View" on:click={() => scrollToSection('.quote')}>
+        <div class="phone-mockup-large">
           <div class="phone-frame">
             <div class="phone-screen">
-              <div class="app-demo">
-                <div class="demo-header">
-                  <span class="demo-title">InnerEcho</span>
-                  <span class="demo-subtitle">Today's Entry</span>
-                </div>
-                <div class="demo-prompt">
-                  <p>What's on your mind today?</p>
-                </div>
-                <div class="demo-textarea">
-                  <div class="typing-cursor"></div>
-                </div>
-                <div class="demo-ai">
-                  <span class="ai-badge">✨ Go Deeper</span>
-                  <p>What would it feel like to let go of this worry?</p>
-                </div>
-              </div>
+              <video autoplay muted loop playsinline>
+                <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSlexj2IIVlGyz2iXj0pAkbYZ4KuvDmVUoxfQ8t" type="video/mp4" />
+              </video>
             </div>
           </div>
           <div class="phone-glow"></div>
-        </button>
+        </div>
       </div>
     </div>
     
@@ -425,8 +462,8 @@
   <div class="container">
     <div class="quote-content">
       <blockquote>
-        <p>InnerEcho bridges the gap between simple journaling apps and expensive therapy. It's an AI companion that actually understands you—because you taught it how.</p>
-        <p class="quote-highlight">Your mind, your companion, your growth.</p>
+        <p>InnerEcho bridges the gap between simple journaling apps and expensive therapy—offering AI-powered insights that help you understand yourself better.</p>
+        <p class="quote-highlight">Your mind, your growth.</p>
       </blockquote>
       
       <div class="quote-cta">
@@ -846,72 +883,178 @@
     color: rgba(255, 245, 217, 0.8);
   }
   
-  /* AI Therapist Section */
-  .ai-therapist {
-    background: var(--color-cream);
-    padding: var(--space-xl) 0;
+  .screenshot-hint {
+    font-size: 0.75rem;
+    color: rgba(255, 245, 217, 0.5);
+    margin-top: 0.25rem;
   }
   
-  .ai-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto var(--space-lg);
+  .video-card {
+    padding: 0;
+    background: transparent;
+    border: none;
+    aspect-ratio: unset;
+    max-height: unset;
+    display: block;
   }
   
-  .ai-description {
-    font-size: 1.125rem;
-    color: var(--color-text-muted);
-    margin-top: 1.5rem;
+  .video-phone-frame {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 9/19;
+    background: #1a1a1a;
+    border-radius: 38px;
+    padding: 10px;
+    margin: 0 auto 0.75rem auto;
   }
   
-  .customize-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  .customize-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
+  .video-phone-screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 38px;
+    overflow: hidden;
+    background: #000;
     position: relative;
-    transition: var(--transition-medium);
-    box-shadow: 0 4px 20px rgba(33, 60, 78, 0.05);
   }
   
-  .customize-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(33, 60, 78, 0.1);
+  .video-phone-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
-  .customize-number {
+  .video-gradient-overlay {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-sage);
-    opacity: 0.15;
-    line-height: 1;
+    inset: 0;
+    border-radius: 38px;
+    overflow: hidden;
+    opacity: 0.98;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
   }
   
-  .customize-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+  .video-gradient-overlay.fade-out {
+    opacity: 0;
   }
   
-  .customize-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--color-dark);
+  .video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    border-radius: 38px;
   }
   
-  .customize-card p {
-    color: var(--color-text-muted);
-    line-height: 1.6;
+  .video-card:hover .video-play-overlay {
+    opacity: 1;
+  }
+  
+  .video-play-overlay.hidden {
+    display: none;
+  }
+  
+  .play-button {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .play-button svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-navy);
+    margin-left: 4px;
+  }
+  
+  .play-text {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .video-logo-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .video-logo-overlay.hidden {
+    opacity: 0;
+  }
+  
+  .video-card:hover .video-logo-overlay {
+    opacity: 0;
+  }
+  
+  .floating-logo {
+    width: 80px;
+    height: 80px;
+    animation: 
+      float-tilt var(--duration, 10s) ease-in-out infinite,
+      spin 30s linear infinite,
+      pulse 4s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  @keyframes float-tilt {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    15% {
+      transform: translateY(-5px) translateX(3px);
+    }
+    30% {
+      transform: translateY(-2px) translateX(-4px);
+    }
+    45% {
+      transform: translateY(4px) translateX(-2px);
+    }
+    60% {
+      transform: translateY(5px) translateX(3px);
+    }
+    75% {
+      transform: translateY(2px) translateX(-3px);
+    }
+    90% {
+      transform: translateY(-3px) translateX(2px);
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      rotate: 0deg;
+    }
+    100% {
+      rotate: 360deg;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.08;
+    }
   }
   
   /* How It Works Section (Sticky) */
@@ -964,6 +1107,12 @@
     background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-dark) 100%);
     border-radius: 34px;
     overflow: hidden;
+  }
+  
+  .phone-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   .app-demo {

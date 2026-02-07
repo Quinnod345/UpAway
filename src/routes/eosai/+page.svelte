@@ -286,72 +286,11 @@
     </div>
     
     <div class="eos-hero-visual" class:visible={mounted}>
-      <!-- Video Placeholder Overlay -->
-      <button class="video-placeholder-hero" data-cursor-text="Play" on:click={handlePlayClick}>
-        <div class="video-placeholder-content">
-          <div class="play-button">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
-          <span class="video-label">Watch Demo</span>
-        </div>
-        <div class="video-placeholder-gradient"></div>
-      </button>
-      
-      <button class="eos-browser-mockup eos-glow-animated" data-cursor-text="View" on:click={openMockupLightbox}>
-        <div class="browser-header">
-          <div class="browser-dots">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-          </div>
-          <div class="browser-url">eosbot.ai</div>
-        </div>
-        <div class="browser-content">
-          <div class="chat-interface">
-            <div class="chat-sidebar">
-              <div class="sidebar-logo">EOS</div>
-              <div class="sidebar-item active"></div>
-              <div class="sidebar-item"></div>
-              <div class="sidebar-item"></div>
-              <div class="sidebar-item"></div>
-            </div>
-            <div class="chat-main">
-              <div class="chat-message ai">
-                <div class="message-avatar"></div>
-                <div class="message-bubble">
-                  <div class="message-line w-full"></div>
-                  <div class="message-line w-75"></div>
-                  <div class="message-line w-50"></div>
-                </div>
-              </div>
-              <div class="chat-message user">
-                <div class="message-bubble user-bubble">
-                  <div class="message-line w-60"></div>
-                </div>
-              </div>
-              <div class="chat-message ai">
-                <div class="message-avatar"></div>
-                <div class="message-bubble">
-                  <div class="message-line w-full"></div>
-                  <div class="message-line w-80"></div>
-                </div>
-              </div>
-              <div class="chat-input">
-                <div class="input-field">
-                  <span class="input-placeholder">Ask EOS AI anything...</span>
-                </div>
-                <div class="input-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </button>
+      <div class="eos-hero-video">
+        <video autoplay muted loop playsinline>
+          <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSltvu3fdzwZQMAKiq09cDkOBtSWR25nHY83y6b" type="video/mp4" />
+        </video>
+      </div>
     </div>
   </div>
   
@@ -1086,6 +1025,30 @@
   .eos-hero-visual.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+  
+  .eos-hero-video {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    animation: video-hover 4s ease-in-out infinite;
+  }
+  
+  @keyframes video-hover {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  
+  .eos-hero-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
   }
   
   /* Video Placeholder Hero */
