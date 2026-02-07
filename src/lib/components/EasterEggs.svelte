@@ -776,7 +776,7 @@
         window.open('https://github.com/quinnodonnell', '_blank');
         break;
       case 'linkedin':
-        window.open('https://linkedin.com/in/quinnodonnell', '_blank');
+        window.open('https://www.linkedin.com/in/quinn-o-donnell-0315bb29b/', '_blank');
         break;
     }
   }
@@ -831,7 +831,7 @@
   
   📧 quinn@upaway.dev
   🐙 github.com/quinnodonnell
-  💼 linkedin.com/in/quinnodonnell
+  💼 linkedin.com/in/quinn-o-donnell-0315bb29b
   
 %c  P.S. Try these secrets:
   - Konami code: ↑↑↓↓←→←→BA
@@ -1011,7 +1011,7 @@
         <a href="mailto:quinn@upaway.dev" class="hire-btn primary">
           📧 Email Me
         </a>
-        <a href="https://linkedin.com/in/quinnodonnell" target="_blank" class="hire-btn secondary">
+        <a href="https://www.linkedin.com/in/quinn-o-donnell-0315bb29b/" target="_blank" class="hire-btn secondary">
           💼 LinkedIn
         </a>
       </div>
