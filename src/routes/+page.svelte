@@ -659,7 +659,7 @@
           <a href="/innerecho">InnerEcho</a>
           <a href="/eosai">EOS AI</a>
           <a href="/curb">Curb</a>
-          <a href="/privacy">Privacy Policy</a>
+          <a href="/privacy-policy">Privacy Policy</a>
         </div>
         
         <div class="footer-col">

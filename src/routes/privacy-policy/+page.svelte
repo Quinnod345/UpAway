@@ -38,81 +38,103 @@
     <article class="policy-content">
       <div class="policy-intro">
         <p class="lead">
-          At InnerEcho, your privacy is not just important to us, it's fundamental to our design philosophy. 
-          We believe your most personal thoughts should remain exactly that: personal.
+          Hey Human!<br />
+          You're here because you value your privacy, especially when it comes to sharing your deepest thoughts 
+          with a computer program. Protecting your privacy is incredibly important to us, as both the creators 
+          and regular users of InnerEcho.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>Our Privacy-First Approach</h2>
+        <h2>Our Commitment</h2>
         <p>
-          InnerEcho is built with a privacy-first architecture. Unlike many other apps, we don't store your 
-          journal entries on our servers. Your thoughts, feelings, and reflections stay on your device, 
-          encrypted and secure.
+          Your privacy isn't just something we care about—it's central to our mission to provide a safe and 
+          private journaling experience. When you share sensitive, personal information with us, we take that 
+          responsibility seriously and are committed to keeping it secure, private, and protected, while still 
+          offering you the best features and services.
+        </p>
+        <p>
+          Transparency is key to building trust, which extends to our relationship with you. We're committed 
+          to clear and open communication about how we handle your data, so you can make informed decisions 
+          about its use within InnerEcho.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>Data We Don't Collect</h2>
-        <ul>
-          <li><strong>Journal entries:</strong> Your writing stays on your device only</li>
-          <li><strong>Mood data:</strong> Your emotional tracking remains local</li>
-          <li><strong>Personal identifiers:</strong> We don't require your real name or personal information</li>
-          <li><strong>Location data:</strong> We never track where you are</li>
-        </ul>
-      </div>
-      
-      <div class="policy-section">
-        <h2>Data We May Collect</h2>
-        <p>To improve our app and ensure a great experience, we may collect:</p>
-        <ul>
-          <li><strong>Anonymous usage analytics:</strong> General patterns of app usage (not content)</li>
-          <li><strong>Crash reports:</strong> Technical information when the app encounters issues</li>
-          <li><strong>Device information:</strong> Basic device type and OS version for compatibility</li>
-        </ul>
-      </div>
-      
-      <div class="policy-section">
-        <h2>AI Analysis</h2>
+        <h2>1. Information We Collect</h2>
+        <p>In order to provide our services, we may collect the following types of information:</p>
         <p>
-          When you choose to use our AI-powered features, your text is processed to provide insights. 
-          This analysis happens in real-time and is not stored on any server. We use industry-standard 
-          encryption for any data in transit, and the AI does not retain memory of your entries.
+          <strong>User-Provided Information:</strong> You provide us with personally identifiable information, 
+          such as your Apple ID, when using our services. Your journal entries, preferences, and any other data 
+          you submit through the app are considered part of this.
+        </p>
+        <p>
+          <strong>Automatically Collected Information:</strong> InnerEcho may automatically collect certain 
+          information about the device you use to access our services, such as device type and operating system 
+          version, but we do not track personal usage metrics.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>Your Data, Your Control</h2>
-        <p>You have complete control over your data:</p>
-        <ul>
-          <li>Export your journal entries at any time</li>
-          <li>Delete all your data from the app instantly</li>
-          <li>Use the app without creating an account</li>
-          <li>Opt out of anonymous analytics in settings</li>
-        </ul>
-      </div>
-      
-      <div class="policy-section">
-        <h2>Third-Party Services</h2>
+        <h2>2. Use of Information</h2>
+        <p>We use the information we collect to provide and improve our services:</p>
         <p>
-          We may use third-party services for analytics and crash reporting. These services are carefully 
-          selected to ensure they meet our privacy standards and comply with applicable data protection 
-          regulations.
+          <strong>Providing Our Services:</strong> The information collected is integral to delivering our 
+          services. This includes your journal entries, which are stored locally on your device and within 
+          Apple's CloudKit for syncing across your Apple devices.
+        </p>
+        <p>
+          <strong>Maintaining and Improving Our Services:</strong> We use the data to ensure our app functions 
+          as expected and improves over time. This includes ensuring compatibility and resolving technical 
+          issues. All AI-related processing is done using anonymized data.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>Changes to This Policy</h2>
+        <h2>3. AI and Third-Party Services</h2>
+        <p>We use OpenAI and Anthropic to provide advanced computational tasks, such as language processing for our AI insights.</p>
         <p>
-          We may update this privacy policy from time to time. We will notify you of any significant 
-          changes through the app or via email if you have provided one.
+          <strong>OpenAI and Anthropic:</strong> InnerEcho anonymizes all sensitive data, such as journal entries, 
+          before sending it to OpenAI or Anthropic for processing. All data sent for AI processing is temporarily 
+          held for no more than 30 days and is then deleted.
+        </p>
+        <p>
+          <strong>CloudKit for Data Storage:</strong> We use Apple's CloudKit to securely store your journal entries 
+          and sync them across your devices. Your data is stored with end-to-end encryption, ensuring that only 
+          you have access to your personal entries.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>Contact Us</h2>
+        <h2>4. Non-Disclosure of Sensitive Journal Data</h2>
         <p>
-          If you have any questions about this privacy policy or our data practices, please reach out to us at:
+          We stand firmly in our commitment to safeguard your sensitive journal data. We do not share, sell, 
+          or distribute your data to any third parties unless absolutely required by law. Your privacy is our priority.
+        </p>
+      </div>
+      
+      <div class="policy-section">
+        <h2>5. Security</h2>
+        <p>We employ a variety of measures to safeguard your information:</p>
+        <p>
+          <strong>Data Encryption:</strong> All data transmitted between you and our services is secured using 
+          strong encryption protocols, including Secure Socket Layer (SSL) technology. Apple's CloudKit 
+          automatically encrypts all data stored and synced across your devices.
+        </p>
+      </div>
+      
+      <div class="policy-section">
+        <h2>6. Changes to This Privacy Policy</h2>
+        <p>
+          We reserve the right to modify this privacy policy at any time. If we make material changes to this 
+          policy, we may notify you here or by means of a notice within the app.
+        </p>
+      </div>
+      
+      <div class="policy-section">
+        <h2>7. Contact Us</h2>
+        <p>
+          If you have any questions regarding this Privacy Policy or the practices of InnerEcho, please contact us.
         </p>
         <a href="mailto:support@upaway.dev" class="contact-email">support@upaway.dev</a>
       </div>
