@@ -470,7 +470,7 @@
         <a href="https://apps.apple.com/us/app/innerecho-mental-health/id6683282892" target="_blank" rel="noopener" class="btn btn-primary" data-cursor-expand data-cursor-text="Link">
           Start Your Journey Free
         </a>
-        <a href="/privacy" class="btn btn-outline btn-outline-light" data-cursor-expand>
+        <a href="/privacy-policy" class="btn btn-outline btn-outline-light" data-cursor-expand>
           Privacy Policy
         </a>
       </div>
