@@ -18,13 +18,13 @@
   
   // Showcase data for lightbox
   const showcaseData = [
-    { id: 'chat', title: 'Streaming Chat Interface', desc: 'Real-time AI responses with instant streaming. Context sources panel shows where answers come from.', tags: ['Vercel AI SDK', 'Redis Streams'] },
-    { id: 'nexus', title: 'Nexus Research Mode', desc: 'Multi-step AI research orchestrator with live progress tracking. Up to 40 intelligent web searches per session.', tags: ['AI Orchestration', 'Web Search'] },
+    { id: 'chat', title: 'Streaming Chat Interface', desc: 'Real-time responses with instant streaming. Context sources panel shows where answers come from.', tags: ['Vercel AI SDK', 'Redis Streams'] },
+    { id: 'nexus', title: 'Nexus Research Mode', desc: 'Multi-step research orchestrator with live progress tracking. Up to 40 intelligent web searches per session.', tags: ['Workflow Orchestration', 'Web Search'] },
     { id: 'accountability', title: 'Accountability Chart', desc: 'ReactFlow-powered org chart with GWC ratings, rocks tracking, and measurables.', tags: ['ReactFlow'] },
-    { id: 'vto', title: 'V/TO Editor', desc: 'Interactive Vision/Traction Organizer with AI-assisted goal setting and export.', tags: ['EOS Tools'] },
+    { id: 'vto', title: 'V/TO Editor', desc: 'Interactive Vision/Traction Organizer with assisted goal setting and export.', tags: ['EOS Tools'] },
     { id: 'docs', title: 'Document Intelligence', desc: 'Upload PDFs and documents, then ask questions with intelligent context retrieval.', tags: ['RAG'] },
-    { id: 'voice', title: 'Voice Recording Suite', desc: 'Meeting recording, transcription, and AI analysis for L10 meetings.', tags: ['Whisper API'] },
-    { id: 'personas', title: 'Custom AI Personas', desc: 'Pre-built EOS personas for different roles. Create custom personas with specialized knowledge and behavior.', tags: ['Role-Based AI'] },
+    { id: 'voice', title: 'Voice Recording Suite', desc: 'Meeting recording, transcription, and guided analysis for L10 meetings.', tags: ['Whisper API'] },
+    { id: 'personas', title: 'Custom Personas', desc: 'Pre-built EOS personas for different roles. Create custom personas with specialized knowledge and behavior.', tags: ['Role-Based Personas'] },
     { id: 'composer', title: 'Composer Studio', desc: 'Full content creation suite with V/TO builders, code generation, charts, and document export.', tags: ['Content Creation'] },
     { id: 'team', title: 'Team & Collaboration', desc: 'Organization management with role-based access, shared personas, and company-wide context.', tags: ['Enterprise'] }
   ];
@@ -243,8 +243,8 @@
 {/if}
 
 <svelte:head>
-  <title>EOS AI | AI Assistant for EOS Businesses</title>
-  <meta name="description" content="EOS AI is an AI-powered assistant built for EOS Worldwide. Helps businesses apply EOS principles with instant answers, guided tools, and session preparation support." />
+  <title>EOS AI | Assistant for EOS Businesses</title>
+  <meta name="description" content="EOS AI is a purpose-built assistant for EOS Worldwide. It helps businesses apply EOS principles with instant answers, guided tools, and session preparation support." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -269,7 +269,7 @@
       </div>
       
       <p class="eos-subtitle" class:visible={mounted}>
-        AI-Powered Assistant for EOS Businesses
+        Purpose-Built Assistant for EOS Businesses
       </p>
 
       <p class="eos-hero-description" class:visible={mounted}>
@@ -341,7 +341,7 @@
         </div>
         <div class="stat-card eos-glass-card">
           <span class="stat-number text-eos-gradient">9</span>
-          <span class="stat-label">AI Tool Types</span>
+          <span class="stat-label">Tool Types</span>
         </div>
       </div>
     </div>
@@ -370,7 +370,7 @@
         </div>
         <div class="showcase-info">
           <h3>Streaming Chat Interface</h3>
-          <p>Real-time AI responses with instant streaming. Context sources panel shows where answers come from.</p>
+          <p>Real-time responses with instant streaming. Context sources panel shows where answers come from.</p>
           <div class="showcase-tags">
             <span class="showcase-tag">Vercel AI SDK</span>
             <span class="showcase-tag">Redis Streams</span>
@@ -391,9 +391,9 @@
         </div>
         <div class="showcase-info">
           <h3>Nexus Research Mode</h3>
-          <p>Multi-step AI research orchestrator with live progress tracking. Up to 40 intelligent web searches per session.</p>
+          <p>Multi-step research orchestrator with live progress tracking. Up to 40 intelligent web searches per session.</p>
           <div class="showcase-tags">
-            <span class="showcase-tag">AI Orchestration</span>
+            <span class="showcase-tag">Workflow Orchestration</span>
             <span class="showcase-tag">Web Search</span>
           </div>
         </div>
@@ -432,7 +432,7 @@
         </div>
         <div class="showcase-info">
           <h3>V/TO Editor</h3>
-          <p>Interactive Vision/Traction Organizer with AI-assisted goal setting and export.</p>
+          <p>Interactive Vision/Traction Organizer with assisted goal setting and export.</p>
           <div class="showcase-tags">
             <span class="showcase-tag">EOS Tools</span>
           </div>
@@ -472,14 +472,14 @@
         </div>
         <div class="showcase-info">
           <h3>Voice Recording Suite</h3>
-          <p>Meeting recording, transcription, and AI analysis for L10 meetings.</p>
+          <p>Meeting recording, transcription, and guided analysis for L10 meetings.</p>
           <div class="showcase-tags">
             <span class="showcase-tag">Whisper API</span>
           </div>
         </div>
       </button>
 
-      <!-- Showcase 7: Custom AI Personas -->
+      <!-- Showcase 7: Custom Personas -->
       <button class="showcase-card eos-glass-card" data-cursor-text="View" on:click={() => openShowcaseLightbox('personas')}>
         <div class="showcase-video-placeholder">
           <div class="video-placeholder-inner">
@@ -491,10 +491,10 @@
           </div>
         </div>
         <div class="showcase-info">
-          <h3>Custom AI Personas</h3>
+          <h3>Custom Personas</h3>
           <p>Pre-built EOS personas for different roles. Create custom personas with specialized knowledge and behavior.</p>
           <div class="showcase-tags">
-            <span class="showcase-tag">Role-Based AI</span>
+            <span class="showcase-tag">Role-Based Personas</span>
           </div>
         </div>
       </button>
@@ -552,11 +552,11 @@
 
     <div class="deepdive-grid">
       <div class="deepdive-card eos-glass-card">
-        <h3>AI Architecture</h3>
+        <h3>Assistant Architecture</h3>
         <ul class="tech-list">
           <li><strong>Dynamic Model Selection</strong> via preflight analysis (Claude 4.5 Sonnet or Claude 4.5 Opus)</li>
           <li><strong>Complexity Detection</strong> adjusts reasoning effort (low/medium/high)</li>
-          <li><strong>9 AI Tool Types</strong> including documents, search, and calendars</li>
+          <li><strong>9 Tool Types</strong> including documents, search, and calendars</li>
           <li><strong>Persistent Memory</strong> across conversations</li>
         </ul>
       </div>
@@ -632,7 +632,7 @@
       </div>
       
       <div class="tech-category">
-        <h3>AI / ML</h3>
+        <h3>Assistant / ML</h3>
         <div class="tech-items">
           <div class="tech-item eos-glass-card">
             <span class="tech-name">Vercel AI SDK 4.3</span>
@@ -810,7 +810,7 @@
     <div class="cta-content">
       <TextReveal text="Interested in building something similar?" tag="h2" class_name="cta-title" />
       <p class="cta-description">
-        Let's discuss how I can help bring your enterprise AI vision to life.
+        Let's discuss how I can help bring your enterprise product vision to life.
       </p>
       <div class="cta-buttons">
         <a href="/#contact" class="btn btn-eos" data-cursor-expand>

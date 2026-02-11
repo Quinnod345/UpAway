@@ -113,7 +113,7 @@
 
 <svelte:head>
   <title>UpAway</title>
-  <meta name="description" content="20-year-old developer with patents pending and apps in production. I turn wild AI ideas into real products people actually use." />
+  <meta name="description" content="20-year-old developer with patents pending and apps in production. I turn wild ideas into real products people actually use." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -132,18 +132,18 @@
     <div class="hero-text">
       <p class="hero-eyebrow" class:visible={mounted}>
         <span class="eyebrow-line"></span>
-        Developer • AI Builder • Shipping Products
+        Developer • Product Builder • Shipping Products
       </p>
       
       <div class="hero-headline" class:visible={mounted}>
         <h1>
           I Build <span class="text-gradient">Cool Stuff</span><br/>
-          With <span class="highlight">AI</span>
+          That <span class="highlight">Ships</span>
         </h1>
       </div>
       
       <p class="hero-description" class:visible={mounted}>
-        I'm obsessed with turning bleeding-edge AI into products people actually use. 
+        I'm obsessed with turning ambitious ideas into products people actually use.
         Not demos. Not prototypes. Real apps, live in production, solving real problems. 
         I've got patents pending and I'm just getting started.
       </p>
@@ -173,7 +173,7 @@
 <div class="marquee-section">
   <div class="marquee-track">
     <div class="marquee-content">
-      <span>AI Products</span>
+      <span>Digital Products</span>
       <span class="marquee-dot">◆</span>
       <span>Full-Stack Development</span>
       <span class="marquee-dot">◆</span>
@@ -183,7 +183,7 @@
       <span class="marquee-dot">◆</span>
       <span>Production Systems</span>
       <span class="marquee-dot">◆</span>
-      <span>AI Products</span>
+      <span>Digital Products</span>
       <span class="marquee-dot">◆</span>
       <span>Full-Stack Development</span>
       <span class="marquee-dot">◆</span>
@@ -203,10 +203,10 @@
     <div class="sticky-header">
       <div class="sticky-content">
         <p class="section-label">What I Do</p>
-        <TextReveal text="Full-stack, AI-native, shipped" tag="h2" class_name="section-title" />
+        <TextReveal text="Full-stack, product-first, shipped" tag="h2" class_name="section-title" />
         <p class="sticky-description">
-          I don't just prototype—I build complete products and get them into users' hands. 
-          From the AI backend to the pixel-perfect frontend, I own the whole stack.
+          I don't just prototype. I build complete products and get them into users' hands.
+          From backend architecture to pixel-perfect frontend, I own the whole stack.
         </p>
       </div>
     </div>
@@ -225,8 +225,8 @@
             </svg>
           </div>
           <div class="service-number">01</div>
-          <h3>AI Products</h3>
-          <p>LLM-powered apps that actually work. Chatbots, AI assistants, intelligent workflows—the stuff that feels like magic but runs in production.</p>
+          <h3>Smart Products</h3>
+          <p>Production-ready apps that actually work. Chat experiences, workflow automations, and intelligent systems that feel like magic but run in production.</p>
         </div>
       </ScrollReveal>
       
@@ -242,7 +242,7 @@
           </div>
           <div class="service-number">02</div>
           <h3>Full-Stack Dev</h3>
-          <p>React, Next.js, SvelteKit, Node, Python—whatever gets the job done. I write code that's fast, maintainable, and doesn't make future-me cry.</p>
+          <p>React, Next.js, SvelteKit, Node, Python, whatever gets the job done. I write code that's fast, maintainable, and doesn't make future-me cry.</p>
         </div>
       </ScrollReveal>
       
@@ -260,7 +260,7 @@
           </div>
           <div class="service-number">03</div>
           <h3>Mobile Apps</h3>
-          <p>Native iOS apps that people actually download and use. Not just another side project—real apps, real users, App Store reviews and all.</p>
+          <p>Native iOS apps that people actually download and use. Not just another side project: real apps, real users, App Store reviews and all.</p>
         </div>
       </ScrollReveal>
       
@@ -275,7 +275,7 @@
           </div>
           <div class="service-number">04</div>
           <h3>Zero to Launch</h3>
-          <p>Got an idea? I'll take it from napkin sketch to production. Architecture, development, deployment—the whole thing, shipped.</p>
+          <p>Got an idea? I'll take it from napkin sketch to production. Architecture, development, deployment - the whole thing, shipped.</p>
         </div>
       </ScrollReveal>
     </div>
@@ -289,7 +289,7 @@
       <div class="work-header">
         <p class="section-label text-accent">Featured Project</p>
         <TextReveal text="InnerEcho" tag="h2" class_name="text-light" />
-        <p class="work-tagline">AI-Powered Mental Health Journaling</p>
+        <p class="work-tagline">Intelligent Mental Health Journaling</p>
       </div>
     </ScrollReveal>
     
@@ -298,14 +298,14 @@
         <div class="work-content">
           <p class="work-description">
             InnerEcho is a mental health journaling app that combines the therapeutic power 
-            of journaling with AI-driven insights. Designed to help users reflect, grow, 
+            of journaling with guided insights. Designed to help users reflect, grow,
             and understand their emotional patterns.
           </p>
           
           <ul class="work-features">
             <li>
               <span class="feature-icon">✦</span>
-              AI-powered mood analysis and insights
+              Personalized mood analysis and insights
             </li>
             <li>
               <span class="feature-icon">✦</span>
@@ -372,11 +372,11 @@
   <div class="container">
     <ScrollReveal animation="fade-up">
       <div class="eosai-header">
-        <p class="section-label text-eos-orange">AI Assistant</p>
+        <p class="section-label text-eos-orange">Business Assistant</p>
         <h2 class="text-eos-gradient">EOS AI</h2>
         <p class="eosai-tagline">Built for EOS Worldwide</p>
         <p class="eosai-description-main">
-          An AI-powered assistant trained on core EOS materials and best practices.
+          A purpose-built assistant trained on core EOS materials and best practices.
           Helps businesses stay on track with their EOS implementation by providing instant answers,
           guided tools, and session preparation support. Designed to complement EOS Implementers, not replace them.
         </p>
@@ -388,7 +388,7 @@
         <div class="eosai-features-simple">
           <div class="feature-item">
             <h4>Claude 4.5 Sonnet</h4>
-            <p>Anthropic's most capable AI model for thoughtful, accurate responses</p>
+            <p>Anthropic's most capable model for thoughtful, accurate responses</p>
           </div>
           <div class="feature-item">
             <h4>6 Knowledge Sources</h4>
@@ -452,11 +452,11 @@
   <div class="container">
     <ScrollReveal animation="fade-up">
       <div class="curb-header">
-        <p class="section-label text-curb-emerald">AI Listing Generator</p>
+        <p class="section-label text-curb-emerald">Listing Generator</p>
         <h2 class="text-curb-gradient">Curb</h2>
         <p class="curb-tagline">Words That Sell Homes</p>
         <p class="curb-description-main">
-          An AI-powered real estate listing generator that creates compelling property descriptions 
+          A real estate listing generator that creates compelling property descriptions
           in seconds. Just input the property details and watch as Curb crafts professional, 
           engaging copy that helps listings stand out and sell faster.
         </p>
@@ -472,7 +472,7 @@
           </div>
           <div class="curb-feature-item">
             <h4>Multiple Styles</h4>
-            <p>Luxury, cozy, modern, family-friendly—match the property's vibe</p>
+            <p>Luxury, cozy, modern, family-friendly: match the property's vibe</p>
           </div>
           <div class="curb-feature-item">
             <h4>SEO Optimized</h4>
@@ -561,13 +561,13 @@
           <TextReveal text="Ideas → Reality, Fast" tag="h2" />
           <p class="vision-text">
             I get bored by tutorials and hate leaving projects half-finished. When I see 
-            something cool, I want to build it—and actually ship it. That impatience has 
+            something cool, I want to build it and actually ship it. That impatience has
             turned into multiple production apps and a couple patents before I could legally drink.
           </p>
           <p class="vision-text">
-            The AI space moves fast and I love that. New model drops? I'm already thinking 
-            about what I can build with it. I'm not here to write whitepapers about the future 
-            of AI—I'm here to build it.
+            Tech moves fast and I love that. New tools launch and I'm already thinking
+            about what I can build with them. I'm not here to write whitepapers about the future.
+            I'm here to build it.
           </p>
         </div>
       </ScrollReveal>
@@ -609,7 +609,7 @@
           <p class="section-label text-accent">Let's Talk</p>
           <TextReveal text="Got a wild idea?" tag="h2" class_name="text-light" />
           <p class="contact-description">
-            I love hearing about ambitious projects—especially the ones that seem 
+            I love hearing about ambitious projects, especially the ones that seem
             slightly impossible. If you're building something cool and need someone 
             who ships, let's chat.
           </p>
@@ -704,7 +704,7 @@
     <div class="footer-content">
       <div class="footer-brand">
         <span class="footer-logo">Quinn O'Donnell</span>
-        <p class="footer-tagline">Building AI-native products that ship.</p>
+        <p class="footer-tagline">Building products that ship.</p>
       </div>
       
       <div class="footer-links">

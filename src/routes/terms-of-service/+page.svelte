@@ -58,7 +58,7 @@
         <h2>3. User Accounts and Data</h2>
         <p>
           <strong>Privacy:</strong> Your privacy is important to us. All data is stored locally on your device or 
-          in Apple's CloudKit service, syncing across your devices. AI insights data is processed by OpenAI and 
+          in Apple's CloudKit service, syncing across your devices. Insight data is processed by OpenAI and
           deleted after 30 days. For more information on how we handle data, please review our 
           <a href="/privacy-policy" class="inline-link">Privacy Policy</a>.
         </p>
@@ -79,9 +79,9 @@
       </div>
       
       <div class="policy-section">
-        <h2>5. AI Insights</h2>
+        <h2>5. In-App Insights</h2>
         <p>
-          InnerEcho includes AI-generated insights based on your journal entries and check-ins. The AI insights 
+          InnerEcho includes generated insights based on your journal entries and check-ins. These insights
           provided are meant for informational purposes only and should not replace professional mental health 
           advice or treatment.
         </p>

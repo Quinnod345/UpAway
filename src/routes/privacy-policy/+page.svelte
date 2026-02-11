@@ -48,7 +48,7 @@
       <div class="policy-section">
         <h2>Our Commitment</h2>
         <p>
-          Your privacy isn't just something we care about—it's central to our mission to provide a safe and 
+          Your privacy isn't just something we care about. It's central to our mission to provide a safe and
           private journaling experience. When you share sensitive, personal information with us, we take that 
           responsibility seriously and are committed to keeping it secure, private, and protected, while still 
           offering you the best features and services.
@@ -86,16 +86,16 @@
         <p>
           <strong>Maintaining and Improving Our Services:</strong> We use the data to ensure our app functions 
           as expected and improves over time. This includes ensuring compatibility and resolving technical 
-          issues. All AI-related processing is done using anonymized data.
+          issues. All insight-related processing is done using anonymized data.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>3. AI and Third-Party Services</h2>
-        <p>We use OpenAI and Anthropic to provide advanced computational tasks, such as language processing for our AI insights.</p>
+        <h2>3. Insights and Third-Party Services</h2>
+        <p>We use OpenAI and Anthropic to provide advanced computational tasks, such as language processing for our in-app insights.</p>
         <p>
           <strong>OpenAI and Anthropic:</strong> InnerEcho anonymizes all sensitive data, such as journal entries, 
-          before sending it to OpenAI or Anthropic for processing. All data sent for AI processing is temporarily 
+          before sending it to OpenAI or Anthropic for processing. All data sent for insight processing is temporarily
           held for no more than 30 days and is then deleted.
         </p>
         <p>

@@ -47,7 +47,7 @@
     {
       label: "Family Home",
       before: "3 bed 2 bath house. Updated kitchen. Nice backyard. Close to schools.",
-      after: "Welcome to your dream home! This stunning 3-bedroom, 2-bathroom residence features a beautifully renovated chef's kitchen with granite countertops and stainless steel appliances. Step outside to your private backyard oasis—perfect for entertaining or peaceful morning coffee. Located in a sought-after neighborhood just minutes from top-rated schools."
+      after: "Welcome to your dream home! This stunning 3-bedroom, 2-bathroom residence features a beautifully renovated chef's kitchen with granite countertops and stainless steel appliances. Step outside to your private backyard oasis, perfect for entertaining or peaceful morning coffee. Located in a sought-after neighborhood just minutes from top-rated schools."
     },
     {
       label: "Downtown Condo",
@@ -87,7 +87,7 @@
 
 <svelte:head>
   <title>Curb | Words That Sell Homes</title>
-  <meta name="description" content="Curb is an AI-powered real estate listing generator that transforms basic property details into compelling descriptions that sell homes faster." />
+  <meta name="description" content="Curb is a smart real estate listing generator that transforms basic property details into compelling descriptions that sell homes faster." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -124,7 +124,7 @@
 
       <p class="curb-hero-description" class:visible={mounted}>
         Stop staring at blank screens. Turn basic property details into scroll-stopping 
-        listing descriptions in under 30 seconds. AI that writes like your best agent—
+        listing descriptions in under 30 seconds. Writing help that sounds like your best agent,
         because it learned from thousands of top performers.
       </p>
 
@@ -176,7 +176,7 @@
             </div>
             <div class="app-output">
               <div class="output-header">
-                <span class="output-badge">✨ AI Generated</span>
+                <span class="output-badge">✨ Generated</span>
               </div>
               <div class="output-lines">
                 <div class="output-line w-full"></div>
@@ -270,7 +270,7 @@
         <div class="card-header">
           <span class="card-emoji">✨</span>
           <span class="card-title">After</span>
-          <span class="card-badge positive">AI-Enhanced</span>
+          <span class="card-badge positive">Enhanced</span>
         </div>
         <p class="card-description">Compelling, emotion-driven listing</p>
         <div class="card-content">
@@ -305,7 +305,7 @@
       <div class="feature-card curb-glass-card" >
         <div class="feature-icon-box amber">⚡</div>
         <h3>Real Estate Expertise Built-In</h3>
-        <p>Not generic AI. Trained on thousands of high-performing listings that actually sell homes.</p>
+        <p>Not generic output. Trained on thousands of high-performing listings that actually sell homes.</p>
       </div>
       
       <div class="feature-card curb-glass-card" >
@@ -317,13 +317,13 @@
       <div class="feature-card curb-glass-card" >
         <div class="feature-icon-box purple">🎨</div>
         <h3>Multiple Tones</h3>
-        <p>Professional, luxury, friendly—choose the voice that matches your listing and brand.</p>
+        <p>Professional, luxury, friendly: choose the voice that matches your listing and brand.</p>
       </div>
       
       <div class="feature-card curb-glass-card" >
         <div class="feature-icon-box blue">📸</div>
         <h3>Photo Intelligence</h3>
-        <p>Upload property photos and AI detects features automatically. Less typing, better results.</p>
+        <p>Upload property photos and Curb detects features automatically. Less typing, better results.</p>
       </div>
       
       <div class="feature-card curb-glass-card" >
@@ -363,7 +363,7 @@
       </div>
       
       <div class="tech-category">
-        <h3>AI / ML</h3>
+        <h3>Automation / ML</h3>
         <div class="tech-items">
           <div class="tech-item curb-glass-card">
             <span class="tech-name">OpenAI GPT-4</span>
@@ -417,7 +417,7 @@
       </p>
       <div class="cta-buttons">
         <a href="https://listingai-nine.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-curb" data-cursor-expand data-cursor-text="Link">
-          Start Free — No Card Required
+          Start Free - No Card Required
           <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
