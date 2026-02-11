@@ -4,6 +4,7 @@
   import { page } from '$app/stores';
   import { fade, fly } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
+  import { SHOW_CURB_ON_LANDING } from '$lib/featureFlags.js';
   import '../app.css';
   import Lenis from 'lenis';
   
@@ -126,10 +127,12 @@
         <span class="nav-link-text">EOS AI</span>
         <span class="nav-link-line"></span>
       </a>
-      <a href="/curb" class="nav-link" class:active={isCurb} on:click={() => navOpen = false}>
-        <span class="nav-link-text">Curb</span>
-        <span class="nav-link-line"></span>
-      </a>
+      {#if SHOW_CURB_ON_LANDING || $page.url.pathname !== '/'}
+        <a href="/curb" class="nav-link" class:active={isCurb} on:click={() => navOpen = false}>
+          <span class="nav-link-text">Curb</span>
+          <span class="nav-link-line"></span>
+        </a>
+      {/if}
       <a href="/#contact" class="btn btn-nav" on:click={() => navOpen = false}>
         <span>Let's Talk</span>
         <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
