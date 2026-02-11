@@ -54,24 +54,27 @@
     submitting = true;
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      const query = new URLSearchParams({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        company: formData.company
+      });
+
+      const responseWithPayload = await fetch(`/api/contact?${query.toString()}`, {
+        method: 'POST'
       });
 
       /** @type {{ error?: string; message?: string }} */
       let responseBody = {};
 
       try {
-        responseBody = await response.json();
+        responseBody = await responseWithPayload.json();
       } catch {
         responseBody = {};
       }
 
-      if (!response.ok) {
+      if (!responseWithPayload.ok) {
         formError = responseBody?.error || 'Unable to send message right now. Please try again shortly.';
         return;
       }
