@@ -87,19 +87,29 @@ export const POST = async ({ request }) => {
     );
   }
 
-  /** @type {{ name?: unknown; email?: unknown; message?: unknown; company?: unknown }} */
-  let body;
+  const requestUrl = new URL(request.url);
 
-  try {
-    body = await request.json();
-  } catch {
-    return jsonResponse({ error: 'Invalid request payload.' }, 400);
+  let name = normalizeField(requestUrl.searchParams.get('name'));
+  let email = normalizeField(requestUrl.searchParams.get('email'));
+  let message = normalizeField(requestUrl.searchParams.get('message'));
+  let company = normalizeField(requestUrl.searchParams.get('company'));
+
+  // Prefer query params for compatibility with this older SvelteKit runtime in modern Node.
+  // If query params are missing, fall back to formData parsing.
+  if (!name && !email && !message && !company) {
+    let form;
+
+    try {
+      form = await request.formData();
+    } catch {
+      return jsonResponse({ error: 'Invalid request body.' }, 400);
+    }
+
+    name = normalizeField(form.get('name'));
+    email = normalizeField(form.get('email'));
+    message = normalizeField(form.get('message'));
+    company = normalizeField(form.get('company'));
   }
-
-  const name = normalizeField(body?.name);
-  const email = normalizeField(body?.email);
-  const message = normalizeField(body?.message);
-  const company = normalizeField(body?.company);
 
   // Honeypot: bots often fill hidden fields.
   if (company) {
