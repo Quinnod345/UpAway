@@ -6,6 +6,7 @@
   import MagneticButton from '$lib/components/MagneticButton.svelte';
   import TextScramble from '$lib/components/TextScramble.svelte';
   import ParallaxSection from '$lib/components/ParallaxSection.svelte';
+  import { SHOW_CURB_ON_LANDING } from '$lib/featureFlags.js';
   import { 
     handleServiceCardClick, 
     handleStatClick, 
@@ -441,115 +442,117 @@
   </div>
 </section>
 
-<!-- Curb Section -->
-<section class="curb section" id="curb">
-  <div class="curb-bg">
-    <div class="curb-blob curb-blob-1"></div>
-    <div class="curb-blob curb-blob-2"></div>
-    <div class="curb-mesh"></div>
-  </div>
+{#if SHOW_CURB_ON_LANDING}
+  <!-- Curb Section -->
+  <section class="curb section" id="curb">
+    <div class="curb-bg">
+      <div class="curb-blob curb-blob-1"></div>
+      <div class="curb-blob curb-blob-2"></div>
+      <div class="curb-mesh"></div>
+    </div>
 
-  <div class="container">
-    <ScrollReveal animation="fade-up">
-      <div class="curb-header">
-        <p class="section-label text-curb-emerald">Listing Generator</p>
-        <h2 class="text-curb-gradient">Curb</h2>
-        <p class="curb-tagline">Words That Sell Homes</p>
-        <p class="curb-description-main">
-          A real estate listing generator that creates compelling property descriptions
-          in seconds. Just input the property details and watch as Curb crafts professional, 
-          engaging copy that helps listings stand out and sell faster.
-        </p>
-      </div>
-    </ScrollReveal>
+    <div class="container">
+      <ScrollReveal animation="fade-up">
+        <div class="curb-header">
+          <p class="section-label text-curb-emerald">Listing Generator</p>
+          <h2 class="text-curb-gradient">Curb</h2>
+          <p class="curb-tagline">Words That Sell Homes</p>
+          <p class="curb-description-main">
+            A real estate listing generator that creates compelling property descriptions
+            in seconds. Just input the property details and watch as Curb crafts professional, 
+            engaging copy that helps listings stand out and sell faster.
+          </p>
+        </div>
+      </ScrollReveal>
 
-    <div class="curb-content-grid">
-      <div class="curb-info">
-        <div class="curb-features-simple">
-          <div class="curb-feature-item">
-            <h4>Instant Generation</h4>
-            <p>Create polished listing descriptions in seconds, not hours</p>
+      <div class="curb-content-grid">
+        <div class="curb-info">
+          <div class="curb-features-simple">
+            <div class="curb-feature-item">
+              <h4>Instant Generation</h4>
+              <p>Create polished listing descriptions in seconds, not hours</p>
+            </div>
+            <div class="curb-feature-item">
+              <h4>Multiple Styles</h4>
+              <p>Luxury, cozy, modern, family-friendly: match the property's vibe</p>
+            </div>
+            <div class="curb-feature-item">
+              <h4>SEO Optimized</h4>
+              <p>Descriptions crafted to rank and attract qualified buyers</p>
+            </div>
+            <div class="curb-feature-item">
+              <h4>One-Click Copy</h4>
+              <p>Export directly to your MLS or marketing materials</p>
+            </div>
           </div>
-          <div class="curb-feature-item">
-            <h4>Multiple Styles</h4>
-            <p>Luxury, cozy, modern, family-friendly: match the property's vibe</p>
-          </div>
-          <div class="curb-feature-item">
-            <h4>SEO Optimized</h4>
-            <p>Descriptions crafted to rank and attract qualified buyers</p>
-          </div>
-          <div class="curb-feature-item">
-            <h4>One-Click Copy</h4>
-            <p>Export directly to your MLS or marketing materials</p>
-          </div>
+        </div>
+
+        <div class="curb-visual">
+          <ScrollReveal animation="fade-left" delay={0.2}>
+            <div>
+              <button class="browser-mockup curb-glow-animated" data-cursor-text="View" on:click={() => goto('/curb')}>
+                <div class="browser-header curb-browser-header">
+                  <div class="browser-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                  </div>
+                  <div class="browser-url curb-browser-url">listingai-nine.vercel.app</div>
+                </div>
+                <div class="browser-content curb-browser-content">
+                  <div class="curb-app-interface">
+                    <div class="curb-form-preview">
+                      <div class="curb-input-row">
+                        <div class="curb-input-label"></div>
+                        <div class="curb-input-field"></div>
+                      </div>
+                      <div class="curb-input-row">
+                        <div class="curb-input-label short"></div>
+                        <div class="curb-input-field"></div>
+                      </div>
+                    </div>
+                    <div class="curb-output-preview">
+                      <div class="curb-output-header">
+                        <div class="curb-output-icon">✨</div>
+                        <div class="curb-output-title"></div>
+                      </div>
+                      <div class="curb-output-text">
+                        <div class="curb-text-line"></div>
+                        <div class="curb-text-line"></div>
+                        <div class="curb-text-line short"></div>
+                      </div>
+                    </div>
+                    <div class="curb-generate-btn"></div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
 
-      <div class="curb-visual">
-        <ScrollReveal animation="fade-left" delay={0.2}>
-          <div>
-            <button class="browser-mockup curb-glow-animated" data-cursor-text="View" on:click={() => goto('/curb')}>
-              <div class="browser-header curb-browser-header">
-                <div class="browser-dots">
-                  <span class="dot red"></span>
-                  <span class="dot yellow"></span>
-                  <span class="dot green"></span>
-                </div>
-                <div class="browser-url curb-browser-url">listingai-nine.vercel.app</div>
-              </div>
-              <div class="browser-content curb-browser-content">
-                <div class="curb-app-interface">
-                  <div class="curb-form-preview">
-                    <div class="curb-input-row">
-                      <div class="curb-input-label"></div>
-                      <div class="curb-input-field"></div>
-                    </div>
-                    <div class="curb-input-row">
-                      <div class="curb-input-label short"></div>
-                      <div class="curb-input-field"></div>
-                    </div>
-                  </div>
-                  <div class="curb-output-preview">
-                    <div class="curb-output-header">
-                      <div class="curb-output-icon">✨</div>
-                      <div class="curb-output-title"></div>
-                    </div>
-                    <div class="curb-output-text">
-                      <div class="curb-text-line"></div>
-                      <div class="curb-text-line"></div>
-                      <div class="curb-text-line short"></div>
-                    </div>
-                  </div>
-                  <div class="curb-generate-btn"></div>
-                </div>
-              </div>
-            </button>
-          </div>
-        </ScrollReveal>
+      <div class="curb-footer">
+        <div class="curb-tech">
+          <span class="curb-tech-tag">Next.js</span>
+          <span class="curb-tech-tag">OpenAI</span>
+          <span class="curb-tech-tag">Tailwind</span>
+          <span class="curb-tech-tag">Vercel</span>
+        </div>
+
+        <div class="curb-cta">
+          <span data-cursor-expand>
+            <MagneticButton href="/curb" variant="primary">
+              View Project
+              <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </MagneticButton>
+          </span>
+        </div>
       </div>
     </div>
-
-    <div class="curb-footer">
-      <div class="curb-tech">
-        <span class="curb-tech-tag">Next.js</span>
-        <span class="curb-tech-tag">OpenAI</span>
-        <span class="curb-tech-tag">Tailwind</span>
-        <span class="curb-tech-tag">Vercel</span>
-      </div>
-
-      <div class="curb-cta">
-        <span data-cursor-expand>
-          <MagneticButton href="/curb" variant="primary">
-            View Project
-            <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </MagneticButton>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+{/if}
 
 <!-- Vision Section -->
 <section class="vision section">
@@ -719,7 +722,9 @@
           <span class="footer-col-title">Projects</span>
           <a href="/innerecho">InnerEcho</a>
           <a href="/eosai">EOS AI</a>
-          <a href="/curb">Curb</a>
+          {#if SHOW_CURB_ON_LANDING}
+            <a href="/curb">Curb</a>
+          {/if}
           <a href="/privacy-policy">Privacy Policy</a>
         </div>
         
