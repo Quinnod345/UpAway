@@ -112,7 +112,7 @@
 </script>
 
 <svelte:head>
-  <title>Quinn O'Donnell | I Build Cool Stuff with AI</title>
+  <title>UpAway</title>
   <meta name="description" content="20-year-old developer with patents pending and apps in production. I turn wild AI ideas into real products people actually use." />
 </svelte:head>
 
