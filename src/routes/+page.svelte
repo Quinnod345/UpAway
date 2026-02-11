@@ -18,9 +18,12 @@
   let formData = {
     name: '',
     email: '',
-    message: ''
+    message: '',
+    company: ''
   };
   let formStatus = '';
+  let formError = '';
+  let submitting = false;
   
   // Stats easter egg - bonus clicks
   let statsBonuses = { apps: 0, patents: 0 };
@@ -40,12 +43,48 @@
     }
   });
   
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    formStatus = 'Thank you! I\'ll be in touch soon.';
-    formData = { name: '', email: '', message: '' };
-    // Trigger the celebration easter egg!
-    triggerContactCelebration();
+
+    if (submitting) {
+      return;
+    }
+
+    formError = '';
+    submitting = true;
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      /** @type {{ error?: string; message?: string }} */
+      let responseBody = {};
+
+      try {
+        responseBody = await response.json();
+      } catch {
+        responseBody = {};
+      }
+
+      if (!response.ok) {
+        formError = responseBody?.error || 'Unable to send message right now. Please try again shortly.';
+        return;
+      }
+
+      formStatus = responseBody?.message || "Thank you! I'll be in touch soon.";
+      formData = { name: '', email: '', message: '', company: '' };
+      // Trigger the celebration easter egg!
+      triggerContactCelebration();
+    } catch {
+      formError = 'Unable to send message right now. Please try again shortly.';
+    } finally {
+      submitting = false;
+    }
   }
   
   // Service card click handler for easter egg sequence
@@ -590,6 +629,22 @@
             </div>
           {:else}
             <form class="contact-form" on:submit={handleSubmit}>
+              {#if formError}
+                <p class="form-error">{formError}</p>
+              {/if}
+
+              <div class="honeypot-field" aria-hidden="true">
+                <label for="company">Company</label>
+                <input
+                  type="text"
+                  id="company"
+                  bind:value={formData.company}
+                  tabindex="-1"
+                  autocomplete="off"
+                  disabled={submitting}
+                />
+              </div>
+
               <div class="form-group">
                 <label for="name">Name</label>
                 <input 
@@ -597,6 +652,7 @@
                   id="name" 
                   bind:value={formData.name}
                   placeholder="Your name"
+                  disabled={submitting}
                   required
                 />
               </div>
@@ -608,6 +664,7 @@
                   id="email" 
                   bind:value={formData.email}
                   placeholder="your@email.com"
+                  disabled={submitting}
                   required
                 />
               </div>
@@ -619,13 +676,14 @@
                   bind:value={formData.message}
                   placeholder="Tell me about your project..."
                   rows="5"
+                  disabled={submitting}
                   required
                 ></textarea>
               </div>
               
               <span data-cursor-expand>
                 <MagneticButton type="submit" variant="primary">
-                  Send Message
+                  {submitting ? 'Sending...' : 'Send Message'}
                   <span class="btn-arrow">→</span>
                 </MagneticButton>
               </span>
@@ -1656,6 +1714,30 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
   }
+
+  .contact-form {
+    position: relative;
+  }
+
+  .honeypot-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .form-error {
+    margin-bottom: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 104, 104, 0.45);
+    background: rgba(255, 104, 104, 0.12);
+    color: #ffd9d9;
+    font-size: 0.95rem;
+  }
   
   .form-group {
     margin-bottom: 1.5rem;
@@ -1694,6 +1776,12 @@
   .form-group input::placeholder,
   .form-group textarea::placeholder {
     color: rgba(255, 245, 217, 0.3);
+  }
+
+  .form-group input:disabled,
+  .form-group textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
   
   .form-group textarea {
