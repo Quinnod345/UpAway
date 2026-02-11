@@ -6,7 +6,7 @@
   export let scrambleOnView = false;
   export let delay = 0;
   export let duration = 1200;
-  export let characters = '!<>-_\\/[]{}—=+*^?#@$%&ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  export let characters = '!<>-_\\/[]{}=+*^?#@$%&ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   
   let displayText = text;
   let element;

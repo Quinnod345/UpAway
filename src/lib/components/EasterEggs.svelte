@@ -1047,7 +1047,7 @@
         Words that sell homes. 🎉
       </p>
       <p class="secret-subtext">
-        Curb: AI-Powered Listings
+        Curb: Listing Copy That Sells
       </p>
     </div>
   </div>
@@ -1139,7 +1139,7 @@
         That's exactly the energy I bring to projects.
       </p>
       <p class="secret-subtext">
-        — Quinn
+        - Quinn
       </p>
     </div>
   </div>

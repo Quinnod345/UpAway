@@ -18,7 +18,7 @@
 
 <svelte:head>
   <title>About Quinn O'Donnell | EOS® Technology Lead & Software Innovator</title>
-  <meta name="description" content="Quinn O'Donnell - Lead Software Engineer at EOS Worldwide, founder of UpAway, National Cyber Scholar, and AI student at Penn State. Building AI-powered solutions that drive real impact." />
+  <meta name="description" content="Quinn O'Donnell - Lead Software Engineer at EOS Worldwide, founder of UpAway, National Cyber Scholar, and software student at Penn State. Building practical solutions that drive real impact." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -43,9 +43,9 @@
       </div>
       
       <p class="hero-description" class:visible={mounted}>
-        I get genuinely excited about building things that help people. Whether it's an AI that 
+        I get genuinely excited about building things that help people. Whether it's a tool that
         helps businesses run better, an app that makes mental health journaling feel less lonely, 
-        or teaching a high schooler that security can actually be <em>fun</em> — I'm all in.
+        or teaching a high schooler that security can actually be <em>fun</em>, I'm all in.
       </p>
       
       <div class="hero-cta" class:visible={mounted}>
@@ -65,7 +65,7 @@
 <div class="quote-banner">
   <div class="container">
     <blockquote>
-      "I don't just want to write code — I want to build things that matter to real people."
+      "I don't just want to write code. I want to build things that matter to real people."
     </blockquote>
   </div>
 </div>
@@ -81,12 +81,12 @@
     <div class="drives-grid">
       <div class="drive-card" >
         <div class="drive-emoji">🧠</div>
-        <h3>AI That Actually Helps</h3>
+        <h3>Technology That Actually Helps</h3>
         <p>
-          I'm obsessed with AI — not the hype, but the <em>possibility</em>. The idea that we can build 
+          I'm obsessed with useful technology, not hype. The <em>possibility</em> of building
           systems that understand context, learn patterns, and genuinely help people make better decisions? 
-          That keeps me up at night (in a good way). At EOS Worldwide, I get to build AI that helps 
-          thousands of businesses run better. That's not just cool tech — that's real impact.
+          That keeps me up at night (in a good way). At EOS Worldwide, I get to build tools that help
+          thousands of businesses run better. That's not just cool tech. That's real impact.
         </p>
       </div>
       
@@ -95,8 +95,8 @@
         <h3>Mental Health Matters</h3>
         <p>
           I built InnerEcho because I believe everyone deserves tools to understand themselves better. 
-          Journaling changed my life, and I wanted to make that experience more accessible — with AI 
-          that helps you see patterns you might miss, prompts that actually make you think, and a 
+          Journaling changed my life, and I wanted to make that experience more accessible with guidance
+          that helps you see patterns you might miss, prompts that actually make you think, and a
           space that feels safe. Mental health shouldn't be a luxury.
         </p>
       </div>
@@ -107,7 +107,7 @@
         <p>
           Teaching cybersecurity at Wilson High was one of the most rewarding things I've ever done. 
           Watching students go from "I don't get this" to crushing it in CyberPatriot competitions? 
-          Incredible. I believe in paying it forward — the tech community gave me so much, and I 
+          Incredible. I believe in paying it forward. The tech community gave me so much, and I
           want to help others find that same spark.
         </p>
       </div>
@@ -125,7 +125,7 @@
         
         <div class="story-text">
           <p>
-            Here's the thing — I never planned to have patents pending by my early twenties. I just 
+            Here's the thing. I never planned to have patents pending by my early twenties. I just
             kept saying yes to interesting problems.
           </p>
           
@@ -136,21 +136,21 @@
           </p>
           
           <p>
-            Then came EOS Worldwide. They needed someone to build AI tools for their business operating 
-            system, and I dove in headfirst. Now I'm leading their AI initiative, building a chatbot 
+            Then came EOS Worldwide. They needed someone to build software tools for their business operating
+            system, and I dove in headfirst. Now I'm leading their EOS AI initiative, building a chatbot
             that helps companies implement EOS, and working on innovations that have <strong>actual 
             patents pending</strong>. Wild.
           </p>
           
           <p>
             Somewhere in there, I started UpAway because I wanted to build something that was 
-            <em>mine</em> — something that could help people on a personal level. InnerEcho is live 
+            <em>mine</em>, something that could help people on a personal level. InnerEcho is live
             on the App Store now, and every time someone tells me it helped them process something 
             difficult, I remember why I do this.
           </p>
           
           <p>
-            Now I'm at Penn State studying AI formally, because I want to go deeper. I've built a lot 
+            Now I'm at Penn State studying software and product systems formally, because I want to go deeper. I've built a lot
             by learning on the job, but I'm hungry for the theory, the math, the foundations that 
             will let me build even bigger things.
           </p>
@@ -188,19 +188,19 @@
     <div class="skills-header">
       <p class="section-label">What I'm Good At</p>
       <h2>Tech I Love Working With</h2>
-      <p class="skills-subhead">These aren't just buzzwords — I use this stuff every day to build real products.</p>
+      <p class="skills-subhead">These aren't just buzzwords. I use this stuff every day to build real products.</p>
     </div>
     
     <div class="skills-grid">
       <div class="skill-category" >
-        <h3>🤖 AI & Machine Learning</h3>
+        <h3>🤖 Intelligent Systems</h3>
         <p class="skill-desc">This is my happy place. Building intelligent systems that actually understand context.</p>
         <div class="skill-tags">
           <span class="skill-tag">RAG Systems</span>
           <span class="skill-tag">Claude / OpenAI</span>
           <span class="skill-tag">Vector Databases</span>
           <span class="skill-tag">Prompt Engineering</span>
-          <span class="skill-tag">AI Agents</span>
+          <span class="skill-tag">Automation Agents</span>
         </div>
       </div>
       
@@ -258,13 +258,13 @@
           <h3>Lead Software Engineer</h3>
           <p class="timeline-company">EOS Worldwide</p>
           <p class="timeline-desc">
-            Leading the AI initiative at a company that helps thousands of businesses run on the 
-            Entrepreneurial Operating System. Built an AI chatbot that actually understands EOS, 
+            Leading the EOS AI initiative at a company that helps thousands of businesses run on the
+            Entrepreneurial Operating System. Built a chatbot that actually understands EOS,
             and working on innovations that have <strong>patents pending</strong>. This role lets 
-            me combine my love for AI with genuine business impact — I'm not just building cool 
+            me combine my love for product building with genuine business impact. I'm not just building cool
             tech, I'm helping real companies run better.
           </p>
-          <div class="timeline-highlight">🎯 Patents pending • AI chatbot in production • Thousands of businesses served</div>
+          <div class="timeline-highlight">🎯 Patents pending • Chatbot in production • Thousands of businesses served</div>
         </div>
       </div>
       
@@ -276,12 +276,12 @@
           <p class="timeline-company">UpAway</p>
           <p class="timeline-desc">
             Started UpAway to build products I genuinely believe in. InnerEcho, our mental health 
-            journaling app, is live on the App Store. It uses AI to help people understand their 
+            journaling app, is live on the App Store. It uses guided insights to help people understand their
             emotional patterns and journal more effectively. Building this from scratch taught me 
-            everything about shipping a real product — design, development, App Store review 
+            everything about shipping a real product: design, development, App Store review
             nightmares, all of it.
           </p>
-          <div class="timeline-highlight">📱 InnerEcho live on App Store • AI-powered mental health tools</div>
+          <div class="timeline-highlight">📱 InnerEcho live on App Store • Mental health tools</div>
         </div>
       </div>
       
@@ -292,8 +292,8 @@
           <h3>Cybersecurity Instructor</h3>
           <p class="timeline-company">Wilson High School</p>
           <p class="timeline-desc">
-            Taught cybersecurity and mentored CyberPatriot students. This wasn't just a job — 
-            watching students go from intimidated to excited about security was incredibly 
+            Taught cybersecurity and mentored CyberPatriot students. This wasn't just a job.
+            Watching students go from intimidated to excited about security was incredibly
             rewarding. Learned that the best way to understand something is to teach it, and 
             that investing in the next generation is one of the most meaningful things you can do.
           </p>
@@ -329,8 +329,8 @@
             <p class="education-school">Penn State University</p>
             <p class="education-date">January 2026 - May 2029</p>
             <p class="education-desc">
-              Pursuing formal AI education while continuing to ship products. I wanted to combine 
-              real-world experience with academic rigor — understanding the math, the theory, and 
+              Pursuing formal software education while continuing to ship products. I wanted to combine
+              real-world experience with academic rigor, understanding the math, the theory, and
               the research that will let me build even more ambitious things.
             </p>
           </div>
@@ -379,7 +379,7 @@
         <div class="beyond-item">
           <h3>🤝 Paying It Forward</h3>
           <p>
-            The tech community gave me so much — free resources, open source tools, people who 
+            The tech community gave me so much: free resources, open source tools, people who
             answered my dumb questions on Stack Overflow. I try to give back by mentoring, 
             teaching, and building things that help people rather than just extract value from them.
           </p>
@@ -401,7 +401,7 @@
           <h4>My Building Principles</h4>
           <ul>
             <li>Ship things that matter to real people</li>
-            <li>Security isn't optional — it's foundational</li>
+            <li>Security isn't optional. It's foundational</li>
             <li>The best code is code users never think about</li>
             <li>Teach what you learn, learn what you teach</li>
             <li>Impact over ego, always</li>
@@ -419,8 +419,8 @@
       <p class="section-label text-accent">Let's Connect</p>
       <h2 class="text-light">I'd Love to Hear From You</h2>
       <p class="connect-description">
-        Whether you want to talk about AI, have a project idea, need someone who can ship, 
-        or just want to geek out about the latest Claude model — I'm always down to chat.
+        Whether you want to talk about product ideas, have a project to ship, need someone who can execute,
+        or just want to geek out about new tooling, I'm always down to chat.
       </p>
       
       <div class="connect-links">

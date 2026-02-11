@@ -133,8 +133,8 @@
 {/if}
 
 <svelte:head>
-  <title>InnerEcho | AI-Powered Mental Health Journaling</title>
-  <meta name="description" content="InnerEcho is an AI-powered mental health journaling app with real-time insights, dream analysis, mood tracking, and 28 beautiful themes. Your mind, your growth." />
+  <title>InnerEcho | Intelligent Mental Health Journaling</title>
+  <meta name="description" content="InnerEcho is an intelligent mental health journaling app with real-time insights, dream analysis, mood tracking, and 28 beautiful themes. Your mind, your growth." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -165,9 +165,9 @@
       <div class="hero-title" class:visible={mounted}>
         <h1>Inner<span class="text-accent">Echo</span></h1>
       </div>
-      <p class="hero-subtitle" class:visible={mounted}>AI-Powered Mental Health Journaling</p>
+      <p class="hero-subtitle" class:visible={mounted}>Intelligent Mental Health Journaling</p>
       <p class="hero-tagline" class:visible={mounted}>
-        Journal, track your mood, analyze your dreams, and discover patterns—all with intelligent AI insights that help you understand yourself better.
+        Journal, track your mood, analyze your dreams, and discover patterns with thoughtful insights that help you understand yourself better.
       </p>
       <div class="hero-cta" class:visible={mounted}>
         <a href="https://apps.apple.com/us/app/innerecho-mental-health/id6683282892" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-cursor-expand data-cursor-text="Link">
@@ -186,7 +186,7 @@
   <div class="container">
     <div class="intro-content">
       <p class="section-label">More than a journal</p>
-      <TextReveal text="InnerEcho combines the therapeutic power of journaling with intelligent AI insights—helping you understand your emotions, track patterns, and grow through self-reflection." tag="h2" class_name="intro-headline" />
+      <TextReveal text="InnerEcho combines the therapeutic power of journaling with intelligent insights, helping you understand your emotions, track patterns, and grow through self-reflection." tag="h2" class_name="intro-headline" />
     </div>
   </div>
 </section>
@@ -341,9 +341,9 @@
     <div class="how-content">
       <div class="content-header">
         <p class="section-label text-accent">Intelligent Journaling</p>
-        <TextReveal text="AI That Helps You Dig Deeper" tag="h2" class_name="text-light" />
+        <TextReveal text="Tools That Help You Dig Deeper" tag="h2" class_name="text-light" />
         <p class="how-description text-light-muted">
-          InnerEcho doesn't just store your thoughts—it analyzes them in real-time, offering "Go Deeper" prompts as you write, detecting cognitive distortions, and providing CBT-based reframes.
+          InnerEcho doesn't just store your thoughts. It analyzes them in real time, offers "Go Deeper" prompts as you write, detects cognitive distortions, and provides CBT-based reframes.
         </p>
       </div>
       
@@ -352,7 +352,7 @@
           <span class="feature-icon">✍️</span>
           <div class="feature-content">
             <h4>Free-Form & Guided Journaling</h4>
-            <p>Write freely or use AI-generated prompts tailored to your recent entries. Add photos, track word count, and see your writing time.</p>
+            <p>Write freely or use guided prompts tailored to your recent entries. Add photos, track word count, and see your writing time.</p>
           </div>
         </div>
         
@@ -360,7 +360,7 @@
           <span class="feature-icon">✨</span>
           <div class="feature-content">
             <h4>Real-Time "Go Deeper" Prompts</h4>
-            <p>After 50+ words, the AI analyzes your writing and offers reflection questions—non-intrusive, dismissible, and genuinely helpful.</p>
+            <p>After 50+ words, InnerEcho analyzes your writing and offers reflection questions that are non-intrusive, dismissible, and genuinely helpful.</p>
           </div>
         </div>
         
@@ -368,14 +368,14 @@
           <span class="feature-icon">🧠</span>
           <div class="feature-content">
             <h4>Emotional Processing Analysis</h4>
-            <p>On save, AI identifies 3-7 nuanced emotions, detects cognitive distortions, provides CBT reframes, and suggests mindfulness exercises.</p>
+            <p>On save, InnerEcho identifies 3-7 nuanced emotions, detects cognitive distortions, provides CBT reframes, and suggests mindfulness exercises.</p>
           </div>
         </div>
         
         <div class="feature-card">
           <span class="feature-icon">🌙</span>
           <div class="feature-content">
-            <h4>Dream Journal with AI Analysis</h4>
+            <h4>Dream Journal with Guided Analysis</h4>
             <p>Log dreams with type, emotions, themes, and vividness. Get Jungian-inspired symbolic interpretation, emotional insights, and reflection prompts.</p>
           </div>
         </div>
@@ -392,7 +392,7 @@
           <span class="feature-icon">📈</span>
           <div class="feature-content">
             <h4>Beautiful Insights Dashboard</h4>
-            <p>Trend graphs, top emotions, mood correlations, and keyword clouds. Premium AI Deep Dive analyzes patterns across all your data.</p>
+            <p>Trend graphs, top emotions, mood correlations, and keyword clouds. Premium Deep Dive analyzes patterns across all your data.</p>
           </div>
         </div>
       </div>
@@ -408,13 +408,13 @@
         <p class="section-label">Privacy First</p>
         <TextReveal text="Your Thoughts Stay Yours" tag="h2" />
         <p class="privacy-description">
-          Your journal lives in YOUR iCloud—not our servers. We never see your entries. AI features are opt-in, and you can lock the app with passcode or biometrics.
+          Your journal lives in YOUR iCloud, not our servers. We never see your entries. Advanced insight features are opt-in, and you can lock the app with passcode or biometrics.
         </p>
         <ul class="privacy-list">
           <li><span class="check">✓</span> iCloud sync (your data, your cloud)</li>
           <li><span class="check">✓</span> Optional passcode with Face ID/Touch ID</li>
           <li><span class="check">✓</span> No third-party data sharing</li>
-          <li><span class="check">✓</span> AI features are completely opt-in</li>
+          <li><span class="check">✓</span> Advanced insight features are completely opt-in</li>
           <li><span class="check">✓</span> Delete your data anytime</li>
         </ul>
       </div>
@@ -432,7 +432,7 @@
       <p class="section-label text-accent">28 Beautiful Themes</p>
       <TextReveal text="Make It Yours" tag="h2" class_name="text-light" />
       <p class="themes-description text-light-muted">
-        From Ocean Breeze to Neon Dreams, Autumn Leaves to Midnight Sky—choose a theme that matches your mood. Each theme transforms the entire app with custom colors and a matching app icon.
+        From Ocean Breeze to Neon Dreams, Autumn Leaves to Midnight Sky, choose a theme that matches your mood. Each theme transforms the entire app with custom colors and a matching app icon.
       </p>
     </div>
     
@@ -462,7 +462,7 @@
   <div class="container">
     <div class="quote-content">
       <blockquote>
-        <p>InnerEcho bridges the gap between simple journaling apps and expensive therapy—offering AI-powered insights that help you understand yourself better.</p>
+        <p>InnerEcho bridges the gap between simple journaling apps and expensive therapy by offering thoughtful insights that help you understand yourself better.</p>
         <p class="quote-highlight">Your mind, your growth.</p>
       </blockquote>
       
