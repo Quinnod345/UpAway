@@ -4,7 +4,6 @@
   import { page } from '$app/stores';
   import { fade, fly } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
-  import { SHOW_CURB_ON_LANDING } from '$lib/featureFlags.js';
   import '../app.css';
   import Lenis from 'lenis';
   
@@ -24,13 +23,16 @@
   $: isInnerEcho = $page.url.pathname.includes('innerecho');
   $: isPrivacy = $page.url.pathname.includes('privacy');
   $: isEosAi = $page.url.pathname.includes('eosai');
-  $: isCurb = $page.url.pathname.includes('curb');
 
-  // Scroll to top on navigation
+  // Scroll to top on navigation and close mobile nav
   afterNavigate(({ from, to }) => {
     if (from?.url?.pathname !== to?.url?.pathname) {
       if (typeof window !== 'undefined') {
         window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+      navOpen = false;
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = '';
       }
     }
   });
@@ -79,6 +81,10 @@
   
   function toggleNav() {
     navOpen = !navOpen;
+    // Prevent body scroll when nav is open on mobile
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = navOpen ? 'hidden' : '';
+    }
   }
 </script>
 
@@ -127,12 +133,6 @@
         <span class="nav-link-text">EOS AI</span>
         <span class="nav-link-line"></span>
       </a>
-      {#if SHOW_CURB_ON_LANDING || $page.url.pathname !== '/'}
-        <a href="/curb" class="nav-link" class:active={isCurb} on:click={() => navOpen = false}>
-          <span class="nav-link-text">Curb</span>
-          <span class="nav-link-line"></span>
-        </a>
-      {/if}
       <a href="/#contact" class="btn btn-nav" on:click={() => navOpen = false}>
         <span>Let's Talk</span>
         <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -170,6 +170,12 @@
     z-index: 0;
     transform: translate(-50%, -50%);
     transition: opacity 0.5s ease;
+  }
+
+  @media (hover: none) {
+    :global(.cursor-glow) {
+      display: none;
+    }
   }
   
   /* Header */
@@ -218,7 +224,6 @@
     align-items: center;
     gap: 0.75rem;
     position: relative;
-    margin-left: calc(-1 * var(--space-md));
   }
 
   .logo-img {
@@ -344,39 +349,143 @@
   /* Main */
   main {
     min-height: 100vh;
+    width: 100%;
+  }
+
+  main > :global(*) {
+    width: 100%;
+    max-width: 100%;
   }
   
   /* Responsive */
   @media (max-width: 768px) {
+    .header {
+      padding: 0.9rem 0;
+    }
+
+    .header.scrolled {
+      padding: 0.6rem 0;
+    }
+
+    .logo-img {
+      height: 34px;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+    }
+
     .nav-toggle {
       display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: 10px;
     }
     
     .nav-links {
       position: fixed;
       top: 0;
+      left: 0;
       right: 0;
-      width: 100%;
-      height: 100vh;
+      width: auto;
+      max-width: none;
+      min-height: 100dvh;
+      height: 100dvh;
       flex-direction: column;
-      justify-content: center;
-      gap: 2rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1.25rem;
       background: var(--color-dark);
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-0.5rem);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0s linear 0.25s;
+      padding-top: calc(4.5rem + var(--safe-area-top));
+      padding-right: max(1.5rem, var(--safe-area-right));
+      padding-bottom: max(2rem, var(--safe-area-bottom));
+      padding-left: max(1.5rem, var(--safe-area-left));
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     
     .nav-links.open {
-      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition-delay: 0s;
     }
     
     .nav-link {
-      font-size: 1.5rem;
+      font-size: clamp(1.15rem, 5.5vw, 1.4rem);
+      width: 100%;
     }
     
     .btn-nav {
-      margin-top: 1rem;
+      margin-top: 0.75rem;
+      min-height: 44px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header {
+      padding: 0.75rem 0;
+    }
+
+    .header.scrolled {
+      padding: 0.55rem 0;
+    }
+
+    .logo-img {
+      height: 30px;
+    }
+
+    .logo-text {
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+      padding-top: calc(4rem + var(--safe-area-top));
+      padding-right: max(1rem, var(--safe-area-right));
+      padding-left: max(1rem, var(--safe-area-left));
+    }
+
+    .btn-nav {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .nav-link {
+      font-size: 1.05rem;
+    }
+
+    .logo-text {
+      font-size: 0.95rem;
+    }
+
+    .logo-img {
+      height: 28px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .nav-link {
+      font-size: 0.95rem;
+    }
+
+    .logo-text {
+      font-size: 0.88rem;
     }
   }
 </style>

@@ -740,7 +740,7 @@
   
   .browser-content {
     padding: 1.5rem;
-    min-height: 400px;
+    min-height: min(400px, 60vh);
   }
   
   .app-interface {
@@ -1417,15 +1417,15 @@
   @media (max-width: 768px) {
     .stats-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      gap: 0.75rem;
     }
     
     .stat-card {
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
     
     .stat-number {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
     
     .features-grid {
@@ -1438,21 +1438,48 @@
     }
     
     .browser-content {
-      min-height: 300px;
+      min-height: min(240px, 45vh);
+      padding: 1rem;
     }
     
     .curb-logo {
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
     }
     
     .example-tabs {
       flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .example-tab {
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+    }
+
+    .comparison-grid {
+      gap: 1.25rem;
     }
     
     .cta-features {
       flex-direction: column;
       gap: 0.75rem;
+    }
+
+    .curb-hero h1 {
+      font-size: clamp(3rem, 12vw, 6rem);
+    }
+
+    .curb-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .curb-hero-description {
+      font-size: 1rem;
+    }
+
+    .curb-scroll {
+      bottom: 1.5rem;
     }
   }
   
@@ -1460,10 +1487,31 @@
     .stats-grid {
       grid-template-columns: 1fr;
     }
+
+    .browser-content {
+      min-height: min(200px, 38vh);
+      padding: 0.75rem;
+    }
+
+    .comparison-card,
+    .feature-card {
+      padding: 1.1rem;
+    }
+
+    .example-tab {
+      width: 100%;
+      text-align: center;
+      padding: 0.65rem 1rem;
+    }
     
     .curb-hero-cta {
       flex-direction: column;
       align-items: center;
+    }
+
+    .curb-hero-cta .btn {
+      width: 100%;
+      justify-content: center;
     }
     
     .cta-buttons {
@@ -1473,6 +1521,74 @@
     .cta-buttons .btn {
       width: 100%;
       justify-content: center;
+    }
+
+    .curb-hero h1 {
+      font-size: clamp(2.5rem, 14vw, 5rem);
+    }
+
+    .curb-subtitle {
+      font-size: 1.05rem;
+    }
+
+    .curb-scroll {
+      display: none;
+    }
+
+    .curb-hero-content {
+      padding: var(--space-md) var(--container-pad);
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+    }
+
+    .card-content p {
+      font-size: 0.9rem;
+    }
+
+    .card-footer {
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .feature-icon-box {
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+    }
+
+    .curb-logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .app-interface {
+      gap: 0.9rem;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .browser-content {
+      min-height: min(180px, 35vh);
+      padding: 0.625rem;
+    }
+
+    .curb-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-tag {
+      font-size: 0.65rem;
+      padding: 0.3rem 0.6rem;
     }
   }
   

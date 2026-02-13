@@ -72,8 +72,9 @@
 <style>
 	.todos {
 		width: 100%;
-		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
+		max-width: var(--column-width, 680px);
+		margin: var(--column-margin-top, var(--space-lg)) auto 0 auto;
+		padding: calc(var(--header-height, 80px) + 1rem) var(--space-sm) var(--space-md);
 		line-height: 1;
 	}
 
@@ -92,7 +93,7 @@
 	}
 
 	.new input {
-		font-size: 28px;
+		font-size: clamp(1.1rem, 6vw, 1.75rem);
 		width: 100%;
 		padding: 0.5em 1em 0.3em 1em;
 		box-sizing: border-box;
@@ -103,7 +104,7 @@
 
 	.todo {
 		display: grid;
-		grid-template-columns: 2rem 1fr 2rem;
+		grid-template-columns: 2.75rem 1fr 2.75rem;
 		grid-gap: 0.5rem;
 		align-items: center;
 		margin: 0 0 0.5rem 0;
@@ -135,8 +136,10 @@
 	}
 
 	.todo button {
-		width: 2em;
-		height: 2em;
+		width: 2.75rem;
+		height: 2.75rem;
+		min-width: 44px;
+		min-height: 44px;
 		border: none;
 		background-color: transparent;
 		background-position: 50% 50%;
@@ -176,5 +179,21 @@
 	.save:focus {
 		transition: opacity 0.2s;
 		opacity: 1;
+	}
+
+	@media (max-width: 480px) {
+		.todos {
+			padding: 0 0.75rem;
+		}
+
+		.new input {
+			font-size: 1.1rem;
+			padding: 0.75rem 0.9rem;
+		}
+
+		.todo {
+			grid-template-columns: 2.5rem 1fr 2.5rem;
+			padding: 0.4rem;
+		}
 	}
 </style>

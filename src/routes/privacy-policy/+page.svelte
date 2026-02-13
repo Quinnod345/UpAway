@@ -244,7 +244,7 @@
   }
   
   .lead {
-    font-size: 1.35rem;
+    font-size: clamp(1.1rem, 4vw, 1.35rem);
     color: var(--color-dark);
     line-height: 1.7;
   }
@@ -319,12 +319,28 @@
   }
   
   @media (max-width: 768px) {
+    .policy-intro {
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+    }
+
+    .policy-section h2 {
+      font-size: 1.35rem;
+    }
+
     .policy-cta {
       flex-direction: column;
     }
     
     .policy-cta .btn {
       width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-email {
+      font-size: 1.05rem;
+      word-break: break-word;
     }
   }
 </style>

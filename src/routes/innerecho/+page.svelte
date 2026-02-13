@@ -719,7 +719,7 @@
   
   .screenshots-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
     max-width: 1000px;
     margin: 0 auto;
@@ -900,7 +900,7 @@
   
   .video-phone-frame {
     width: 100%;
-    max-width: 280px;
+    max-width: min(280px, 100%);
     aspect-ratio: 9/19;
     background: #1a1a1a;
     border-radius: 38px;
@@ -921,6 +921,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
   
   .video-gradient-overlay {
@@ -953,6 +954,12 @@
   
   .video-card:hover .video-play-overlay {
     opacity: 1;
+  }
+
+  @media (hover: none) {
+    .video-play-overlay {
+      opacity: 1;
+    }
   }
   
   .video-play-overlay.hidden {
@@ -1093,8 +1100,9 @@
   }
   
   .phone-frame {
-    width: 300px;
-    height: 620px;
+    width: min(300px, 100%);
+    height: auto;
+    aspect-ratio: 300 / 620;
     background: #1a1a1a;
     border-radius: 44px;
     padding: 14px;
@@ -1113,6 +1121,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
   
   .app-demo {
@@ -1452,8 +1461,8 @@
     }
     
     .phone-frame {
-      width: 260px;
-      height: 540px;
+      width: min(260px, 100%);
+      aspect-ratio: 260 / 540;
     }
     
     .features-list {
@@ -1477,10 +1486,16 @@
     .screenshots-grid {
       grid-template-columns: 1fr;
       max-width: 320px;
+      margin: 0 auto;
+      gap: 2rem;
     }
     
     .screenshot-placeholder {
-      max-height: 400px;
+      max-height: none;
+    }
+
+    .video-phone-frame {
+      max-width: min(260px, 80vw);
     }
     
     .hero h1 {
@@ -1489,6 +1504,154 @@
     
     .customize-grid {
       grid-template-columns: 1fr;
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+    }
+
+    .privacy-icon {
+      font-size: 4rem;
+    }
+
+    .quote {
+      padding: var(--space-xl) 0;
+    }
+
+    blockquote p {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+    }
+
+    .feature-card {
+      padding: 1.25rem;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .screenshots-grid {
+      max-width: 280px;
+    }
+
+    .video-phone-frame {
+      max-width: min(220px, 70vw);
+      border-radius: 32px;
+      padding: 8px;
+    }
+
+    .video-phone-screen,
+    .video-gradient-overlay,
+    .video-play-overlay {
+      border-radius: 30px;
+    }
+
+    .phone-frame {
+      width: min(220px, 65vw);
+      border-radius: 36px;
+      padding: 10px;
+    }
+
+    .phone-screen {
+      border-radius: 28px;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    .btn-lg {
+      padding: 1rem 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-lg svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .feature-card {
+      gap: 1rem;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .feature-icon {
+      margin: 0 auto;
+    }
+
+    .feature-card:hover {
+      transform: none;
+    }
+
+    .how-description {
+      font-size: 1rem;
+    }
+
+    .privacy-description {
+      font-size: 1rem;
+    }
+
+    .themes-description {
+      font-size: 1rem;
+    }
+
+    .theme-dot {
+      width: 44px;
+      height: 44px;
+    }
+
+    .play-button {
+      width: 52px;
+      height: 52px;
+    }
+
+    .floating-logo {
+      width: 60px;
+      height: 60px;
+    }
+
+    .quote-cta {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .screenshots-grid {
+      max-width: 250px;
+    }
+
+    .video-phone-frame {
+      max-width: 200px;
+      border-radius: 28px;
+      padding: 6px;
+    }
+
+    .video-phone-screen,
+    .video-gradient-overlay,
+    .video-play-overlay {
+      border-radius: 26px;
+    }
+
+    .phone-frame {
+      width: 200px;
+      border-radius: 32px;
+      padding: 8px;
+    }
+
+    .phone-screen {
+      border-radius: 26px;
     }
   }
   

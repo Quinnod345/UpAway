@@ -588,7 +588,7 @@
   }
   
   .hero-description {
-    font-size: 1.35rem;
+    font-size: clamp(1.05rem, 3.5vw, 1.35rem);
     max-width: 700px;
     color: rgba(255, 245, 217, 0.85);
     margin-bottom: 2.5rem;
@@ -750,7 +750,7 @@
   
   .quote-mark {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: clamp(2.25rem, 8vw, 4rem);
     color: var(--color-accent);
     line-height: 0.5;
     display: block;
@@ -1328,8 +1328,29 @@
     
     .connect-link-note {
       width: 100%;
-      margin-top: 0.5rem;
-      margin-left: 64px;
+      margin-top: 0.25rem;
+      margin-left: 0;
+      padding-left: 0;
+    }
+
+    .story-text p {
+      font-size: 1rem;
+    }
+
+    .timeline-content {
+      padding: 1.5rem;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+    }
+
+    .connect-description {
+      font-size: 1rem;
     }
   }
   
@@ -1339,15 +1360,117 @@
     }
     
     .quote-banner blockquote {
-      font-size: 1.1rem;
+      font-size: 1rem;
+    }
+
+    .quote-banner {
+      padding: 2rem 0;
     }
     
     .drive-card {
       padding: 1.5rem;
     }
+
+    .hero-description {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
     
     .drive-emoji {
       font-size: 2.5rem;
+    }
+
+    .drive-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .drive-card p {
+      font-size: 0.95rem;
+    }
+
+    .connect-link-note {
+      width: 100%;
+      padding-left: 0;
+    }
+
+    .connect-link {
+      padding: 1.25rem;
+      gap: 1rem;
+    }
+
+    .connect-link-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .connect-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+    }
+
+    .hero-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .skill-category {
+      padding: 1.5rem;
+    }
+
+    .skill-tags {
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      font-size: 0.82rem;
+      padding: 0.4rem 0.75rem;
+    }
+
+    .timeline-item {
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-content {
+      padding: 1.25rem;
+    }
+
+    .timeline-highlight {
+      font-size: 0.82rem;
+    }
+
+    .values-card {
+      padding: 2rem;
+    }
+
+    .education-card {
+      padding: 1.5rem;
+    }
+
+    .award-card {
+      padding: 1.5rem;
+    }
+
+    .beyond-item h3 {
+      font-size: 1.1rem;
+    }
+
+    .beyond-item p {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .about-hero h1 {
+      font-size: 2.25rem;
+    }
+
+    .connect-link-value {
+      font-size: 0.95rem;
     }
   }
 </style>
