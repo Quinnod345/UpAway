@@ -813,6 +813,393 @@
   </div>
 </section>
 
+<!-- Preflight Acceleration Section -->
+<section class="eos-preflight section">
+  <div class="container">
+    <div class="preflight-header">
+      <p class="section-label text-eos-orange">Preflight Engine</p>
+      <TextReveal text="Parallel Intelligence, Zero Lag" tag="h2" class_name="preflight-title" />
+      <p class="preflight-subtitle">Every request is analyzed in parallel before a single token is generated. The preflight engine decides model configuration, token budgets, and tool strategy in under 200ms.</p>
+    </div>
+
+    <!-- Preflight Pipeline Diagram -->
+    <div class="preflight-pipeline">
+      <div class="pipeline-steps">
+        <!-- Step 1: Incoming Query -->
+        <div class="pipeline-step">
+          <div class="step-icon-wrap">
+            <div class="step-pulse"></div>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+          <span class="step-label">Incoming Query</span>
+          <span class="step-desc">Validated and parsed</span>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+
+        <!-- Step 2: Parallel Retrieval -->
+        <div class="pipeline-step step-parallel">
+          <div class="step-icon-wrap">
+            <div class="step-pulse"></div>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></svg>
+            </div>
+          </div>
+          <span class="step-label">6 Parallel Retrievals</span>
+          <span class="step-desc">All knowledge sources queried simultaneously</span>
+          <div class="parallel-lanes">
+            <span class="lane-tag">System</span>
+            <span class="lane-tag">Memory</span>
+            <span class="lane-tag">Persona</span>
+            <span class="lane-tag">User Docs</span>
+            <span class="lane-tag">Org</span>
+            <span class="lane-tag">Company</span>
+          </div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+
+        <!-- Step 3: Preflight Decision -->
+        <div class="pipeline-step step-preflight-core">
+          <div class="step-icon-wrap">
+            <div class="step-pulse step-pulse-fast"></div>
+            <div class="step-icon step-icon-highlight">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+          </div>
+          <span class="step-label">Preflight Decision</span>
+          <span class="step-desc">Claude 3.5 Haiku in &lt;256 tokens</span>
+          <div class="decision-outputs">
+            <span class="decision-tag">Thinking Budget</span>
+            <span class="decision-tag">Token Limit</span>
+            <span class="decision-tag">Tool Strategy</span>
+          </div>
+        </div>
+
+        <div class="pipeline-connector">
+          <div class="connector-line"></div>
+          <div class="connector-dot"></div>
+        </div>
+
+        <!-- Step 4: Streamed Response -->
+        <div class="pipeline-step">
+          <div class="step-icon-wrap">
+            <div class="step-pulse"></div>
+            <div class="step-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+            </div>
+          </div>
+          <span class="step-label">Optimized Stream</span>
+          <span class="step-desc">Model + tools pre-configured</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Fast Cards -->
+    <div class="preflight-cards">
+      <div class="preflight-card eos-glass-card">
+        <div class="pf-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-eos-orange)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Lightweight Model Pass</h4>
+        <p>Claude 3.5 Haiku analyzes query complexity with a single 256-token call. Deterministic temperature zero output -- no wasted generation cycles.</p>
+      </div>
+      <div class="preflight-card eos-glass-card">
+        <div class="pf-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-eos-orange)" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+        </div>
+        <h4>Adaptive Token Budgets</h4>
+        <p>Dynamically allocates 1K-64K output tokens per request. Extended thinking budgets scale from 16K to 64K based on detected complexity.</p>
+      </div>
+      <div class="preflight-card eos-glass-card">
+        <div class="pf-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-eos-orange)" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h4>Early Tool Steering</h4>
+        <p>When document creation is predicted, the first model step is force-directed to the correct tool -- eliminating unnecessary reasoning loops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Public API Section -->
+<section class="eos-api section">
+  <div class="container">
+    <div class="api-header">
+      <p class="section-label text-eos-orange">Developer API</p>
+      <TextReveal text="OpenAI-Compatible REST API" tag="h2" class_name="api-title" />
+      <p class="api-subtitle">Full-featured API surface under <code>/api/v1</code> with per-key rate limits, SSE streaming, and scoped access control.</p>
+    </div>
+
+    <!-- Auth Strip -->
+    <div class="api-auth-strip">
+      <div class="auth-method eos-glass-card">
+        <span class="auth-label">Bearer Token</span>
+        <code class="auth-code">Authorization: Bearer eosai_sk_...</code>
+      </div>
+      <div class="auth-method eos-glass-card">
+        <span class="auth-label">API Key Header</span>
+        <code class="auth-code">X-API-Key: eosai_sk_...</code>
+      </div>
+      <div class="auth-method eos-glass-card">
+        <span class="auth-label">Rate Limits</span>
+        <code class="auth-code">60 RPM / 1,000 RPD per key</code>
+      </div>
+    </div>
+
+    <!-- Endpoint Grid -->
+    <div class="api-endpoints">
+      <div class="endpoint-card eos-glass-card">
+        <div class="endpoint-method post">POST</div>
+        <div class="endpoint-info">
+          <span class="endpoint-path">/chat</span>
+          <span class="endpoint-desc">Chat completions with EOS context</span>
+        </div>
+        <div class="endpoint-badges">
+          <span class="badge-stream">SSE</span>
+        </div>
+      </div>
+
+      <div class="endpoint-card eos-glass-card">
+        <div class="endpoint-method post">POST</div>
+        <div class="endpoint-info">
+          <span class="endpoint-path">/embeddings</span>
+          <span class="endpoint-desc">1536-dim vector embeddings</span>
+        </div>
+        <div class="endpoint-badges">
+          <span class="badge-model">ada-002</span>
+        </div>
+      </div>
+
+      <div class="endpoint-card eos-glass-card">
+        <div class="endpoint-method get">GET</div>
+        <div class="endpoint-info">
+          <span class="endpoint-path">/models</span>
+          <span class="endpoint-desc">Available model tiers</span>
+        </div>
+        <div class="endpoint-badges">
+          <span class="badge-model">v1</span>
+          <span class="badge-model">fast</span>
+          <span class="badge-model">pro</span>
+        </div>
+      </div>
+
+      <div class="endpoint-card eos-glass-card">
+        <div class="endpoint-method get">GET</div>
+        <div class="endpoint-info">
+          <span class="endpoint-path">/usage</span>
+          <span class="endpoint-desc">Rate limits and consumption stats</span>
+        </div>
+        <div class="endpoint-badges">
+          <span class="badge-meta">Headers</span>
+        </div>
+      </div>
+
+      <div class="endpoint-card eos-glass-card">
+        <div class="endpoint-method post">POST</div>
+        <div class="endpoint-info">
+          <span class="endpoint-path">/conversations</span>
+          <span class="endpoint-desc">Persistent multi-turn sessions</span>
+        </div>
+        <div class="endpoint-badges">
+          <span class="badge-stream">SSE</span>
+          <span class="badge-meta">CRUD</span>
+        </div>
+      </div>
+
+      <div class="endpoint-card eos-glass-card">
+        <div class="endpoint-method post">POST</div>
+        <div class="endpoint-info">
+          <span class="endpoint-path">/documents/analyze</span>
+          <span class="endpoint-desc">Document Q&A with chunked retrieval</span>
+        </div>
+        <div class="endpoint-badges">
+          <span class="badge-stream">SSE</span>
+          <span class="badge-meta">Multipart</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model Tiers -->
+    <div class="api-models">
+      <div class="model-tier eos-glass-card">
+        <span class="tier-name">eosai-v1</span>
+        <span class="tier-desc">Default -- best balance of speed and quality</span>
+      </div>
+      <div class="model-tier eos-glass-card">
+        <span class="tier-name">eosai-v1-fast</span>
+        <span class="tier-desc">Optimized for quick, lightweight responses</span>
+      </div>
+      <div class="model-tier eos-glass-card">
+        <span class="tier-name">eosai-v1-pro</span>
+        <span class="tier-desc">Enhanced reasoning for complex scenarios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture Flow Section -->
+<section class="eos-archflow section">
+  <div class="container">
+    <div class="archflow-header">
+      <p class="section-label text-eos-orange">System Architecture</p>
+      <TextReveal text="End-to-End Request Lifecycle" tag="h2" class_name="archflow-title" />
+      <p class="archflow-subtitle">From user input to persisted response -- every request flows through a layered pipeline of validation, retrieval, generation, and persistence.</p>
+    </div>
+
+    <!-- Architecture Diagram -->
+    <div class="arch-diagram">
+      <!-- Row 1: Input -->
+      <div class="arch-row arch-row-input">
+        <div class="arch-node arch-node-user">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <span class="arch-node-label">User Input</span>
+        </div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-head"></div>
+        </div>
+        <div class="arch-node arch-node-validate">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <span class="arch-node-label">Auth + Validation</span>
+        </div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-head"></div>
+        </div>
+        <div class="arch-node arch-node-chat">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <span class="arch-node-label">Chat Route</span>
+        </div>
+      </div>
+
+      <!-- Row 2: Processing (fan-out) -->
+      <div class="arch-divider">
+        <div class="arch-divider-line"></div>
+        <span class="arch-divider-label">Parallel Fan-Out</span>
+        <div class="arch-divider-line"></div>
+      </div>
+
+      <div class="arch-row arch-row-process">
+        <div class="arch-node arch-node-rag">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <span class="arch-node-label">RAG Retrieval</span>
+          <span class="arch-node-detail">6 sources</span>
+        </div>
+
+        <div class="arch-node arch-node-pf">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <span class="arch-node-label">Preflight</span>
+          <span class="arch-node-detail">Haiku</span>
+        </div>
+
+        <div class="arch-node arch-node-tools">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <span class="arch-node-label">Tool Wiring</span>
+          <span class="arch-node-detail">9 tools</span>
+        </div>
+
+        <div class="arch-node arch-node-mentions">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
+          </div>
+          <span class="arch-node-label">Mentions</span>
+          <span class="arch-node-detail">Smart detect</span>
+        </div>
+      </div>
+
+      <!-- Row 3: Generation -->
+      <div class="arch-divider">
+        <div class="arch-divider-line"></div>
+        <span class="arch-divider-label">Generation</span>
+        <div class="arch-divider-line"></div>
+      </div>
+
+      <div class="arch-row arch-row-gen">
+        <div class="arch-node arch-node-llm">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/></svg>
+          </div>
+          <span class="arch-node-label">Claude 4.5 Sonnet</span>
+          <span class="arch-node-detail">streamText / Nexus</span>
+        </div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-head"></div>
+        </div>
+        <div class="arch-node arch-node-stream">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+          </div>
+          <span class="arch-node-label">SSE Stream</span>
+          <span class="arch-node-detail">Redis buffered</span>
+        </div>
+      </div>
+
+      <!-- Row 4: Persistence -->
+      <div class="arch-divider">
+        <div class="arch-divider-line"></div>
+        <span class="arch-divider-label">Persistence</span>
+        <div class="arch-divider-line"></div>
+      </div>
+
+      <div class="arch-row arch-row-persist">
+        <div class="arch-node arch-node-pg">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+          </div>
+          <span class="arch-node-label">PostgreSQL</span>
+          <span class="arch-node-detail">52 tables</span>
+        </div>
+
+        <div class="arch-node arch-node-redis">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M2 12h20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/></svg>
+          </div>
+          <span class="arch-node-label">Redis</span>
+          <span class="arch-node-detail">Stream buffer</span>
+        </div>
+
+        <div class="arch-node arch-node-vec">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+          </div>
+          <span class="arch-node-label">Upstash Vector</span>
+          <span class="arch-node-detail">1536-dim</span>
+        </div>
+
+        <div class="arch-node arch-node-blob">
+          <div class="arch-node-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <span class="arch-node-label">Vercel Blob</span>
+          <span class="arch-node-detail">File storage</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA Section -->
 <section class="eos-cta section">
   <div class="container">
@@ -1886,6 +2273,579 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
+  /* =============================================
+     PREFLIGHT ACCELERATION SECTION
+     ============================================= */
+  .eos-preflight {
+    background: linear-gradient(180deg, var(--color-eos-navy) 0%, var(--color-eos-navy-dark) 100%);
+    color: white;
+    overflow: hidden;
+  }
+
+  .preflight-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .preflight-header :global(.preflight-title) {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .preflight-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Pipeline Diagram */
+  .preflight-pipeline {
+    position: relative;
+    padding: 2.5rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .pipeline-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 0 0 auto;
+    min-width: 140px;
+    max-width: 180px;
+    transition: transform 0.3s ease;
+  }
+
+  .pipeline-step:hover {
+    transform: translateY(-4px);
+  }
+
+  .step-icon-wrap {
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+
+  .step-pulse {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 118, 0, 0.2) 0%, transparent 70%);
+    animation: stepPulse 3s ease-out infinite;
+  }
+
+  .step-pulse-fast {
+    animation-duration: 1.5s;
+  }
+
+  @keyframes stepPulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    50% { transform: scale(1.4); opacity: 0; }
+    100% { transform: scale(0.8); opacity: 0; }
+  }
+
+  .step-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 118, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pipeline-step:hover .step-icon {
+    background: rgba(255, 118, 0, 0.15);
+    border-color: rgba(255, 118, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 118, 0, 0.2);
+  }
+
+  .step-icon-highlight {
+    background: rgba(255, 118, 0, 0.12);
+    border-color: rgba(255, 118, 0, 0.4);
+    color: var(--color-eos-orange);
+  }
+
+  .step-label {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+
+  .step-desc {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .parallel-lanes,
+  .decision-outputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    justify-content: center;
+    margin-top: 0.25rem;
+  }
+
+  .lane-tag,
+  .decision-tag {
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 118, 0, 0.1);
+    border: 1px solid rgba(255, 118, 0, 0.2);
+    border-radius: 20px;
+    font-size: 0.55rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--color-eos-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+  }
+
+  .lane-tag:hover,
+  .decision-tag:hover {
+    background: rgba(255, 118, 0, 0.2);
+    border-color: rgba(255, 118, 0, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .pipeline-connector {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    min-width: 36px;
+    flex: 0 0 auto;
+  }
+
+  .connector-line {
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 118, 0, 0.35), rgba(255, 118, 0, 0.1));
+  }
+
+  .connector-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-eos-orange);
+    box-shadow: 0 0 6px rgba(255, 118, 0, 0.3);
+    flex-shrink: 0;
+  }
+
+  /* Preflight Cards */
+  .preflight-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .preflight-card {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .preflight-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 118, 0, 0.4);
+    box-shadow: 0 8px 32px rgba(255, 118, 0, 0.1);
+  }
+
+  .pf-card-icon {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+
+  .preflight-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .preflight-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+  }
+
+  /* =============================================
+     PUBLIC API SECTION
+     ============================================= */
+  .eos-api {
+    background: var(--color-eos-navy-dark);
+    color: white;
+    overflow: hidden;
+  }
+
+  .api-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .api-header :global(.api-title) {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .api-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 660px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .api-subtitle code {
+    background: rgba(255, 118, 0, 0.15);
+    color: var(--color-eos-orange);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.95em;
+    font-weight: 500;
+  }
+
+  /* Auth Strip */
+  .api-auth-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .auth-method {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .auth-method:hover {
+    border-color: rgba(255, 118, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .auth-label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-eos-orange);
+  }
+
+  .auth-code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    word-break: break-all;
+  }
+
+  /* Endpoint Grid */
+  .api-endpoints {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .endpoint-card {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .endpoint-card:hover {
+    border-color: rgba(255, 118, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 118, 0, 0.08);
+  }
+
+  .endpoint-method {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .endpoint-method.post {
+    background: rgba(73, 190, 117, 0.15);
+    color: #49be75;
+    border: 1px solid rgba(73, 190, 117, 0.3);
+  }
+
+  .endpoint-method.get {
+    background: rgba(97, 175, 254, 0.15);
+    color: #61affe;
+    border: 1px solid rgba(97, 175, 254, 0.3);
+  }
+
+  .endpoint-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .endpoint-path {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .endpoint-desc {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .endpoint-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .badge-stream,
+  .badge-model,
+  .badge-meta {
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.6rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .badge-stream {
+    background: rgba(255, 118, 0, 0.12);
+    color: var(--color-eos-orange);
+    border: 1px solid rgba(255, 118, 0, 0.25);
+  }
+
+  .badge-model {
+    background: rgba(97, 175, 254, 0.1);
+    color: #61affe;
+    border: 1px solid rgba(97, 175, 254, 0.25);
+  }
+
+  .badge-meta {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Model Tiers */
+  .api-models {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .model-tier {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .model-tier:hover {
+    border-color: rgba(255, 118, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .tier-name {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-eos-orange);
+  }
+
+  .tier-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* =============================================
+     ARCHITECTURE FLOW SECTION
+     ============================================= */
+  .eos-archflow {
+    background: linear-gradient(180deg, var(--color-eos-navy-dark) 0%, var(--color-eos-navy) 100%);
+    color: white;
+    overflow: hidden;
+  }
+
+  .archflow-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .archflow-header :global(.archflow-title) {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .archflow-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Architecture Diagram */
+  .arch-diagram {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .arch-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+  }
+
+  .arch-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    min-width: 110px;
+    text-align: center;
+  }
+
+  .arch-node:hover {
+    background: rgba(255, 118, 0, 0.08);
+    border-color: rgba(255, 118, 0, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(255, 118, 0, 0.1);
+  }
+
+  .arch-node-icon {
+    color: var(--color-eos-orange);
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  .arch-node:hover .arch-node-icon {
+    opacity: 1;
+  }
+
+  .arch-node-label {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .arch-node-detail {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  /* Highlight nodes */
+  .arch-node-chat {
+    border-color: rgba(255, 118, 0, 0.3);
+    background: rgba(255, 118, 0, 0.06);
+  }
+
+  .arch-node-llm {
+    border-color: rgba(255, 118, 0, 0.35);
+    background: rgba(255, 118, 0, 0.08);
+  }
+
+  .arch-node-pf {
+    border-color: rgba(255, 118, 0, 0.3);
+  }
+
+  /* Arrows */
+  .arch-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .arch-arrow-line {
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 118, 0, 0.4), rgba(255, 118, 0, 0.2));
+  }
+
+  .arch-arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 5px solid rgba(255, 118, 0, 0.4);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+
+  /* Dividers */
+  .arch-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .arch-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 118, 0, 0.2), transparent);
+  }
+
+  .arch-divider-label {
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 118, 0, 0.5);
+    white-space: nowrap;
+  }
+
   /* CTA Section */
   .eos-cta {
     background: linear-gradient(135deg, var(--color-eos-navy) 0%, var(--color-eos-navy-dark) 100%);
@@ -1948,6 +2908,14 @@
   @media (max-width: 1200px) {
     .tech-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .api-auth-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .api-models {
+      grid-template-columns: 1fr;
     }
   }
   
@@ -2012,6 +2980,44 @@
     @keyframes particleFlow {
       0%, 100% { left: 0; opacity: 1; }
       50% { left: 90px; opacity: 0.4; }
+    }
+
+    /* Preflight responsive 1024 */
+    .pipeline-steps {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .pipeline-connector {
+      display: none;
+    }
+
+    .pipeline-step {
+      min-width: 120px;
+      max-width: 160px;
+    }
+
+    .preflight-cards {
+      grid-template-columns: 1fr;
+    }
+
+    /* API responsive 1024 */
+    .api-endpoints {
+      grid-template-columns: 1fr;
+    }
+
+    /* Architecture responsive 1024 */
+    .arch-row {
+      gap: 0.75rem;
+    }
+
+    .arch-arrow {
+      display: none;
+    }
+
+    .arch-node {
+      min-width: 90px;
+      padding: 0.6rem 0.75rem;
     }
   }
   
@@ -2117,6 +3123,59 @@
 
     .rag-subtitle {
       font-size: 1.05rem;
+    }
+
+    /* Preflight responsive 768 */
+    .preflight-subtitle,
+    .api-subtitle,
+    .archflow-subtitle {
+      font-size: 1rem;
+    }
+
+    .pipeline-step {
+      min-width: 100px;
+      max-width: 140px;
+    }
+
+    .step-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .step-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .parallel-lanes,
+    .decision-outputs {
+      display: none;
+    }
+
+    /* API responsive 768 */
+    .api-auth-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .endpoint-card {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .endpoint-badges {
+      width: 100%;
+    }
+
+    /* Architecture responsive 768 */
+    .arch-row-process,
+    .arch-row-persist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .arch-node {
+      min-width: 0;
     }
   }
   
@@ -2306,6 +3365,76 @@
     .expand-icon {
       width: 44px;
       height: 44px;
+    }
+
+    /* Preflight responsive 480 */
+    .pipeline-steps {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pipeline-step {
+      min-width: 0;
+      max-width: 200px;
+      width: 100%;
+    }
+
+    .step-label {
+      font-size: 0.75rem;
+    }
+
+    .step-desc {
+      font-size: 0.65rem;
+    }
+
+    .preflight-card h4 {
+      font-size: 0.9rem;
+    }
+
+    .preflight-card p {
+      font-size: 0.8rem;
+    }
+
+    /* API responsive 480 */
+    .endpoint-path {
+      font-size: 0.75rem;
+    }
+
+    .endpoint-desc {
+      font-size: 0.65rem;
+    }
+
+    .auth-code {
+      font-size: 0.65rem;
+    }
+
+    .api-models {
+      grid-template-columns: 1fr;
+    }
+
+    /* Architecture responsive 480 */
+    .arch-row-process,
+    .arch-row-persist {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .arch-row-input,
+    .arch-row-gen {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .arch-node-label {
+      font-size: 0.65rem;
+    }
+
+    .arch-node-detail {
+      font-size: 0.55rem;
+    }
+
+    .arch-divider-label {
+      font-size: 0.55rem;
     }
   }
 
