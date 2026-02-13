@@ -18,7 +18,7 @@
   
   // Showcase data for lightbox
   const showcaseData = [
-    { id: 'chat', title: 'Streaming Chat Interface', desc: 'Real-time responses with instant streaming. Context sources panel shows where answers come from.', tags: ['Vercel AI SDK', 'Redis Streams'] },
+    { id: 'chat', title: 'Streaming Chat Interface', desc: 'Real-time responses with instant streaming. Context sources panel shows where answers come from.', tags: ['Vercel AI SDK', 'Redis Streams'], video: 'https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSlQVD5VlXcYV8EFWH4SZCqvkj2I9XhTLb5slAo' },
     { id: 'nexus', title: 'Nexus Research Mode', desc: 'Multi-step research orchestrator with live progress tracking. Up to 40 intelligent web searches per session.', tags: ['Workflow Orchestration', 'Web Search'] },
     { id: 'accountability', title: 'Accountability Chart', desc: 'ReactFlow-powered org chart with GWC ratings, rocks tracking, and measurables.', tags: ['ReactFlow'] },
     { id: 'vto', title: 'V/TO Editor', desc: 'Interactive Vision/Traction Organizer with assisted goal setting and export.', tags: ['EOS Tools'] },
@@ -215,9 +215,15 @@
       </button>
       <div class="showcase-lightbox-inner">
         <div class="showcase-lightbox-preview">
-          <div class="preview-placeholder">
-            <span class="preview-text">Preview</span>
-          </div>
+          {#if activeShowcase.video}
+            <video autoplay muted loop playsinline controls>
+              <source src={activeShowcase.video} type="video/mp4" />
+            </video>
+          {:else}
+            <div class="preview-placeholder">
+              <span class="preview-text">Preview</span>
+            </div>
+          {/if}
         </div>
         <div class="showcase-lightbox-info">
           <h2>{activeShowcase.title}</h2>
@@ -358,12 +364,15 @@
     
     <div class="showcase-grid">
       <!-- Showcase 1: Chat Interface -->
-      <button class="showcase-card eos-glass-card showcase-large" data-cursor-text="View" on:click={() => openShowcaseLightbox('chat')}>
-        <div class="showcase-video-placeholder">
+      <button class="showcase-card eos-glass-card showcase-large" data-cursor-text="Play" on:click={() => openShowcaseLightbox('chat')}>
+        <div class="showcase-video-placeholder has-thumbnail">
+          <video preload="metadata" muted playsinline>
+            <source src="https://5m5wuohoqc.ufs.sh/f/suiIznhtTXSlQVD5VlXcYV8EFWH4SZCqvkj2I9XhTLb5slAo" type="video/mp4" />
+          </video>
           <div class="video-placeholder-inner">
-            <div class="expand-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            <div class="play-thumbnail-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
           </div>
@@ -1047,8 +1056,10 @@
   .eos-hero-video video {
     width: 100%;
     height: auto;
+    max-height: 70vh;
     display: block;
     border-radius: 16px;
+    object-fit: cover;
   }
   
   /* Video Placeholder Hero */
@@ -1441,19 +1452,37 @@
     overflow: hidden;
   }
   
-  .showcase-video-placeholder::before {
-    content: '';
+  .showcase-video-placeholder.has-thumbnail video {
     position: absolute;
     inset: 0;
-    background: 
-      linear-gradient(45deg, transparent 40%, rgba(255, 118, 0, 0.05) 50%, transparent 60%);
-    background-size: 200% 200%;
-    animation: shimmerBg 3s ease-in-out infinite;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
   
-  @keyframes shimmerBg {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+  .play-thumbnail-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+  }
+  
+  .play-thumbnail-icon svg {
+    margin-left: 4px;
+  }
+  
+  .showcase-card:hover .play-thumbnail-icon {
+    background: var(--color-eos-orange);
+    border-color: white;
+    transform: scale(1.1);
   }
   
   .video-placeholder-inner {
@@ -1926,6 +1955,7 @@
     .eos-hero-content {
       grid-template-columns: 1fr;
       text-align: center;
+      gap: var(--space-md);
     }
     
     .eos-hero-visual {
@@ -1974,6 +2004,10 @@
     .stream-desc {
       display: none;
     }
+
+    .eos-hero-video {
+      animation: none;
+    }
     
     @keyframes particleFlow {
       0%, 100% { left: 0; opacity: 1; }
@@ -1982,17 +2016,21 @@
   }
   
   @media (max-width: 768px) {
+    .showcase-grid {
+      gap: 1.25rem;
+    }
+
     .overview-stats {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
     
     .stat-card {
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
     
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
     }
     
     .tech-grid {
@@ -2001,11 +2039,84 @@
     }
     
     .browser-content {
-      min-height: 300px;
+      min-height: 250px;
+      padding: 1rem;
     }
     
     .chat-sidebar {
       display: none;
+    }
+
+    .chat-main,
+    .chat-message,
+    .message-bubble {
+      min-width: 0;
+    }
+
+    .message-bubble {
+      max-width: 90%;
+    }
+
+    .message-line.w-full { width: 100%; }
+    .message-line.w-80 { width: 80%; }
+    .message-line.w-75 { width: 75%; }
+    .message-line.w-60 { width: 60%; }
+    .message-line.w-50 { width: 50%; }
+
+    .mockup-lightbox-content,
+    .showcase-lightbox-content {
+      width: 100%;
+    }
+
+    .lightbox-close {
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 30;
+    }
+
+    .lightbox-browser-mockup .browser-content {
+      min-height: min(350px, 55vh);
+    }
+
+    .showcase-lightbox-overlay {
+      align-items: flex-start;
+    }
+
+    .showcase-lightbox-preview {
+      min-height: min(280px, 42vh);
+    }
+
+    .preview-placeholder {
+      width: 92%;
+      height: min(220px, 36vh);
+    }
+
+    .showcase-lightbox-info {
+      padding: 1.5rem;
+    }
+
+    .eos-hero-video video {
+      max-height: 55vh;
+    }
+
+    .eos-hero h1 {
+      font-size: clamp(3rem, 12vw, 6rem);
+    }
+
+    .eos-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .eos-scroll {
+      bottom: 1.5rem;
+    }
+
+    .overview-description {
+      font-size: 1rem;
+    }
+
+    .rag-subtitle {
+      font-size: 1.05rem;
     }
   }
   
@@ -2013,22 +2124,57 @@
     .overview-stats {
       grid-template-columns: 1fr;
     }
+
+    .showcase-grid {
+      gap: 1rem;
+    }
+
+    .showcase-info {
+      padding: 1rem;
+    }
+
+    .showcase-info h3 {
+      font-size: 1.05rem;
+    }
+
+    .showcase-info p {
+      font-size: 0.85rem;
+    }
+
+    .showcase-video-placeholder {
+      aspect-ratio: 16/10;
+    }
     
     .rag-visual {
-      height: 320px;
+      height: 280px;
+    }
+
+    .rag-streams {
+      transform: scale(0.72);
+      transform-origin: center;
+    }
+
+    .query-node {
+      transform: translateY(0);
+      padding: 0.55rem 0.75rem;
+    }
+
+    .query-pulse {
+      width: 50px;
+      height: 50px;
     }
     
     .stream-line {
-      width: 60px;
+      width: 38px;
     }
     
     .stream-node {
-      min-width: 70px;
-      padding: 0.4rem 0.5rem;
+      min-width: 52px;
+      padding: 0.3rem 0.4rem;
     }
     
     .stream-title {
-      font-size: 0.55rem;
+      font-size: 0.48rem;
     }
     
     .rag-features {
@@ -2036,12 +2182,66 @@
     }
     
     .rag-pill {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.8rem;
+    }
+
+    .showcase-lightbox-overlay {
+      padding-top: max(0.75rem, var(--safe-area-top));
+      padding-right: max(0.75rem, var(--safe-area-right));
+      padding-bottom: max(0.75rem, var(--safe-area-bottom));
+      padding-left: max(0.75rem, var(--safe-area-left));
+    }
+
+    .showcase-lightbox-preview {
+      min-height: min(220px, 38vh);
+    }
+
+    .showcase-lightbox-preview video {
+      max-height: 45vh;
+    }
+
+    .preview-placeholder {
+      height: min(160px, 28vh);
+    }
+
+    .showcase-lightbox-info {
+      padding: 1rem;
+    }
+
+    .showcase-lightbox-info h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .showcase-lightbox-info p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .lightbox-browser-mockup .browser-content {
+      min-height: min(250px, 45vh);
+    }
+
+    .lightbox-close {
+      width: 36px;
+      height: 36px;
+    }
+
+    .lightbox-hint {
+      font-size: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .demo-toast {
+      width: min(420px, calc(100% - 2rem));
+      bottom: max(1rem, var(--safe-area-bottom));
+      padding: 0.75rem 1rem;
     }
     
     @keyframes particleFlow {
       0%, 100% { left: 0; opacity: 1; }
-      50% { left: 50px; opacity: 0.4; }
+      50% { left: 32px; opacity: 0.4; }
     }
     
     .cta-buttons {
@@ -2050,10 +2250,84 @@
     
     .cta-buttons .btn {
       width: 100%;
+      justify-content: center;
     }
     
     .video-placeholder-hero {
       display: none;
+    }
+
+    .eos-hero-video video {
+      max-height: 45vh;
+    }
+
+    .eos-hero h1 {
+      font-size: clamp(2.5rem, 14vw, 5rem);
+    }
+
+    .eos-subtitle {
+      font-size: 1.05rem;
+    }
+
+    .eos-hero-description {
+      font-size: 1rem;
+    }
+
+    .eos-scroll {
+      display: none;
+    }
+
+    .eos-hero-content {
+      padding: var(--space-md) var(--container-pad);
+    }
+
+    .deepdive-card {
+      padding: 1.25rem;
+    }
+
+    .tech-list li {
+      font-size: 0.85rem;
+      padding-left: 1.25rem;
+    }
+
+    .stat-card {
+      padding: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+
+    .play-thumbnail-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .expand-icon {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .rag-visual {
+      height: 260px;
+    }
+
+    .rag-streams {
+      transform: scale(0.68);
+    }
+
+    .stream-line {
+      width: 36px;
+    }
+
+    .stream-node {
+      min-width: 50px;
+    }
+
+    .query-label {
+      font-size: 0.62rem;
     }
   }
   
@@ -2132,11 +2406,15 @@
     animation: fadeIn 0.3s ease;
     backdrop-filter: blur(20px);
     cursor: pointer;
+    padding-top: max(1rem, var(--safe-area-top));
+    padding-right: max(1rem, var(--safe-area-right));
+    padding-bottom: max(1rem, var(--safe-area-bottom));
+    padding-left: max(1rem, var(--safe-area-left));
   }
   
   .mockup-lightbox-content {
     position: relative;
-    width: 90%;
+    width: min(100%, 900px);
     max-width: 900px;
     animation: lightboxPopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: default;
@@ -2187,7 +2465,7 @@
   }
   
   .lightbox-browser-mockup .browser-content {
-    min-height: 500px;
+    min-height: min(500px, 70vh);
   }
   
   .lightbox-hint {
@@ -2208,7 +2486,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding-top: max(1.25rem, var(--safe-area-top));
+    padding-right: max(1.25rem, var(--safe-area-right));
+    padding-bottom: max(1.25rem, var(--safe-area-bottom));
+    padding-left: max(1.25rem, var(--safe-area-left));
     animation: fadeIn 0.3s ease;
   }
   
@@ -2230,16 +2511,22 @@
   
   .showcase-lightbox-preview {
     background: linear-gradient(135deg, rgba(0, 46, 93, 0.8), rgba(0, 30, 60, 0.9));
-    min-height: 400px;
+    min-height: min(400px, 60vh);
     display: flex;
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid rgba(255, 118, 0, 0.2);
   }
   
+  .showcase-lightbox-preview video {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+  
   .preview-placeholder {
     width: 90%;
-    height: 300px;
+    height: min(300px, 45vh);
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     border: 2px dashed rgba(255, 118, 0, 0.3);
@@ -2329,6 +2616,95 @@
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
     font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .mockup-lightbox-content,
+    .showcase-lightbox-content {
+      width: 100%;
+    }
+
+    .lightbox-close {
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 30;
+    }
+
+    .lightbox-browser-mockup .browser-content {
+      min-height: min(400px, 62vh);
+    }
+
+    .showcase-lightbox-overlay {
+      align-items: flex-start;
+    }
+
+    .showcase-lightbox-preview {
+      min-height: min(320px, 48vh);
+    }
+
+    .preview-placeholder {
+      width: 92%;
+      height: min(240px, 40vh);
+    }
+
+    .showcase-lightbox-info {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .showcase-lightbox-overlay {
+      padding-top: max(0.75rem, var(--safe-area-top));
+      padding-right: max(0.75rem, var(--safe-area-right));
+      padding-bottom: max(0.75rem, var(--safe-area-bottom));
+      padding-left: max(0.75rem, var(--safe-area-left));
+    }
+
+    .showcase-lightbox-preview {
+      min-height: min(240px, 42vh);
+    }
+
+    .showcase-lightbox-preview video {
+      max-height: 50vh;
+    }
+
+    .preview-placeholder {
+      height: min(180px, 32vh);
+    }
+
+    .showcase-lightbox-info {
+      padding: 1rem;
+    }
+
+    .showcase-lightbox-info h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .showcase-lightbox-info p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .lightbox-browser-mockup .browser-content {
+      min-height: min(280px, 50vh);
+    }
+
+    .lightbox-close {
+      width: 36px;
+      height: 36px;
+    }
+
+    .lightbox-hint {
+      font-size: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .demo-toast {
+      width: min(420px, calc(100% - 2rem));
+      bottom: max(1rem, var(--safe-area-bottom));
+      padding: 0.75rem 1rem;
+    }
   }
   
   /* Make the video placeholder hero and browser mockup buttons look like buttons */

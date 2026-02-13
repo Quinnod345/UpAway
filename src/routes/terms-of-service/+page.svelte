@@ -252,7 +252,7 @@
   }
   
   .policy-section h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
     margin-bottom: 1rem;
     color: var(--color-dark);
   }
@@ -328,12 +328,27 @@
   }
   
   @media (max-width: 768px) {
+    .policy-section h2 {
+      font-size: 1.3rem;
+    }
+
     .policy-cta {
       flex-direction: column;
     }
     
     .policy-cta .btn {
       width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .policy-section li {
+      padding-left: 1.5rem;
+    }
+
+    .contact-email {
+      font-size: 1.05rem;
+      word-break: break-word;
     }
   }
 </style>

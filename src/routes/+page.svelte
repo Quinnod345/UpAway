@@ -964,11 +964,13 @@
     background: var(--color-accent);
     padding: 1.25rem 0;
     overflow: hidden;
+    overflow-x: clip;
   }
   
   .marquee-track {
     display: flex;
     width: fit-content;
+    min-width: max-content;
     animation: marquee 25s linear infinite;
   }
   
@@ -984,6 +986,7 @@
     white-space: nowrap;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    flex-shrink: 0;
   }
   
   .marquee-dot {
@@ -2091,11 +2094,16 @@
   
   .video-mockup video {
     width: 100%;
-    height: 450px;
+    height: min(450px, 62vh);
     display: block;
     object-fit: cover;
     object-position: center center;
     transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+  }
+
+  .video-mockup {
+    overflow: hidden;
   }
   
   .chat-interface {
@@ -2315,6 +2323,14 @@
     .contact-grid {
       grid-template-columns: 1fr;
     }
+
+    .service-card {
+      padding: 2rem;
+    }
+
+    .contact-form-wrapper {
+      padding: 2.25rem;
+    }
     
     .footer-content {
       flex-direction: column;
@@ -2323,6 +2339,7 @@
     
     .footer-links {
       flex-wrap: wrap;
+      gap: 2rem;
     }
   }
   
@@ -2335,9 +2352,34 @@
       width: 240px;
       height: 500px;
     }
+
+    .video-mockup video {
+      height: min(360px, 52vh);
+    }
     
     .contact-form-wrapper {
       padding: 2rem;
+    }
+
+    .hero-scroll {
+      bottom: 1.5rem;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+    }
+
+    .eosai-description-main,
+    .curb-description-main {
+      font-size: 1rem;
+    }
+
+    .footer-content {
+      gap: var(--space-md);
+    }
+
+    .footer-links {
+      gap: 1.5rem;
     }
   }
   
@@ -2347,7 +2389,88 @@
     }
     
     .footer-links {
-      gap: var(--space-md);
+      gap: var(--space-sm);
+    }
+
+    .service-card {
+      padding: 1.25rem;
+    }
+
+    .phone-frame {
+      width: 200px;
+      height: 420px;
+    }
+
+    .contact-form-wrapper {
+      padding: 1.25rem;
+      border-radius: 16px;
+    }
+
+    .video-mockup video {
+      height: min(240px, 38vh);
+      transform: scale(1.02);
+    }
+
+    .marquee-content {
+      gap: 1.5rem;
+      padding-right: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-scroll {
+      display: none;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .work-description {
+      font-size: 1rem;
+    }
+
+    .eosai h2 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .eosai-tagline,
+    .curb-tagline {
+      font-size: 1.05rem;
+    }
+
+    .contact-description {
+      font-size: 1rem;
+    }
+
+    .service-number {
+      font-size: 3rem;
+    }
+
+    .footer-logo {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .phone-frame {
+      width: 180px;
+      height: 380px;
+      border-radius: 28px;
+      padding: 4px;
+    }
+
+    .phone-screen {
+      border-radius: 24px;
+    }
+
+    .video-mockup video {
+      height: min(200px, 34vh);
     }
   }
 </style>
