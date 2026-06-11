@@ -28,7 +28,7 @@
     </nav>
     
     <h1 class:visible={mounted}>Privacy Policy</h1>
-    <p class="last-updated" class:visible={mounted}>Last Updated: December 2024</p>
+    <p class="last-updated" class:visible={mounted}>Last Updated: June 11, 2026</p>
   </div>
 </section>
 
@@ -69,9 +69,11 @@
           you submit through the app are considered part of this.
         </p>
         <p>
-          <strong>Automatically Collected Information:</strong> InnerEcho may automatically collect certain 
-          information about the device you use to access our services, such as device type and operating system 
-          version, but we do not track personal usage metrics.
+          <strong>Automatically Collected Information:</strong> InnerEcho may automatically collect certain
+          information about the device you use to access our services, such as device type and operating system
+          version. We also collect anonymized product analytics — such as which features are used and purchase
+          events — to understand how the app is doing and where to improve it. Your journal entries and
+          check-in content are never part of analytics.
         </p>
       </div>
       
@@ -91,25 +93,38 @@
       </div>
       
       <div class="policy-section">
-        <h2>3. Insights and Third-Party Services</h2>
-        <p>We use OpenAI and Anthropic to provide advanced computational tasks, such as language processing for our in-app insights.</p>
+        <h2>3. Insights, Analytics & Third-Party Services</h2>
         <p>
-          <strong>OpenAI and Anthropic:</strong> InnerEcho anonymizes all sensitive data, such as journal entries, 
-          before sending it to OpenAI or Anthropic for processing. All data sent for insight processing is temporarily
-          held for no more than 30 days and is then deleted.
+          Your journaling content stays on your device and in your iCloud. Where your device supports
+          Apple Intelligence, AI features run on-device — your words never leave your phone. We work with a
+          small number of service providers, and this is the complete list:
         </p>
-        <p>
-          <strong>CloudKit for Data Storage:</strong> We use Apple's CloudKit to securely store your journal entries 
-          and sync them across your devices. Your data is stored with end-to-end encryption, ensuring that only 
-          you have access to your personal entries.
-        </p>
+        <ul>
+          <li>
+            <strong>OpenAI</strong> — powers cloud-based AI features such as insights, Echo chat, and dream
+            analysis. AI requests are sent to OpenAI only with your consent, and you can disable AI data
+            sharing anytime in the app. Data sent for processing is temporarily held for no more than 30 days
+            and then deleted.
+          </li>
+          <li>
+            <strong>PostHog</strong> — product analytics, including purchase events, so we can understand
+            how features are used and improve the app. Analytics never include your journal entries or
+            check-in content.
+          </li>
+          <li>
+            <strong>Apple</strong> — processes App Store purchases, and stores and syncs your data via
+            iCloud (CloudKit) and connects with HealthKit where you've enabled it. Your journal entries are
+            stored with encryption, so only you have access to them.
+          </li>
+        </ul>
       </div>
       
       <div class="policy-section">
         <h2>4. Non-Disclosure of Sensitive Journal Data</h2>
         <p>
-          We stand firmly in our commitment to safeguard your sensitive journal data. We do not share, sell, 
-          or distribute your data to any third parties unless absolutely required by law. Your privacy is our priority.
+          We stand firmly in our commitment to safeguard your sensitive journal data. Beyond the service
+          providers listed above, we do not share, sell, or distribute your data to any third parties unless
+          absolutely required by law. Your privacy is our priority.
         </p>
       </div>
       

@@ -28,7 +28,7 @@
     </nav>
     
     <h1 class:visible={mounted}>Terms of Service</h1>
-    <p class="last-updated" class:visible={mounted}>Last Updated: Oct. 4, 2024</p>
+    <p class="last-updated" class:visible={mounted}>Last Updated: June 11, 2026</p>
   </div>
 </section>
 
@@ -58,8 +58,8 @@
         <h2>3. User Accounts and Data</h2>
         <p>
           <strong>Privacy:</strong> Your privacy is important to us. All data is stored locally on your device or 
-          in Apple's CloudKit service, syncing across your devices. Insight data is processed by OpenAI and
-          deleted after 30 days. For more information on how we handle data, please review our 
+          in Apple's CloudKit service, syncing across your devices. Insight data is processed by OpenAI only
+          with your consent and deleted after 30 days. For more information on how we handle data, please review our
           <a href="/privacy-policy" class="inline-link">Privacy Policy</a>.
         </p>
         <p>
@@ -88,7 +88,37 @@
       </div>
       
       <div class="policy-section">
-        <h2>6. Intellectual Property</h2>
+        <h2>6. Subscriptions, Billing & Renewal</h2>
+        <p>
+          InnerEcho offers optional auto-renewing Premium subscriptions (monthly and annual) and a one-time
+          Lifetime purchase, billed through your Apple ID via the App Store.
+        </p>
+        <p>
+          <strong>Auto-Renewal:</strong> Subscriptions automatically renew until cancelled. You can cancel
+          anytime in iOS Settings &gt; Subscriptions. Cancellation takes effect at the end of the current
+          billing period.
+        </p>
+        <p>
+          <strong>Free Trials:</strong> If your plan includes a free trial, the trial converts to a paid
+          subscription unless you cancel before the trial ends.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2>7. AI Features & Fair Use</h2>
+        <p>
+          On-device AI features are unlimited. Cloud-based AI features are subject to reasonable monthly
+          fair-use limits to keep the service sustainable for everyone. These limits are designed to be
+          generous and comfortably accommodate typical daily use.
+        </p>
+        <p>
+          We may adjust fair-use limits from time to time. If you regularly need more, heavy-use top-ups
+          are available in-app.
+        </p>
+      </div>
+
+      <div class="policy-section">
+        <h2>8. Intellectual Property</h2>
         <p>
           All content, features, and functionality (including but not limited to text, graphics, logos, icons, and 
           software) provided by InnerEcho are owned by UpAway, LLC and are protected by copyright, trademark, and 
@@ -98,7 +128,7 @@
       </div>
       
       <div class="policy-section">
-        <h2>7. Disclaimer of Warranties</h2>
+        <h2>9. Disclaimer of Warranties</h2>
         <p>
           The App is provided on an "as-is" basis. We make no warranties, express or implied, regarding the App's 
           performance, functionality, or availability, including its suitability for a particular purpose. You use 
@@ -107,7 +137,7 @@
       </div>
       
       <div class="policy-section">
-        <h2>8. Limitation of Liability</h2>
+        <h2>10. Limitation of Liability</h2>
         <p>
           In no event shall UpAway, LLC be liable for any indirect, incidental, consequential, or punitive damages, 
           including but not limited to loss of data, even if we have been advised of the possibility of such damages. 
@@ -117,7 +147,7 @@
       </div>
       
       <div class="policy-section">
-        <h2>9. Modifications to the Terms</h2>
+        <h2>11. Modifications to the Terms</h2>
         <p>
           We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately 
           upon posting to the App. Your continued use of the App after any such changes constitutes your acceptance 
@@ -126,7 +156,7 @@
       </div>
       
       <div class="policy-section">
-        <h2>10. Termination</h2>
+        <h2>12. Termination</h2>
         <p>
           We may suspend or terminate your access to the App at any time for any reason, including for violation of 
           these Terms of Service. Upon termination, you must cease all use of the App.
@@ -134,7 +164,7 @@
       </div>
       
       <div class="policy-section">
-        <h2>11. Governing Law</h2>
+        <h2>13. Governing Law</h2>
         <p>
           These Terms of Service shall be governed and construed in accordance with the laws of the State of 
           Pennsylvania, without regard to its conflict of law provisions.
@@ -142,7 +172,7 @@
       </div>
       
       <div class="policy-section">
-        <h2>12. Contact Us</h2>
+        <h2>14. Contact Us</h2>
         <p>
           If you have any questions regarding these Terms of Service, please contact us at:
         </p>
