@@ -134,7 +134,7 @@
 
 <svelte:head>
   <title>InnerEcho | Intelligent Mental Health Journaling</title>
-  <meta name="description" content="InnerEcho is an intelligent mental health journaling app with real-time insights, dream analysis, mood tracking, and 28 beautiful themes. Your mind, your growth." />
+  <meta name="description" content="InnerEcho is an intelligent mental health journaling app with AI insights, an AI companion with memory, dream analysis, mood tracking, widgets, Apple Watch, and 25+ beautiful themes. Your mind, your growth." />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -314,7 +314,7 @@
             </div>
           </div>
         </button>
-        <p class="screenshot-label">Pattern Insights</p>
+        <p class="screenshot-label">Insights & Statistics</p>
       </div>
     </div>
   </div>
@@ -343,58 +343,123 @@
         <p class="section-label text-accent">Intelligent Journaling</p>
         <TextReveal text="Tools That Help You Dig Deeper" tag="h2" class_name="text-light" />
         <p class="how-description text-light-muted">
-          InnerEcho doesn't just store your thoughts. It analyzes them in real time, offers "Go Deeper" prompts as you write, detects cognitive distortions, and provides CBT-based reframes.
+          InnerEcho doesn't just store your thoughts. Every check-in echoes back a thoughtful AI insight, and Echo — your AI companion — remembers what matters to you across every conversation.
         </p>
       </div>
-      
+
       <div class="features-list">
-        <div class="feature-card">
-          <span class="feature-icon">✍️</span>
-          <div class="feature-content">
-            <h4>Free-Form & Guided Journaling</h4>
-            <p>Write freely or use guided prompts tailored to your recent entries. Add photos, track word count, and see your writing time.</p>
-          </div>
-        </div>
-        
         <div class="feature-card">
           <span class="feature-icon">✨</span>
           <div class="feature-content">
-            <h4>Real-Time "Go Deeper" Prompts</h4>
-            <p>After 50+ words, InnerEcho analyzes your writing and offers reflection questions that are non-intrusive, dismissible, and genuinely helpful.</p>
+            <h4>AI Insight on Every Check-In</h4>
+            <p>Quick mood, energy, and sleep check-ins, each answered with a thoughtful AI reflection — a small echo back from what you shared.</p>
           </div>
         </div>
-        
+
         <div class="feature-card">
-          <span class="feature-icon">🧠</span>
+          <span class="feature-icon">💬</span>
           <div class="feature-content">
-            <h4>Emotional Processing Analysis</h4>
-            <p>On save, InnerEcho identifies 3-7 nuanced emotions, detects cognitive distortions, provides CBT reframes, and suggests mindfulness exercises.</p>
+            <h4>Echo, Your AI Companion</h4>
+            <p>Chat with Echo anytime. It carries long-term memory of your journey, and the "What Echo remembers" panel shows you exactly what it holds onto — nothing hidden.</p>
           </div>
         </div>
-        
+
+        <div class="feature-card">
+          <span class="feature-icon">🧭</span>
+          <div class="feature-content">
+            <h4>Guided Journaling Sessions</h4>
+            <p>Four themed journeys, each a gentle five-step session. The AI adapts its questions to what you write, so no two sessions feel the same.</p>
+          </div>
+        </div>
+
         <div class="feature-card">
           <span class="feature-icon">🌙</span>
           <div class="feature-content">
-            <h4>Dream Journal with Guided Analysis</h4>
-            <p>Log dreams with type, emotions, themes, and vividness. Get Jungian-inspired symbolic interpretation, emotional insights, and reflection prompts.</p>
+            <h4>Dream Journal with AI Analysis</h4>
+            <p>Capture dreams while they're fresh, then let AI dream analysis surface the symbols, emotions, and threads running through them.</p>
           </div>
         </div>
-        
+
         <div class="feature-card">
           <span class="feature-icon">📊</span>
           <div class="feature-content">
-            <h4>Mood Tracking & Check-Ins</h4>
-            <p>Quick 30-second check-ins with 100+ emotion tags. Morning, evening, and weekly goal check-ins. See what impacts your mood most.</p>
+            <h4>Statistics Dashboard</h4>
+            <p>Mood, energy, and sleep trends over time, plus a writing score that reflects the depth of your journaling practice.</p>
           </div>
         </div>
-        
+
         <div class="feature-card">
-          <span class="feature-icon">📈</span>
+          <span class="feature-icon">📖</span>
           <div class="feature-content">
-            <h4>Beautiful Insights Dashboard</h4>
-            <p>Trend graphs, top emotions, mood correlations, and keyword clouds. Premium Deep Dive analyzes patterns across all your data.</p>
+            <h4>Weekly Recaps & Goals</h4>
+            <p>Your week, retold as a story-style recap. Set weekly goals and get AI summaries of how they're going — small ripples, tracked kindly.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Everywhere Section -->
+<section class="everywhere section">
+  <div class="container">
+    <div class="everywhere-header">
+      <p class="section-label">Beyond the Page</p>
+      <TextReveal text="An Echo in Every Corner of Your Day" tag="h2" />
+      <p class="everywhere-description">
+        InnerEcho meets you where you already are — your home screen, your wrist, your voice, your memories.
+      </p>
+    </div>
+
+    <!-- TODO(quinn): screenshot — widgets + Apple Watch lineup image belongs here -->
+
+    <div class="everywhere-grid">
+      <div class="everywhere-card">
+        <span class="everywhere-icon">🔥</span>
+        <h4>Streaks That Forgive</h4>
+        <p>Milestones and celebrations as your streak grows — and a streak freeze repair when life gets in the way of a day.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">📱</span>
+        <h4>Widgets, Including Mood</h4>
+        <p>Home and lock screen widgets, an interactive mood widget for one-tap check-ins, and themed widget faces that match your app theme.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">⌚</span>
+        <h4>Apple Watch App</h4>
+        <p>Check in from your wrist, right in the moment a feeling happens — no phone required.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">💗</span>
+        <h4>HealthKit Connected</h4>
+        <p>Sync State of Mind with Apple Health (iOS 18+) and let last night's sleep inform your morning check-in. Always opt-in.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">🎙️</span>
+        <h4>Voice First, On Device</h4>
+        <p>Speak instead of type, anywhere in the app — speech-to-text stays on your device. And where your iPhone supports Apple Intelligence, AI runs on-device too.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">🔍</span>
+        <h4>Search by Meaning</h4>
+        <p>Semantic search finds entries by what they meant, not just the words you used — powered by on-device embeddings.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">🌀</span>
+        <h4>Echoes from Your Past</h4>
+        <p>On-this-day memories resurface gently, so you can see how far the ripples have carried you.</p>
+      </div>
+
+      <div class="everywhere-card">
+        <span class="everywhere-icon">🗣️</span>
+        <h4>Siri, Shortcuts & Spotlight</h4>
+        <p>Start a check-in with Siri, build journaling into your Shortcuts, and find your entries straight from Spotlight.</p>
       </div>
     </div>
   </div>
@@ -408,13 +473,13 @@
         <p class="section-label">Privacy First</p>
         <TextReveal text="Your Thoughts Stay Yours" tag="h2" />
         <p class="privacy-description">
-          Your journal lives in YOUR iCloud, not our servers. We never see your entries. Advanced insight features are opt-in, and you can lock the app with passcode or biometrics.
+          Your journal lives on your device and in YOUR iCloud, not our servers. AI features only see your words with your consent, and you can lock the app behind a passcode with a privacy shield.
         </p>
         <ul class="privacy-list">
           <li><span class="check">✓</span> iCloud sync (your data, your cloud)</li>
-          <li><span class="check">✓</span> Optional passcode with Face ID/Touch ID</li>
-          <li><span class="check">✓</span> No third-party data sharing</li>
-          <li><span class="check">✓</span> Advanced insight features are completely opt-in</li>
+          <li><span class="check">✓</span> Passcode lock with privacy shield, Face ID/Touch ID</li>
+          <li><span class="check">✓</span> On-device AI (Apple Intelligence) where your device supports it</li>
+          <li><span class="check">✓</span> Cloud AI is consent-gated — disable AI data sharing anytime</li>
           <li><span class="check">✓</span> Delete your data anytime</li>
         </ul>
       </div>
@@ -429,10 +494,10 @@
 <section class="themes section section-dark">
   <div class="container">
     <div class="themes-header">
-      <p class="section-label text-accent">28 Beautiful Themes</p>
+      <p class="section-label text-accent">25+ Beautiful Themes</p>
       <TextReveal text="Make It Yours" tag="h2" class_name="text-light" />
       <p class="themes-description text-light-muted">
-        From Ocean Breeze to Neon Dreams, Autumn Leaves to Midnight Sky, choose a theme that matches your mood. Each theme transforms the entire app with custom colors and a matching app icon.
+        From Ocean Breeze to Neon Dreams, Autumn Leaves to Midnight Sky, choose a theme that matches your mood. Each theme transforms the entire app with custom colors, a matching app icon, and themed widget faces.
       </p>
     </div>
     
@@ -446,6 +511,72 @@
       <div class="theme-dot" style="background: linear-gradient(135deg, #F6D365, #FDA085);"></div>
       <div class="theme-dot" style="background: linear-gradient(135deg, #A8EDEA, #FED6E3);"></div>
     </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing section">
+  <div class="container">
+    <div class="pricing-header">
+      <p class="section-label">Simple Pricing</p>
+      <TextReveal text="Start Free, Go Deeper When Ready" tag="h2" />
+      <p class="pricing-description">
+        Core journaling and check-ins are free, forever. Premium unlocks the full echo — AI insights, Echo chat, statistics, recaps, and more.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3 class="plan-name">Free</h3>
+        <div class="plan-price"><span class="price">$0</span></div>
+        <p class="plan-blurb">Everything you need to begin.</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Unlimited journaling</li>
+          <li><span class="check">✓</span> Mood, energy & sleep check-ins</li>
+          <li><span class="check">✓</span> Streaks, widgets & Apple Watch</li>
+          <li><span class="check">✓</span> Passcode lock & iCloud sync</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <h3 class="plan-name">Premium Monthly</h3>
+        <div class="plan-price"><span class="price">$3.99</span><span class="period">/month</span></div>
+        <p class="plan-blurb">The full experience, month to month.</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> AI insights on every check-in</li>
+          <li><span class="check">✓</span> Echo, your AI companion</li>
+          <li><span class="check">✓</span> Statistics, recaps & dream analysis</li>
+          <li><span class="check">✓</span> Guided journaling sessions</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card featured">
+        <span class="plan-badge">Best Value</span>
+        <h3 class="plan-name">Premium Annual</h3>
+        <div class="plan-price"><span class="price">$27.99</span><span class="period">/year</span></div>
+        <p class="plan-blurb">Just $2.33/month, with a 7-day free trial.</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Everything in Premium</li>
+          <li><span class="check">✓</span> 7-day free trial</li>
+          <li><span class="check">✓</span> Save over 40% vs. monthly</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <h3 class="plan-name">Lifetime</h3>
+        <div class="plan-price"><span class="price">$149.99</span><span class="period">one-time</span></div>
+        <p class="plan-blurb">Pay once, journal forever.</p>
+        <ul class="plan-features">
+          <li><span class="check">✓</span> Everything in Premium, for life</li>
+          <li><span class="check">✓</span> Unlimited on-device AI</li>
+          <li><span class="check">✓</span> Generous monthly fair-use limits on cloud AI</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="pricing-fine-print">
+      Subscriptions auto-renew until cancelled — cancel anytime in iOS Settings › Subscriptions. Free trials convert to paid unless cancelled before they end. See our <a href="/terms-of-service" class="inline-link">Terms of Service</a> for details.
+    </p>
   </div>
 </section>
 
@@ -1282,6 +1413,233 @@
     line-height: 1.6;
   }
   
+  /* Everywhere Section */
+  .everywhere {
+    background: var(--color-cream);
+    padding: var(--space-xl) 0;
+  }
+
+  .everywhere-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .everywhere-description {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-top: 1.5rem;
+  }
+
+  .everywhere-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .everywhere-card {
+    padding: 1.75rem 1.5rem;
+    background: rgba(33, 60, 78, 0.04);
+    border: 1px solid rgba(33, 60, 78, 0.08);
+    border-radius: 16px;
+    transition: var(--transition-medium);
+  }
+
+  .everywhere-card:hover {
+    transform: translateY(-4px);
+    background: rgba(33, 60, 78, 0.07);
+  }
+
+  .everywhere-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    width: 56px;
+    height: 56px;
+    background: rgba(123, 148, 156, 0.15);
+    border-radius: 16px;
+    margin-bottom: 1rem;
+  }
+
+  .everywhere-card h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+  }
+
+  .everywhere-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Pricing Section */
+  .pricing {
+    background: var(--color-cream);
+    padding: var(--space-xl) 0;
+  }
+
+  .pricing-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .pricing-description {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-top: 1.5rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    background: rgba(33, 60, 78, 0.04);
+    border: 1px solid rgba(33, 60, 78, 0.08);
+    border-radius: 20px;
+    transition: var(--transition-medium);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .pricing-card.featured {
+    background: var(--color-navy);
+    border-color: var(--color-sage);
+    color: var(--color-cream);
+    box-shadow: 0 20px 50px rgba(33, 60, 78, 0.25);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -0.85rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--color-accent);
+    color: var(--color-dark);
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+  }
+
+  .pricing-card.featured .plan-name {
+    color: var(--color-cream);
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .plan-price .price {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-dark);
+  }
+
+  .pricing-card.featured .plan-price .price {
+    color: var(--color-cream);
+  }
+
+  .plan-price .period {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .pricing-card.featured .plan-price .period {
+    color: rgba(255, 245, 217, 0.7);
+  }
+
+  .plan-blurb {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .pricing-card.featured .plan-blurb {
+    color: rgba(255, 245, 217, 0.8);
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.45rem 0;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .pricing-card.featured .plan-features li {
+    color: rgba(255, 245, 217, 0.9);
+  }
+
+  .plan-features .check {
+    color: var(--color-sage);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .pricing-fine-print {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    max-width: 650px;
+    margin: var(--space-md) auto 0;
+    line-height: 1.6;
+  }
+
+  .pricing-fine-print .inline-link {
+    color: var(--color-steel);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .pricing-fine-print .inline-link:hover {
+    color: var(--color-accent);
+  }
+
   /* Privacy Section */
   .privacy {
     background: var(--color-cream);
@@ -1600,6 +1958,16 @@
 
     .privacy-description {
       font-size: 1rem;
+    }
+
+    .everywhere-description,
+    .pricing-description {
+      font-size: 1rem;
+    }
+
+    .everywhere-card:hover,
+    .pricing-card:hover {
+      transform: none;
     }
 
     .themes-description {
