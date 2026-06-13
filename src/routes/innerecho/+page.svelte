@@ -6,7 +6,49 @@
   let mounted = false;
   let secretPhrase = '';
   let showBreatheSecret = false;
-  
+
+  // ── InnerEcho support form ────────────────────────────────────────────────
+  let support = { name: '', email: '', message: '', company: '' };
+  let supportStatus = '';
+  let supportError = '';
+  let supportSubmitting = false;
+
+  async function handleSupportSubmit(e) {
+    e.preventDefault();
+    if (supportSubmitting) return;
+
+    supportError = '';
+    supportSubmitting = true;
+
+    try {
+      const query = new URLSearchParams({
+        name: support.name,
+        email: support.email,
+        message: support.message,
+        company: support.company,
+        subject: 'InnerEcho Support'
+      });
+
+      const res = await fetch(`/api/contact?${query.toString()}`, { method: 'POST' });
+
+      /** @type {{ error?: string; message?: string }} */
+      let body = {};
+      try { body = await res.json(); } catch { body = {}; }
+
+      if (!res.ok) {
+        supportError = body?.error || 'Unable to send your message right now. Please try again shortly.';
+        return;
+      }
+
+      supportStatus = body?.message || "Thanks — we've got your message and will be in touch within a day or two.";
+      support = { name: '', email: '', message: '', company: '' };
+    } catch {
+      supportError = 'Unable to send your message right now. Please try again shortly.';
+    } finally {
+      supportSubmitting = false;
+    }
+  }
+
   // Video references
   let smartJournalingVideo;
   let aiPromptsVideo;
@@ -609,7 +651,126 @@
   </div>
 </section>
 
+<!-- Support -->
+<section id="support" class="support section">
+  <div class="container">
+    <div class="support-inner">
+      <p class="section-label">Need a hand?</p>
+      <h2 class="support-title">InnerEcho Support</h2>
+      <p class="support-desc">
+        Questions, feedback, a bug, or trouble with a purchase? Send us a note and a real
+        human will get back to you. You can also email
+        <a href="mailto:support@upaway.dev">support@upaway.dev</a>.
+      </p>
+
+      {#if supportStatus}
+        <div class="support-success">
+          <span class="success-icon">✓</span>
+          <p>{supportStatus}</p>
+        </div>
+      {:else}
+        <form class="support-form" on:submit={handleSupportSubmit}>
+          {#if supportError}
+            <p class="support-error">{supportError}</p>
+          {/if}
+
+          <div class="honeypot-field" aria-hidden="true">
+            <label for="se-company">Company</label>
+            <input type="text" id="se-company" bind:value={support.company} tabindex="-1" autocomplete="off" disabled={supportSubmitting} />
+          </div>
+
+          <div class="support-row">
+            <div class="form-group">
+              <label for="se-name">Name</label>
+              <input type="text" id="se-name" bind:value={support.name} placeholder="Your name" disabled={supportSubmitting} required />
+            </div>
+            <div class="form-group">
+              <label for="se-email">Email</label>
+              <input type="email" id="se-email" bind:value={support.email} placeholder="your@email.com" disabled={supportSubmitting} required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="se-message">How can we help?</label>
+            <textarea id="se-message" bind:value={support.message} placeholder="Tell us what's going on…" rows="5" disabled={supportSubmitting} required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" disabled={supportSubmitting}>
+            {supportSubmitting ? 'Sending…' : 'Send to Support'}
+          </button>
+        </form>
+      {/if}
+    </div>
+  </div>
+</section>
+
 <style>
+  /* InnerEcho Support */
+  .support-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .support-title { font-size: clamp(2rem, 5vw, 3rem); margin: 0.5rem 0 1rem; color: var(--color-dark); }
+  .support-desc { color: var(--color-text-muted); line-height: 1.7; margin-bottom: 2.5rem; }
+  .support-desc a { color: var(--color-steel); text-decoration: underline; text-underline-offset: 3px; }
+  .support-desc a:hover { color: var(--color-accent); }
+  .support-form { text-align: left; display: flex; flex-direction: column; gap: 1.25rem; }
+  .support-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--color-dark); }
+  .support-form input,
+  .support-form textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border: 1px solid rgba(33, 60, 78, 0.18);
+    border-radius: 12px;
+    color: var(--color-dark);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .support-form input::placeholder,
+  .support-form textarea::placeholder { color: rgba(33, 60, 78, 0.4); }
+  .support-form input:focus,
+  .support-form textarea:focus {
+    outline: none;
+    border-color: var(--color-steel);
+    box-shadow: 0 0 0 3px rgba(123, 148, 156, 0.15);
+  }
+  .support-form textarea { resize: vertical; }
+  .support-form .btn-primary { align-self: flex-start; margin-top: 0.25rem; }
+  .support-form .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+  .support-error {
+    color: #b4423a;
+    background: rgba(180, 66, 58, 0.08);
+    border: 1px solid rgba(180, 66, 58, 0.25);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin: 0;
+  }
+  .support-success {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+    background: rgba(123, 148, 156, 0.12);
+    border: 1px solid rgba(123, 148, 156, 0.3);
+    border-radius: 14px;
+    padding: 2rem;
+    color: var(--color-dark);
+  }
+  .support-success .success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 700;
+  }
+  .honeypot-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  @media (max-width: 600px) { .support-row { grid-template-columns: 1fr; } }
+
   /* Hero Section */
   .hero {
     min-height: 90vh;

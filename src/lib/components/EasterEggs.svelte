@@ -58,11 +58,7 @@
   // ═══════════════════════════════════════════════════════════════════════════════
   // 📜 FAST SCROLL DETECTION
   // ═══════════════════════════════════════════════════════════════════════════════
-  let lastScrollTime = 0;
-  let lastScrollY = 0;
-  let showSlowDown = false;
-  let slowDownTimeout;
-  
+
   // ═══════════════════════════════════════════════════════════════════════════════
   // 🖱️ CUSTOM RIGHT-CLICK MENU
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -634,33 +630,12 @@
   }
   
   // ═══════════════════════════════════════════════════════════════════════════════
-  // 📜 FAST SCROLL DETECTION
+  // 📜 SCROLL → keep the idle timer alive
   // ═══════════════════════════════════════════════════════════════════════════════
   function handleScroll() {
     resetIdleTimer();
-    
-    const now = Date.now();
-    const currentY = window.scrollY;
-    const timeDiff = now - lastScrollTime;
-    const scrollDiff = Math.abs(currentY - lastScrollY);
-    
-    if (timeDiff > 0) {
-      const speed = scrollDiff / timeDiff;
-      
-      if (speed > 3 && scrollDiff > 500) {
-        clearTimeout(slowDownTimeout);
-        showSlowDown = true;
-        
-        slowDownTimeout = setTimeout(() => {
-          showSlowDown = false;
-        }, 2000);
-      }
-    }
-    
-    lastScrollTime = now;
-    lastScrollY = currentY;
   }
-  
+
   // ═══════════════════════════════════════════════════════════════════════════════
   // 🖱️ CUSTOM CONTEXT MENU
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -922,7 +897,6 @@
       clearTimeout(idleTimeout);
       clearTimeout(hoverTimeout);
       clearTimeout(gibberishTimeout);
-      clearTimeout(slowDownTimeout);
       clearTimeout(serviceClickTimeout);
       clearTimeout(phoneHoverTimeout);
       
@@ -1198,14 +1172,6 @@
     
     <!-- Fun -->
     <button class="context-menu-item" on:click={() => handleContextMenuClick('confetti')} role="menuitem">🎉 Confetti</button>
-  </div>
-{/if}
-
-<!-- Fast Scroll Warning -->
-{#if showSlowDown}
-  <div class="toast-message slow-down">
-    <span class="toast-emoji">🏃‍♂️</span>
-    <span class="toast-text">Woah, slow down! You might miss something cool.</span>
   </div>
 {/if}
 
