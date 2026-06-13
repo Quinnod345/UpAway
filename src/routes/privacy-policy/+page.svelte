@@ -28,7 +28,7 @@
     </nav>
     
     <h1 class:visible={mounted}>Privacy Policy</h1>
-    <p class="last-updated" class:visible={mounted}>Last Updated: June 11, 2026</p>
+    <p class="last-updated" class:visible={mounted}>Last Updated: June 13, 2026</p>
   </div>
 </section>
 
@@ -61,34 +61,38 @@
       </div>
       
       <div class="policy-section">
-        <h2>1. Information We Collect</h2>
-        <p>In order to provide our services, we may collect the following types of information:</p>
+        <h2>1. What We Collect (and What We Don't)</h2>
         <p>
-          <strong>User-Provided Information:</strong> You provide us with personally identifiable information, 
-          such as your Apple ID, when using our services. Your journal entries, preferences, and any other data 
-          you submit through the app are considered part of this.
+          <strong>Your journal entries and check-ins stay private.</strong> We never receive or store the
+          content you write. Your entries live on your device and sync only through your own private iCloud
+          account (Apple's CloudKit), which we have no ability to access or read.
         </p>
         <p>
-          <strong>Automatically Collected Information:</strong> InnerEcho may automatically collect certain
-          information about the device you use to access our services, such as device type and operating system
-          version. We also collect anonymized product analytics — such as which features are used and purchase
-          events — to understand how the app is doing and where to improve it. Your journal entries and
-          check-in content are never part of analytics.
+          <strong>Sign in with Apple:</strong> if you choose it, we ask only for your first name, which is kept
+          on your device to personalize the app. We do not request your email address, and Apple does not share
+          your Apple ID with us.
+        </p>
+        <p>
+          <strong>Anonymous usage data:</strong> we collect product analytics — which features are used and
+          in-app purchase events — along with basic device information such as device type and operating system
+          version, to understand how the app performs and where to improve it. This never includes your journal
+          entries or check-in content.
         </p>
       </div>
       
       <div class="policy-section">
-        <h2>2. Use of Information</h2>
-        <p>We use the information we collect to provide and improve our services:</p>
+        <h2>2. How AI Features Use Your Words</h2>
         <p>
-          <strong>Providing Our Services:</strong> The information collected is integral to delivering our 
-          services. This includes your journal entries, which are stored locally on your device and within 
-          Apple's CloudKit for syncing across your Apple devices.
+          The only time the text you write leaves your device is when you choose to use a cloud AI feature —
+          such as insights, Echo chat, or dream analysis. That specific text is sent directly to OpenAI to
+          generate your response. It does not pass through our servers, and we never store it.
         </p>
         <p>
-          <strong>Maintaining and Improving Our Services:</strong> We use the data to ensure our app functions 
-          as expected and improves over time. This includes ensuring compatibility and resolving technical 
-          issues. All insight-related processing is done using anonymized data.
+          <strong>You're in control.</strong> AI is enabled by default but can be switched off at any time in
+          Settings — with it off, nothing is ever sent for AI processing. On supported devices you can also
+          choose <strong>on-device AI</strong>, which runs entirely on your iPhone so your words never leave it.
+          On-device processing is more private, with the trade-off that it is somewhat less in-depth than the
+          cloud model.
         </p>
       </div>
       
@@ -102,9 +106,9 @@
         <ul>
           <li>
             <strong>OpenAI</strong> — powers cloud-based AI features such as insights, Echo chat, and dream
-            analysis. AI requests are sent to OpenAI only with your consent, and you can disable AI data
-            sharing anytime in the app. Data sent for processing is temporarily held for no more than 30 days
-            and then deleted.
+            analysis. Your text is sent to OpenAI only when you use these features with AI enabled, and you can
+            turn it off anytime. OpenAI does not use data sent through its API to train its models, and retains
+            it for at most 30 days for abuse monitoring before deleting it.
           </li>
           <li>
             <strong>PostHog</strong> — product analytics, including purchase events, so we can understand
