@@ -93,6 +93,7 @@ export const POST = async ({ request }) => {
   let email = normalizeField(requestUrl.searchParams.get('email'));
   let message = normalizeField(requestUrl.searchParams.get('message'));
   let company = normalizeField(requestUrl.searchParams.get('company'));
+  let subject = normalizeField(requestUrl.searchParams.get('subject'));
 
   // Prefer query params for compatibility with this older SvelteKit runtime in modern Node.
   // If query params are missing, fall back to formData parsing.
@@ -109,6 +110,7 @@ export const POST = async ({ request }) => {
     email = normalizeField(form.get('email'));
     message = normalizeField(form.get('message'));
     company = normalizeField(form.get('company'));
+    subject = normalizeField(form.get('subject'));
   }
 
   // Honeypot: bots often fill hidden fields.
@@ -138,9 +140,9 @@ export const POST = async ({ request }) => {
       from: `${contactFromName} <${contactFromEmail}>`,
       to: 'support@upaway.dev',
       replyTo: email,
-      subject: `New contact form message from ${name}`,
+      subject: subject ? `[${subject}] ${name}` : `New contact form message from ${name}`,
       text: [
-        'New contact form submission from upaway.dev',
+        subject ? `New ${subject} submission from upaway.dev` : 'New contact form submission from upaway.dev',
         '',
         `Name: ${name}`,
         `Email: ${email}`,

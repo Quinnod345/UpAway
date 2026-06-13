@@ -133,6 +133,10 @@
         <span class="nav-link-text">EOS AI</span>
         <span class="nav-link-line"></span>
       </a>
+      <a href="/innerecho#support" class="nav-link" on:click={() => navOpen = false}>
+        <span class="nav-link-text">Support</span>
+        <span class="nav-link-line"></span>
+      </a>
       <a href="/#contact" class="btn btn-nav" on:click={() => navOpen = false}>
         <span>Let's Talk</span>
         <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
