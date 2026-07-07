@@ -44,24 +44,62 @@ export function isRunnerEnabled() {
     return true;
   }
 
+  if (env.PREVIEW_RUNNER_ENABLED === 'false') {
+    return false;
+  }
+
   return process.env.NODE_ENV !== 'production';
+}
+
+/**
+ * @param {unknown} value
+ */
+function cleanString(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+export function getRemoteRunnerBaseUrl() {
+  return cleanString(env.PREVIEW_REMOTE_RUNNER_URL || env.PREVIEW_RUNNER_BASE_URL).replace(
+    /\/+$/,
+    ''
+  );
+}
+
+/**
+ * @param {Request} request
+ */
+function getProvidedRunnerToken(request) {
+  const requestUrl = new URL(request.url);
+  return cleanString(
+    request.headers.get('x-preview-token') || requestUrl.searchParams.get('token') || ''
+  );
 }
 
 /**
  * @param {Request} request
  */
 export function hasRunnerAccess(request) {
-  const configuredToken = env.PREVIEW_RUNNER_TOKEN;
+  const configuredToken = cleanString(env.PREVIEW_RUNNER_TOKEN);
 
   if (!configuredToken) {
     return process.env.NODE_ENV !== 'production';
   }
 
-  const requestUrl = new URL(request.url);
-  const providedToken =
-    request.headers.get('x-preview-token') || requestUrl.searchParams.get('token') || '';
+  return getProvidedRunnerToken(request) === configuredToken;
+}
 
-  return providedToken === configuredToken;
+/**
+ * @param {Request} request
+ */
+export function hasProxyAccess(request) {
+  const configuredToken = cleanString(env.PREVIEW_RUNNER_TOKEN);
+  const providedToken = getProvidedRunnerToken(request);
+
+  if (configuredToken) {
+    return providedToken === configuredToken;
+  }
+
+  return process.env.NODE_ENV !== 'production' || providedToken.length > 0;
 }
 
 /**
@@ -75,6 +113,68 @@ export function getRunnableProject(slug) {
   }
 
   return project;
+}
+
+/**
+ * @param {Request} request
+ * @param {RunnableProject} project
+ * @param {'start' | 'status'} action
+ */
+export async function proxyPreviewRunnerRequest(request, project, action) {
+  const remoteRunnerBaseUrl = getRemoteRunnerBaseUrl();
+
+  if (!remoteRunnerBaseUrl) {
+    return jsonResponse(
+      {
+        error:
+          'Preview runner is not enabled on this host and no PREVIEW_REMOTE_RUNNER_URL is configured.',
+        ready: false
+      },
+      403
+    );
+  }
+
+  if (!hasProxyAccess(request)) {
+    return jsonResponse({ error: 'Preview runner access denied.', ready: false }, 401);
+  }
+
+  const providedToken = getProvidedRunnerToken(request);
+  const forwardedToken = cleanString(env.PREVIEW_RUNNER_TOKEN) || providedToken;
+  const headers = new Headers({
+    accept: 'application/json'
+  });
+
+  if (forwardedToken) {
+    headers.set('x-preview-token', forwardedToken);
+  }
+
+  try {
+    const target = new URL(`/api/preview/${project.slug}/${action}`, `${remoteRunnerBaseUrl}/`);
+    const response = await fetch(target, {
+      method: request.method,
+      headers
+    });
+    const responseText = await response.text();
+    const contentType = response.headers.get('content-type') || 'application/json';
+
+    return new Response(responseText, {
+      status: response.status,
+      headers: {
+        'content-type': contentType,
+        'cache-control': 'no-store'
+      }
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unable to reach preview runner.';
+
+    return jsonResponse(
+      {
+        error: `Unable to reach remote preview runner: ${message}`,
+        ready: false
+      },
+      502
+    );
+  }
 }
 
 /**

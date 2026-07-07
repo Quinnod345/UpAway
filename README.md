@@ -47,18 +47,30 @@ The launcher calls `/api/preview/[slug]/start`, which starts the allowlisted
 commands for that project and polls `/api/preview/[slug]/status` until required
 services are healthy. In local development the runner is enabled by default.
 
-For a public `upaway.dev/preview` runner, deploy UpAway to a host that can keep
-long-lived processes running and has the preview source checkouts available.
-Vercel serverless can serve the page, but it cannot run Postgres, Vite, uvicorn,
-Storybook, or other long-lived app servers. On a runner host, set:
+Vercel can serve `upaway.dev/preview`, but it cannot run Postgres, Vite,
+uvicorn, Storybook, or other long-lived app servers. For the live site, use
+Vercel as the public control plane and point it at a runner host that can keep
+processes alive.
+
+On the runner host:
 
 ```bash
-PREVIEW_RUNNER_ENABLED=true
+PREVIEW_RUNNER_TOKEN=... scripts/preview/upaway-runner-host.sh
+```
+
+Expose that runner with a stable tunnel or private URL, then set these on the
+public UpAway deployment:
+
+```bash
+PREVIEW_REMOTE_RUNNER_URL=https://your-runner-host.example
 PREVIEW_RUNNER_TOKEN=...
 ```
 
-Then open `/preview/truespace-v2?token=...`. For a public show-and-tell target,
-set `VITE_PREVIEW_TRUESPACE_URL` to a reachable URL before building UpAway.
+Then open `https://www.upaway.dev/preview/truespace-v2?token=...`. The public
+site forwards start/status requests to the runner host, and the browser opens
+the app at the configured preview target when all services are ready. For a
+public show-and-tell target, set `VITE_PREVIEW_TRUESPACE_URL` to a reachable URL
+before building UpAway; otherwise the local target is `http://localhost:3000`.
 
 ## Contact form API
 
@@ -80,8 +92,13 @@ RESEND_API_KEY=...
 CONTACT_FROM_EMAIL=contact@eosbot.ai
 CONTACT_FROM_NAME=Upaway Contact
 VITE_PREVIEW_TRUESPACE_URL=...
-PREVIEW_RUNNER_ENABLED=true
+
+# Public UpAway deployment
 PREVIEW_RUNNER_TOKEN=...
+PREVIEW_REMOTE_RUNNER_URL=...
+
+# Runner host only
+PREVIEW_RUNNER_ENABLED=true
 ```
 
 If `RESEND_API_KEY` is missing, the contact endpoint will return a configuration error.
