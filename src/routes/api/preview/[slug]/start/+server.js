@@ -3,6 +3,7 @@ import {
   hasRunnerAccess,
   isRunnerEnabled,
   jsonResponse,
+  proxyPreviewRunnerRequest,
   startPreviewProject
 } from '$lib/preview/runner.server.js';
 
@@ -15,13 +16,7 @@ export const POST = async ({ params, request }) => {
   }
 
   if (!isRunnerEnabled()) {
-    return jsonResponse(
-      {
-        error:
-          'Preview runner is not enabled on this host. Set PREVIEW_RUNNER_ENABLED=true on a runner machine.'
-      },
-      403
-    );
+    return proxyPreviewRunnerRequest(request, project, 'start');
   }
 
   if (!hasRunnerAccess(request)) {
