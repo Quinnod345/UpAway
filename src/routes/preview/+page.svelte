@@ -49,11 +49,6 @@
     const serialized = launchParams.toString();
     launchSearch = serialized ? `?${serialized}` : '';
   });
-
-  /** @param {PreviewProject} project */
-  function launchHref(project) {
-    return `${project.launchPath || `/preview/${project.slug}`}${launchSearch}`;
-  }
 </script>
 
 <svelte:head>
@@ -113,7 +108,7 @@
           <div class="preview-actions">
             <a
               class="preview-primary"
-              href={launchHref(project)}
+              href={`${project.launchPath || `/preview/${project.slug}`}${launchSearch}`}
               target="_blank"
               rel="noopener noreferrer"
               data-sveltekit-reload
