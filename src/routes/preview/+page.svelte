@@ -1,9 +1,12 @@
 <script>
   /**
    * @typedef {{
+   *   id: string;
+   *   kind?: string;
    *   label: string;
    *   href: string;
    *   detail: string;
+   *   required?: boolean;
    * }} PreviewService
    *
    * @typedef {{
@@ -13,6 +16,7 @@
    *   state: string;
    *   targetKind: string;
    *   targetUrl: string;
+   *   launchPath?: string;
    *   sourceLabel: string;
    *   sourcePath: string;
    *   appPath: string;
@@ -84,12 +88,12 @@
           <div class="preview-actions">
             <a
               class="preview-primary"
-              href="/preview/{project.slug}"
+              href={project.launchPath || `/preview/${project.slug}`}
               target="_blank"
               rel="noopener noreferrer"
               data-sveltekit-reload
             >
-              <span>Open Full App</span>
+              <span>Launch Full Stack</span>
               <svg class="action-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <path
                   d="M4 14L14 4M14 4H6M14 4V12"
@@ -104,15 +108,22 @@
 
           <div class="service-links">
             {#each project.services as service}
-              <a href={service.href} target="_blank" rel="noopener noreferrer">
-                <span>{service.label}</span>
-                <small>{service.detail}</small>
-              </a>
+              {#if service.href}
+                <a href={service.href} target="_blank" rel="noopener noreferrer">
+                  <span>{service.label}</span>
+                  <small>{service.detail}</small>
+                </a>
+              {:else}
+                <div class="service-link-static">
+                  <span>{service.label}</span>
+                  <small>{service.detail}</small>
+                </div>
+              {/if}
             {/each}
           </div>
 
           <div class="run-command">
-            <span>Run locally</span>
+            <span>Runner</span>
             <code>{project.runCommand}</code>
           </div>
         </article>
@@ -125,9 +136,9 @@
         <h2>Add The Next Codebase</h2>
       </div>
       <p>
-        Add another object in <code>src/lib/preview/projects.js</code>. Use
-        <code>/preview/[slug]</code> as the stable UpAway link, then point its target URL at a local
-        dev server or a deployed preview URL.
+        Add another object in <code>src/lib/preview/projects.js</code>, including its services,
+        health checks, and allowlisted launch commands. Use <code>/preview/[slug]</code> as the stable
+        UpAway link.
       </p>
     </section>
   </div>
@@ -332,7 +343,8 @@
     gap: 0.7rem;
   }
 
-  .service-links a {
+  .service-links a,
+  .service-link-static {
     display: flex;
     min-height: 74px;
     flex-direction: column;
@@ -349,13 +361,15 @@
     background: rgba(123, 148, 156, 0.12);
   }
 
-  .service-links span {
+  .service-links span,
+  .service-link-static span {
     color: var(--color-cream);
     font-family: var(--font-heading);
     font-weight: 700;
   }
 
-  .service-links small {
+  .service-links small,
+  .service-link-static small {
     overflow-wrap: anywhere;
     color: rgba(255, 245, 217, 0.55);
     font-size: 0.78rem;
