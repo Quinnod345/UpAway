@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { getPreviewProject } from '$lib/preview/projects.js';
 
 export const prerender = false;
@@ -13,5 +13,7 @@ export const load = ({ params }) => {
     throw error(404, 'Unknown preview link');
   }
 
-  throw redirect(302, project.targetUrl);
+  return {
+    project
+  };
 };

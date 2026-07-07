@@ -30,20 +30,35 @@ It showcases shipped products, background/about content, and a contact flow.
 
 `/preview` is an unlisted, noindex page for launching full apps from other
 codebases. Each preview lives in `src/lib/preview/projects.js`, and each slug gets
-a stable redirect link at `/preview/[slug]`.
+a stable launcher link at `/preview/[slug]`.
 
 The first entry is `truespace-v2`:
 
 - Source checkout: `/Users/quinnodonnell/truespace-v2`
 - App path: `ts/apps/truespace`
-- Local full app: `http://127.0.0.1:3000`
+- Automatic runner scripts: `scripts/preview/truespace-*.sh`
+- Runner services: Postgres, Falcon API, TanStack UI, docs, Storybook
+- Local full app: `http://localhost:3000`
 - API heartbeat: `http://127.0.0.1:7777/v1/heartbeat`
 - Docs: `http://127.0.0.1:8888`
-- Local run command: `cd /Users/quinnodonnell/truespace-v2 && mprocs`
+- Storybook: `http://127.0.0.1:6006`
 
-For a public show-and-tell link, deploy the target app somewhere reachable and
-set `VITE_PREVIEW_TRUESPACE_URL` before building UpAway. Without that variable,
-`/preview/truespace-v2` points at the local dev server.
+The launcher calls `/api/preview/[slug]/start`, which starts the allowlisted
+commands for that project and polls `/api/preview/[slug]/status` until required
+services are healthy. In local development the runner is enabled by default.
+
+For a public `upaway.dev/preview` runner, deploy UpAway to a host that can keep
+long-lived processes running and has the preview source checkouts available.
+Vercel serverless can serve the page, but it cannot run Postgres, Vite, uvicorn,
+Storybook, or other long-lived app servers. On a runner host, set:
+
+```bash
+PREVIEW_RUNNER_ENABLED=true
+PREVIEW_RUNNER_TOKEN=...
+```
+
+Then open `/preview/truespace-v2?token=...`. For a public show-and-tell target,
+set `VITE_PREVIEW_TRUESPACE_URL` to a reachable URL before building UpAway.
 
 ## Contact form API
 
@@ -65,6 +80,8 @@ RESEND_API_KEY=...
 CONTACT_FROM_EMAIL=contact@eosbot.ai
 CONTACT_FROM_NAME=Upaway Contact
 VITE_PREVIEW_TRUESPACE_URL=...
+PREVIEW_RUNNER_ENABLED=true
+PREVIEW_RUNNER_TOKEN=...
 ```
 
 If `RESEND_API_KEY` is missing, the contact endpoint will return a configuration error.
