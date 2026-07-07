@@ -74,7 +74,7 @@ function cleanString(value) {
  */
 function responseHeaders(headers = {}) {
   return {
-    'access-control-allow-headers': 'content-type,x-preview-token',
+    'access-control-allow-headers': 'content-type,x-preview-token,x-preview-access-code',
     'access-control-allow-methods': 'GET,POST,OPTIONS',
     'access-control-allow-origin': cleanString(env.PREVIEW_RUNNER_ALLOWED_ORIGIN) || '*',
     ...headers
@@ -105,14 +105,43 @@ function getProvidedRunnerToken(request) {
 /**
  * @param {Request} request
  */
+function getProvidedAccessCode(request) {
+  const requestUrl = new URL(request.url);
+  return cleanString(
+    request.headers.get('x-preview-access-code') ||
+      requestUrl.searchParams.get('access_code') ||
+      ''
+  );
+}
+
+/**
+ * @param {Request} request
+ */
+function hasPreviewAccessCode(request) {
+  const configuredCode = cleanString(env.PREVIEW_ACCESS_CODE);
+
+  return Boolean(configuredCode) && getProvidedAccessCode(request) === configuredCode;
+}
+
+/**
+ * @param {Request} request
+ */
 export function hasRunnerAccess(request) {
   const configuredToken = cleanString(env.PREVIEW_RUNNER_TOKEN);
 
-  if (!configuredToken) {
+  if (configuredToken && getProvidedRunnerToken(request) === configuredToken) {
+    return true;
+  }
+
+  if (hasPreviewAccessCode(request)) {
+    return true;
+  }
+
+  if (!configuredToken && !cleanString(env.PREVIEW_ACCESS_CODE)) {
     return process.env.NODE_ENV !== 'production';
   }
 
-  return getProvidedRunnerToken(request) === configuredToken;
+  return false;
 }
 
 /**
@@ -122,8 +151,12 @@ export function hasProxyAccess(request) {
   const configuredToken = cleanString(env.PREVIEW_RUNNER_TOKEN);
   const providedToken = getProvidedRunnerToken(request);
 
-  if (configuredToken) {
-    return providedToken === configuredToken;
+  if (configuredToken && providedToken === configuredToken) {
+    return true;
+  }
+
+  if (hasPreviewAccessCode(request)) {
+    return true;
   }
 
   return process.env.NODE_ENV !== 'production' || providedToken.length > 0;
@@ -173,6 +206,12 @@ export async function proxyPreviewRunnerRequest(request, project, action) {
 
   if (forwardedToken) {
     headers.set('x-preview-token', forwardedToken);
+  }
+
+  const forwardedAccessCode = getProvidedAccessCode(request);
+
+  if (forwardedAccessCode) {
+    headers.set('x-preview-access-code', forwardedAccessCode);
   }
 
   try {

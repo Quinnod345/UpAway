@@ -1,5 +1,13 @@
 import { error } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
 import { getPreviewProject } from '$lib/preview/projects.js';
+
+/**
+ * @param {unknown} value
+ */
+function cleanString(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
 
 export const prerender = false;
 
@@ -14,6 +22,7 @@ export const load = ({ params }) => {
   }
 
   return {
-    project
+    project,
+    previewAccessRequired: Boolean(cleanString(env.PREVIEW_ACCESS_CODE))
   };
 };
