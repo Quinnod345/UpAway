@@ -66,6 +66,9 @@ PREVIEW_REMOTE_RUNNER_URL=https://your-runner-host.example
 PREVIEW_RUNNER_TOKEN=...
 ```
 
+Do not enable `PREVIEW_RUNNER_ENABLED` on Vercel; the Vercel deployment should
+proxy to the runner host instead of trying to spawn local processes.
+
 Then open `https://www.upaway.dev/preview/truespace-v2?token=...`. The public
 site forwards start/status requests to the runner host, and the browser opens
 the app at the configured preview target when all services are ready. For a

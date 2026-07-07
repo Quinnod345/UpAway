@@ -40,6 +40,10 @@ export function jsonResponse(body, status = 200) {
 }
 
 export function isRunnerEnabled() {
+  if (isVercelRuntime() && env.PREVIEW_ALLOW_VERCEL_RUNNER !== 'true') {
+    return false;
+  }
+
   if (env.PREVIEW_RUNNER_ENABLED === 'true') {
     return true;
   }
@@ -56,6 +60,10 @@ export function isRunnerEnabled() {
  */
 function cleanString(value) {
   return typeof value === 'string' ? value.trim() : '';
+}
+
+function isVercelRuntime() {
+  return cleanString(env.VERCEL || process.env.VERCEL) === '1' || cleanString(env.VERCEL_ENV) !== '';
 }
 
 export function getRemoteRunnerBaseUrl() {
