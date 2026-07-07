@@ -58,7 +58,13 @@ On the runner host:
 PREVIEW_RUNNER_TOKEN=... scripts/preview/upaway-runner-host.sh
 ```
 
-Expose that runner with a stable tunnel or private URL, then set these on the
+To use the local Mac as the runner through a temporary Cloudflare tunnel:
+
+```bash
+PREVIEW_RUNNER_TOKEN=... scripts/preview/upaway-runner-tunnel.sh
+```
+
+Expose the runner with a stable tunnel or private URL, then set these on the
 public UpAway deployment:
 
 ```bash
