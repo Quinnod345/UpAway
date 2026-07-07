@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from 'svelte';
+
   /**
    * @typedef {{
    *   id: string;
@@ -29,6 +31,29 @@
 
   /** @type {{ projects: PreviewProject[] }} */
   export let data = { projects: [] };
+
+  let launchSearch = '';
+
+  onMount(() => {
+    const params = new URLSearchParams(window.location.search);
+    const launchParams = new URLSearchParams();
+
+    for (const key of ['runner', 'target', 'openUrl', 'token']) {
+      const value = params.get(key);
+
+      if (value) {
+        launchParams.set(key, value);
+      }
+    }
+
+    const serialized = launchParams.toString();
+    launchSearch = serialized ? `?${serialized}` : '';
+  });
+
+  /** @param {PreviewProject} project */
+  function launchHref(project) {
+    return `${project.launchPath || `/preview/${project.slug}`}${launchSearch}`;
+  }
 </script>
 
 <svelte:head>
@@ -88,7 +113,7 @@
           <div class="preview-actions">
             <a
               class="preview-primary"
-              href={project.launchPath || `/preview/${project.slug}`}
+              href={launchHref(project)}
               target="_blank"
               rel="noopener noreferrer"
               data-sveltekit-reload
