@@ -15,6 +15,7 @@ It showcases shipped products, background/about content, and a contact flow.
   - `/curb` - real estate listing generator showcase
 - Additional pages:
   - `/about` - personal background and experience
+  - `/preview` - unlisted preview hub for full apps in other codebases
   - `/privacy-policy` - InnerEcho privacy policy
   - `/terms-of-service` - InnerEcho terms
   - `/todos` - legacy SvelteKit todo demo route
@@ -25,11 +26,31 @@ It showcases shipped products, background/about content, and a contact flow.
   - `SHOW_CURB_ON_LANDING` controls whether Curb appears on the home page.
   - The `/curb` route still exists regardless of this flag.
 
+## Preview hub
+
+`/preview` is an unlisted, noindex page for launching full apps from other
+codebases. Each preview lives in `src/lib/preview/projects.js`, and each slug gets
+a stable redirect link at `/preview/[slug]`.
+
+The first entry is `truespace-v2`:
+
+- Source checkout: `/Users/quinnodonnell/truespace-v2`
+- App path: `ts/apps/truespace`
+- Local full app: `http://127.0.0.1:3000`
+- API heartbeat: `http://127.0.0.1:7777/v1/heartbeat`
+- Docs: `http://127.0.0.1:8888`
+- Local run command: `cd /Users/quinnodonnell/truespace-v2 && mprocs`
+
+For a public show-and-tell link, deploy the target app somewhere reachable and
+set `VITE_PREVIEW_TRUESPACE_URL` before building UpAway. Without that variable,
+`/preview/truespace-v2` points at the local dev server.
+
 ## Contact form API
 
 The landing page contact form posts to `src/routes/api/contact/+server.js`.
 
 Current behavior:
+
 - Validates required fields (`name`, `email`, `message`)
 - Uses a hidden honeypot field (`company`) to reduce bot submissions
 - Applies per-IP rate limiting (5 submissions per 10 minutes)
@@ -43,6 +64,7 @@ Copy `.env.example` to `.env.local` and set values:
 RESEND_API_KEY=...
 CONTACT_FROM_EMAIL=contact@eosbot.ai
 CONTACT_FROM_NAME=Upaway Contact
+VITE_PREVIEW_TRUESPACE_URL=...
 ```
 
 If `RESEND_API_KEY` is missing, the contact endpoint will return a configuration error.
