@@ -17,7 +17,7 @@ export PREVIEW_TARGET_HOST="${PREVIEW_TARGET_HOST:-localhost}"
 export PREVIEW_TARGET_PORT="${PREVIEW_TARGET_PORT:-3000}"
 export PREVIEW_PROJECT_SLUG="${PREVIEW_PROJECT_SLUG:-truespace-v2}"
 export PREVIEW_RUNNER_TOKEN="${PREVIEW_RUNNER_TOKEN:-$(openssl rand -hex 24)}"
-export PREVIEW_ACCESS_CODE="${PREVIEW_ACCESS_CODE:-$(openssl rand -hex 4)}"
+export PREVIEW_ACCESS_CODE="${PREVIEW_ACCESS_CODE:-$(openssl rand -hex 8)}"
 
 runner_pid=""
 runner_tunnel_pid=""
