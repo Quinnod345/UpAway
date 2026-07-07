@@ -32,10 +32,17 @@ const runningProcesses =
 export function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: {
+    headers: responseHeaders({
       'content-type': 'application/json',
       'cache-control': 'no-store'
-    }
+    })
+  });
+}
+
+export function optionsResponse() {
+  return new Response(null, {
+    status: 204,
+    headers: responseHeaders()
   });
 }
 
@@ -60,6 +67,18 @@ export function isRunnerEnabled() {
  */
 function cleanString(value) {
   return typeof value === 'string' ? value.trim() : '';
+}
+
+/**
+ * @param {Record<string, string>} [headers]
+ */
+function responseHeaders(headers = {}) {
+  return {
+    'access-control-allow-headers': 'content-type,x-preview-token',
+    'access-control-allow-methods': 'GET,POST,OPTIONS',
+    'access-control-allow-origin': cleanString(env.PREVIEW_RUNNER_ALLOWED_ORIGIN) || '*',
+    ...headers
+  };
 }
 
 function isVercelRuntime() {
@@ -167,10 +186,10 @@ export async function proxyPreviewRunnerRequest(request, project, action) {
 
     return new Response(responseText, {
       status: response.status,
-      headers: {
+      headers: responseHeaders({
         'content-type': contentType,
         'cache-control': 'no-store'
-      }
+      })
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to reach preview runner.';

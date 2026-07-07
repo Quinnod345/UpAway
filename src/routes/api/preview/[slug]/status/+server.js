@@ -4,8 +4,11 @@ import {
   hasRunnerAccess,
   isRunnerEnabled,
   jsonResponse,
+  optionsResponse,
   proxyPreviewRunnerRequest
 } from '$lib/preview/runner.server.js';
+
+export const OPTIONS = () => optionsResponse();
 
 /** @param {{ params: { slug: string }; request: Request }} event */
 export const GET = async ({ params, request }) => {
