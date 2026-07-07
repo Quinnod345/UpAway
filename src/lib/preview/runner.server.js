@@ -8,8 +8,11 @@ import { getPreviewProject } from './projects.js';
 const START_TIMEOUT_MS = 90_000;
 const HEALTH_TIMEOUT_MS = 2_000;
 const POLL_INTERVAL_MS = 1_000;
+const ACCESS_ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
+const ACCESS_ATTEMPT_LIMIT = 8;
 
 const processRegistryKey = '__upawayPreviewRunnerProcesses';
+const accessAttemptsKey = '__upawayPreviewAccessAttempts';
 
 /**
  * @typedef {{ id: string; label?: string; command: string; args?: string[]; serviceIds?: string[] }} RunnerCommand
@@ -24,6 +27,14 @@ const runningProcesses =
     : new Map();
 
 /** @type {any} */ (globalThis)[processRegistryKey] = runningProcesses;
+
+/** @type {Map<string, { count: number; resetAt: number }>} */
+const accessAttempts =
+  /** @type {any} */ (globalThis)[accessAttemptsKey] instanceof Map
+    ? /** @type {any} */ (globalThis)[accessAttemptsKey]
+    : new Map();
+
+/** @type {any} */ (globalThis)[accessAttemptsKey] = accessAttempts;
 
 /**
  * @param {unknown} body
@@ -117,10 +128,84 @@ function getProvidedAccessCode(request) {
 /**
  * @param {Request} request
  */
+function accessAttemptKey(request) {
+  const forwardedFor = cleanString(request.headers.get('x-forwarded-for')).split(',')[0]?.trim();
+  const ip =
+    cleanString(request.headers.get('cf-connecting-ip')) ||
+    forwardedFor ||
+    cleanString(request.headers.get('x-real-ip')) ||
+    'unknown';
+  const userAgent = cleanString(request.headers.get('user-agent')) || 'unknown';
+
+  return `${ip}:${userAgent}`;
+}
+
+/**
+ * @param {Request} request
+ */
+function getAccessAttempt(request) {
+  const key = accessAttemptKey(request);
+  const attempt = accessAttempts.get(key);
+  const now = Date.now();
+
+  if (!attempt || attempt.resetAt <= now) {
+    accessAttempts.delete(key);
+    return { key, count: 0, resetAt: now + ACCESS_ATTEMPT_WINDOW_MS };
+  }
+
+  return { key, ...attempt };
+}
+
+/**
+ * @param {Request} request
+ */
+function accessAttemptsLocked(request) {
+  return getAccessAttempt(request).count >= ACCESS_ATTEMPT_LIMIT;
+}
+
+/**
+ * @param {Request} request
+ */
+function recordFailedAccessAttempt(request) {
+  const attempt = getAccessAttempt(request);
+  accessAttempts.set(attempt.key, {
+    count: attempt.count + 1,
+    resetAt: attempt.resetAt
+  });
+}
+
+/**
+ * @param {Request} request
+ */
+function clearAccessAttempts(request) {
+  accessAttempts.delete(accessAttemptKey(request));
+}
+
+/**
+ * @param {Request} request
+ */
 function hasPreviewAccessCode(request) {
   const configuredCode = cleanString(env.PREVIEW_ACCESS_CODE);
+  const providedCode = getProvidedAccessCode(request);
 
-  return Boolean(configuredCode) && getProvidedAccessCode(request) === configuredCode;
+  if (!configuredCode) {
+    return false;
+  }
+
+  if (accessAttemptsLocked(request)) {
+    return false;
+  }
+
+  if (providedCode === configuredCode) {
+    clearAccessAttempts(request);
+    return true;
+  }
+
+  if (providedCode) {
+    recordFailedAccessAttempt(request);
+  }
+
+  return false;
 }
 
 /**
