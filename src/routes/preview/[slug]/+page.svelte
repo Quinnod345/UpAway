@@ -29,14 +29,18 @@
   let phase = 'Starting preview stack';
   let errorMessage = '';
   let opening = false;
-  let tokenQuery = '';
+  let token = '';
+  let runnerUrl = '';
+  let targetUrl = '';
 
   $: services = status.services || [];
+  $: manualOpenUrl = targetUrl || data.project.targetUrl;
 
   onMount(() => {
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
-    tokenQuery = token ? `?token=${encodeURIComponent(token)}` : '';
+    token = params.get('token') || '';
+    runnerUrl = cleanHttpUrl(params.get('runner'));
+    targetUrl = cleanHttpUrl(params.get('target') || params.get('openUrl'));
     launchPreview();
   });
 
@@ -45,7 +49,7 @@
     phase = 'Starting database, API, UI, docs, and Storybook';
 
     try {
-      const response = await fetch(`/api/preview/${data.project.slug}/start${tokenQuery}`, {
+      const response = await fetch(previewApiUrl('start'), {
         method: 'POST'
       });
       const body = await response.json();
@@ -57,8 +61,10 @@
       status = body.status || {};
       phase = status.ready ? 'Preview stack is ready' : 'Waiting for services';
 
-      if (status.ready && status.openUrl) {
-        openWhenReady(status.openUrl);
+      const readyUrl = targetUrl || status.openUrl || '';
+
+      if (status.ready && readyUrl) {
+        openWhenReady(readyUrl);
       } else {
         pollUntilReady();
       }
@@ -76,7 +82,7 @@
 
     const interval = window.setInterval(async () => {
       try {
-        const response = await fetch(`/api/preview/${data.project.slug}/status${tokenQuery}`);
+        const response = await fetch(previewApiUrl('status'));
         const body = await response.json();
         status = body;
 
@@ -85,10 +91,12 @@
           return;
         }
 
-        if (body.ready && body.openUrl) {
+        const readyUrl = targetUrl || body.openUrl || '';
+
+        if (body.ready && readyUrl) {
           window.clearInterval(interval);
           phase = 'Preview stack is ready';
-          openWhenReady(body.openUrl);
+          openWhenReady(readyUrl);
         }
       } catch (error) {
         errorMessage = error instanceof Error ? error.message : 'Unable to read preview status.';
@@ -103,6 +111,37 @@
     window.setTimeout(() => {
       window.location.href = url;
     }, 1200);
+  }
+
+  /** @param {'start' | 'status'} action */
+  function previewApiUrl(action) {
+    const path = `/api/preview/${data.project.slug}/${action}`;
+    const url = runnerUrl ? new URL(path, `${runnerUrl}/`) : new URL(path, window.location.origin);
+
+    if (token) {
+      url.searchParams.set('token', token);
+    }
+
+    return runnerUrl ? url.toString() : `${url.pathname}${url.search}`;
+  }
+
+  /** @param {string | null} value */
+  function cleanHttpUrl(value) {
+    if (!value) {
+      return '';
+    }
+
+    try {
+      const url = new URL(value);
+
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+        return '';
+      }
+
+      return url.toString();
+    } catch {
+      return '';
+    }
   }
 
   /** @param {PreviewServiceStatus} service */
@@ -159,7 +198,7 @@
         <div class="launch-actions">
           <a
             class="manual-open"
-            href={data.project.targetUrl}
+            href={manualOpenUrl}
             target="_blank"
             rel="noopener noreferrer"
           >

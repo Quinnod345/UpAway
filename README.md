@@ -64,8 +64,13 @@ To use the local Mac as the runner through a temporary Cloudflare tunnel:
 PREVIEW_RUNNER_TOKEN=... scripts/preview/upaway-runner-tunnel.sh
 ```
 
-Expose the runner with a stable tunnel or private URL, then set these on the
-public UpAway deployment:
+That helper exposes both the runner API and the Truespace UI, then prints a
+complete `https://www.upaway.dev/preview/truespace-v2?...` link containing the
+temporary `runner`, `target`, and `token` query parameters. Keep the helper
+running while using that link.
+
+For a stable setup, expose the runner with a persistent tunnel or private URL,
+then set these on the public UpAway deployment:
 
 ```bash
 PREVIEW_REMOTE_RUNNER_URL=https://your-runner-host.example
