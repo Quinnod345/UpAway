@@ -17,15 +17,16 @@ export PREVIEW_TARGET_HOST="${PREVIEW_TARGET_HOST:-localhost}"
 export PREVIEW_TARGET_PORT="${PREVIEW_TARGET_PORT:-3000}"
 export PREVIEW_PROJECT_SLUG="${PREVIEW_PROJECT_SLUG:-truespace-v2}"
 
-scripts/preview/upaway-runner-host.sh &
-runner_pid=$!
+runner_pid=""
 runner_tunnel_pid=""
 target_tunnel_pid=""
 runner_tunnel_log="$(mktemp)"
 target_tunnel_log="$(mktemp)"
 
 cleanup() {
-  kill "$runner_pid" >/dev/null 2>&1 || true
+  if [ -n "$runner_pid" ]; then
+    kill "$runner_pid" >/dev/null 2>&1 || true
+  fi
   if [ -n "$runner_tunnel_pid" ]; then
     kill "$runner_tunnel_pid" >/dev/null 2>&1 || true
   fi
@@ -35,18 +36,6 @@ cleanup() {
   rm -f "$runner_tunnel_log" "$target_tunnel_log"
 }
 trap cleanup EXIT INT TERM
-
-until curl -fsS "http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}/preview" >/dev/null 2>&1; do
-  sleep 0.5
-done
-
-echo "Runner host is ready on http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}" >&2
-
-cloudflared tunnel --url "http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}" >"$runner_tunnel_log" 2>&1 &
-runner_tunnel_pid=$!
-
-cloudflared tunnel --url "http://${PREVIEW_TARGET_HOST}:${PREVIEW_TARGET_PORT}" >"$target_tunnel_log" 2>&1 &
-target_tunnel_pid=$!
 
 wait_for_tunnel_url() {
   local log_path="$1"
@@ -70,8 +59,25 @@ wait_for_tunnel_url() {
   return 1
 }
 
-runner_url="$(wait_for_tunnel_url "$runner_tunnel_log" "runner")"
+cloudflared tunnel --url "http://${PREVIEW_TARGET_HOST}:${PREVIEW_TARGET_PORT}" >"$target_tunnel_log" 2>&1 &
+target_tunnel_pid=$!
 target_url="$(wait_for_tunnel_url "$target_tunnel_log" "target")"
+target_hostname="$(TARGET_URL="$target_url" node -e 'console.log(new URL(process.env.TARGET_URL).hostname)')"
+
+export TRUESPACE_VITE_ALLOWED_HOSTS="${TRUESPACE_VITE_ALLOWED_HOSTS:-$target_hostname}"
+
+scripts/preview/upaway-runner-host.sh &
+runner_pid=$!
+
+until curl -fsS "http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}/preview" >/dev/null 2>&1; do
+  sleep 0.5
+done
+
+echo "Runner host is ready on http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}" >&2
+
+cloudflared tunnel --url "http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}" >"$runner_tunnel_log" 2>&1 &
+runner_tunnel_pid=$!
+runner_url="$(wait_for_tunnel_url "$runner_tunnel_log" "runner")"
 preview_url="$(
   RUNNER_URL="$runner_url" TARGET_URL="$target_url" TOKEN="$PREVIEW_RUNNER_TOKEN" SLUG="$PREVIEW_PROJECT_SLUG" node -e '
     const params = new URLSearchParams({
