@@ -21,7 +21,7 @@
    * }} PreviewStatus
    */
 
-  /** @type {{ project: { slug: string; name: string; description: string; targetUrl: string; runner?: { label?: string } } }} */
+  /** @type {{ project: { slug: string; name: string; description: string; targetUrl: string; runner?: { label?: string } }; previewAccessRequired?: boolean }} */
   export let data;
 
   /** @type {PreviewStatus} */
@@ -32,29 +32,50 @@
   let token = '';
   let runnerUrl = '';
   let targetUrl = '';
+  let accessCode = '';
+  let accessError = '';
+  let accessRequired = false;
+  let hasAccess = false;
 
   $: services = status.services || [];
-  $: manualOpenUrl = targetUrl || data.project.targetUrl;
+  $: manualOpenUrl = targetUrl || status.openUrl || data.project.targetUrl;
 
   onMount(() => {
     const params = new URLSearchParams(window.location.search);
     token = params.get('token') || '';
     runnerUrl = cleanHttpUrl(params.get('runner'));
     targetUrl = cleanHttpUrl(params.get('target') || params.get('openUrl'));
-    launchPreview();
+    accessRequired = Boolean(data.previewAccessRequired || (runnerUrl && !token));
+    hasAccess = !accessRequired;
+
+    if (hasAccess) {
+      launchPreview();
+    } else {
+      phase = 'Access code required';
+    }
   });
 
   async function launchPreview() {
+    if (accessRequired && !hasAccess) {
+      return;
+    }
+
     errorMessage = '';
     phase = 'Starting database, API, UI, docs, and Storybook';
 
     try {
       const response = await fetch(previewApiUrl('start'), {
-        method: 'POST'
+        method: 'POST',
+        headers: previewHeaders()
       });
       const body = await response.json();
 
       if (!response.ok) {
+        if (response.status === 401) {
+          lockPreview('That code did not unlock this preview.');
+          return;
+        }
+
         throw new Error(body?.error || 'Unable to start preview stack.');
       }
 
@@ -82,11 +103,19 @@
 
     const interval = window.setInterval(async () => {
       try {
-        const response = await fetch(previewApiUrl('status'));
+        const response = await fetch(previewApiUrl('status'), {
+          headers: previewHeaders()
+        });
         const body = await response.json();
         status = body;
 
         if (!response.ok) {
+          if (response.status === 401) {
+            window.clearInterval(interval);
+            lockPreview('That code did not unlock this preview.');
+            return;
+          }
+
           errorMessage = body?.error || errorMessage;
           return;
         }
@@ -104,6 +133,25 @@
     }, 2000);
   }
 
+  function unlockPreview() {
+    if (!accessCode.trim()) {
+      accessError = 'Enter the preview code.';
+      return;
+    }
+
+    accessError = '';
+    hasAccess = true;
+    launchPreview();
+  }
+
+  /** @param {string} message */
+  function lockPreview(message) {
+    hasAccess = false;
+    opening = false;
+    phase = 'Access code required';
+    accessError = message;
+  }
+
   /** @param {string} url */
   function openWhenReady(url) {
     opening = true;
@@ -118,11 +166,22 @@
     const path = `/api/preview/${data.project.slug}/${action}`;
     const url = runnerUrl ? new URL(path, `${runnerUrl}/`) : new URL(path, window.location.origin);
 
+    return runnerUrl ? url.toString() : `${url.pathname}${url.search}`;
+  }
+
+  function previewHeaders() {
+    /** @type {Record<string, string>} */
+    const headers = {};
+
     if (token) {
-      url.searchParams.set('token', token);
+      headers['x-preview-token'] = token;
     }
 
-    return runnerUrl ? url.toString() : `${url.pathname}${url.search}`;
+    if (accessCode.trim()) {
+      headers['x-preview-access-code'] = accessCode.trim();
+    }
+
+    return headers;
   }
 
   /** @param {string | null} value */
@@ -170,43 +229,64 @@
         <p>{data.project.description}</p>
       </header>
 
-      <section class="launch-panel" aria-live="polite">
-        <div class="launch-status">
-          <div class:ready={status.ready} class="status-light" />
-          <div>
-            <p class="status-label">{phase}</p>
-            <h2>{status.ready ? 'All required services are up' : 'Bringing the stack online'}</h2>
-          </div>
-        </div>
-
-        {#if errorMessage}
-          <div class="runner-error">{errorMessage}</div>
-        {/if}
-
-        <div class="service-status-list">
-          {#each services as service}
-            <div class="service-status {serviceClass(service)}">
-              <div>
-                <span>{service.label}</span>
-                <small>{service.detail || service.href || service.message || 'Checking'}</small>
-              </div>
-              <strong>{service.ok ? 'Ready' : service.status || 'Starting'}</strong>
+      {#if accessRequired && !hasAccess}
+        <section class="launch-panel access-panel" aria-live="polite">
+          <form class="access-gate" on:submit|preventDefault={unlockPreview}>
+            <div>
+              <p class="status-label">Private preview</p>
+              <h2>Enter the preview code</h2>
             </div>
-          {/each}
-        </div>
 
-        <div class="launch-actions">
-          <a
-            class="manual-open"
-            href={manualOpenUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open target directly
-          </a>
-          <button type="button" on:click={launchPreview}>Restart checks</button>
-        </div>
-      </section>
+            <label for="preview-access-code">Access code</label>
+            <input
+              id="preview-access-code"
+              bind:value={accessCode}
+              type="password"
+              inputmode="text"
+              autocomplete="one-time-code"
+            />
+
+            {#if accessError}
+              <div class="runner-error">{accessError}</div>
+            {/if}
+
+            <button type="submit" disabled={!accessCode.trim()}>Unlock preview</button>
+          </form>
+        </section>
+      {:else}
+        <section class="launch-panel" aria-live="polite">
+          <div class="launch-status">
+            <div class:ready={status.ready} class="status-light" />
+            <div>
+              <p class="status-label">{phase}</p>
+              <h2>{status.ready ? 'All required services are up' : 'Bringing the stack online'}</h2>
+            </div>
+          </div>
+
+          {#if errorMessage}
+            <div class="runner-error">{errorMessage}</div>
+          {/if}
+
+          <div class="service-status-list">
+            {#each services as service}
+              <div class="service-status {serviceClass(service)}">
+                <div>
+                  <span>{service.label}</span>
+                  <small>{service.detail || service.href || service.message || 'Checking'}</small>
+                </div>
+                <strong>{service.ok ? 'Ready' : service.status || 'Starting'}</strong>
+              </div>
+            {/each}
+          </div>
+
+          <div class="launch-actions">
+            <a class="manual-open" href={manualOpenUrl} target="_blank" rel="noopener noreferrer">
+              Open target directly
+            </a>
+            <button type="button" on:click={launchPreview}>Restart checks</button>
+          </div>
+        </section>
+      {/if}
     </div>
   </div>
 </section>
@@ -322,6 +402,51 @@
 
   .launch-panel h2 {
     font-size: clamp(1.45rem, 3vw, 2rem);
+  }
+
+  .access-gate {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .access-gate label {
+    color: rgba(255, 245, 217, 0.72);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .access-gate input {
+    width: 100%;
+    min-height: 50px;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(255, 245, 217, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 245, 217, 0.08);
+    color: var(--color-cream);
+    font: inherit;
+    outline: none;
+  }
+
+  .access-gate input:focus {
+    border-color: rgba(126, 211, 232, 0.76);
+    box-shadow: 0 0 0 3px rgba(126, 211, 232, 0.14);
+  }
+
+  .access-gate button {
+    min-height: 48px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--color-cream);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .access-gate button:disabled {
+    cursor: not-allowed;
+    opacity: 0.48;
   }
 
   .runner-error {

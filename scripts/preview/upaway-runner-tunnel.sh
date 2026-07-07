@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -z "${PREVIEW_RUNNER_TOKEN:-}" ]; then
-  echo "Set PREVIEW_RUNNER_TOKEN before exposing the preview runner." >&2
+if ! command -v cloudflared >/dev/null 2>&1; then
+  echo "cloudflared is required for this helper." >&2
   exit 1
 fi
 
-if ! command -v cloudflared >/dev/null 2>&1; then
-  echo "cloudflared is required for this helper." >&2
+if ! command -v openssl >/dev/null 2>&1; then
+  echo "openssl is required to generate preview secrets." >&2
   exit 1
 fi
 
@@ -16,6 +16,8 @@ export PREVIEW_RUNNER_PORT="${PREVIEW_RUNNER_PORT:-5173}"
 export PREVIEW_TARGET_HOST="${PREVIEW_TARGET_HOST:-localhost}"
 export PREVIEW_TARGET_PORT="${PREVIEW_TARGET_PORT:-3000}"
 export PREVIEW_PROJECT_SLUG="${PREVIEW_PROJECT_SLUG:-truespace-v2}"
+export PREVIEW_RUNNER_TOKEN="${PREVIEW_RUNNER_TOKEN:-$(openssl rand -hex 24)}"
+export PREVIEW_ACCESS_CODE="${PREVIEW_ACCESS_CODE:-$(openssl rand -hex 4)}"
 
 runner_pid=""
 runner_tunnel_pid=""
@@ -65,6 +67,7 @@ target_url="$(wait_for_tunnel_url "$target_tunnel_log" "target")"
 target_hostname="$(TARGET_URL="$target_url" node -e 'console.log(new URL(process.env.TARGET_URL).hostname)')"
 
 export TRUESPACE_VITE_ALLOWED_HOSTS="${TRUESPACE_VITE_ALLOWED_HOSTS:-$target_hostname}"
+export VITE_PREVIEW_TRUESPACE_LOCAL_URL="${VITE_PREVIEW_TRUESPACE_LOCAL_URL:-$target_url}"
 
 scripts/preview/upaway-runner-host.sh &
 runner_pid=$!
@@ -79,11 +82,9 @@ cloudflared tunnel --url "http://${PREVIEW_RUNNER_HOST}:${PREVIEW_RUNNER_PORT}" 
 runner_tunnel_pid=$!
 runner_url="$(wait_for_tunnel_url "$runner_tunnel_log" "runner")"
 preview_url="$(
-  RUNNER_URL="$runner_url" TARGET_URL="$target_url" TOKEN="$PREVIEW_RUNNER_TOKEN" SLUG="$PREVIEW_PROJECT_SLUG" node -e '
+  RUNNER_URL="$runner_url" SLUG="$PREVIEW_PROJECT_SLUG" node -e '
     const params = new URLSearchParams({
-      runner: process.env.RUNNER_URL,
-      target: process.env.TARGET_URL,
-      token: process.env.TOKEN
+      runner: process.env.RUNNER_URL
     });
     console.log(`https://www.upaway.dev/preview/${process.env.SLUG}?${params}`);
   '
@@ -94,12 +95,13 @@ cat <<EOF
 Runner API tunnel:
 ${runner_url}
 
-Target app tunnel:
-${target_url}
-
 Preview link:
 ${preview_url}
 
+Access code:
+${PREVIEW_ACCESS_CODE}
+
+The target tunnel is intentionally kept out of the preview link.
 Keep this process running while you use the preview link.
 EOF
 

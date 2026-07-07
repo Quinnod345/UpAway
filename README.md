@@ -61,13 +61,15 @@ PREVIEW_RUNNER_TOKEN=... scripts/preview/upaway-runner-host.sh
 To use the local Mac as the runner through a temporary Cloudflare tunnel:
 
 ```bash
-PREVIEW_RUNNER_TOKEN=... scripts/preview/upaway-runner-tunnel.sh
+scripts/preview/upaway-runner-tunnel.sh
 ```
 
 That helper exposes both the runner API and the Truespace UI, then prints a
-complete `https://www.upaway.dev/preview/truespace-v2?...` link containing the
-temporary `runner`, `target`, and `token` query parameters. Keep the helper
-running while using that link.
+temporary `https://www.upaway.dev/preview/truespace-v2?...` link plus an access
+code. The link contains the runner tunnel only; the target tunnel and runner
+token are kept out of the URL. The launcher asks for the access code before it
+starts the stack or receives the target URL. Keep the helper running while using
+that link.
 
 For a stable setup, expose the runner with a persistent tunnel or private URL,
 then set these on the public UpAway deployment:
@@ -75,16 +77,22 @@ then set these on the public UpAway deployment:
 ```bash
 PREVIEW_REMOTE_RUNNER_URL=https://your-runner-host.example
 PREVIEW_RUNNER_TOKEN=...
+PREVIEW_ACCESS_CODE=...
 ```
 
 Do not enable `PREVIEW_RUNNER_ENABLED` on Vercel; the Vercel deployment should
 proxy to the runner host instead of trying to spawn local processes.
 
-Then open `https://www.upaway.dev/preview/truespace-v2?token=...`. The public
-site forwards start/status requests to the runner host, and the browser opens
-the app at the configured preview target when all services are ready. For a
-public show-and-tell target, set `VITE_PREVIEW_TRUESPACE_URL` to a reachable URL
-before building UpAway; otherwise the local target is `http://localhost:3000`.
+Then open `https://www.upaway.dev/preview/truespace-v2`. The public site
+forwards start/status requests to the runner host, and the browser opens the app
+at the configured preview target when all services are ready. For a public
+show-and-tell target, set `VITE_PREVIEW_TRUESPACE_URL` to a reachable URL before
+building UpAway; otherwise the local target is `http://localhost:3000`.
+
+The preview gate protects the launcher and runner API from unauthenticated
+access. It cannot make a browser app's client bundle invisible after access is
+granted; any web app code needed by the browser can still be inspected in the
+browser once the user is allowed to load it.
 
 ## Contact form API
 
@@ -109,6 +117,7 @@ VITE_PREVIEW_TRUESPACE_URL=...
 
 # Public UpAway deployment
 PREVIEW_RUNNER_TOKEN=...
+PREVIEW_ACCESS_CODE=...
 PREVIEW_REMOTE_RUNNER_URL=...
 
 # Runner host only
