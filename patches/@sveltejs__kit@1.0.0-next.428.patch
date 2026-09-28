@@ -1,0 +1,9 @@
+diff --git a/src/runtime/app/environment.js b/src/runtime/app/environment.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..0b6b62d42b4b69972780c09bb925e46c156076db
+--- /dev/null
++++ b/src/runtime/app/environment.js
+@@ -0,0 +1,3 @@
++// Compatibility shim for older SvelteKit versions
++// Re-exports from env.js for @vercel/analytics compatibility
++export { browser, dev, prerendering } from './env.js';
