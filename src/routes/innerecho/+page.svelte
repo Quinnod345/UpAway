@@ -220,6 +220,16 @@
         </a>
       </div>
     </div>
+
+    <div class="hero-proof" class:visible={mounted}>
+      <img
+        src="/innerecho-guided-journaling.png"
+        alt="InnerEcho. Find a way past the blank page. Choose a prompt theme to get started. The Guided Journaling screen offers categories including Gratitude and Positivity and Personal Growth."
+        width="1320"
+        height="2868"
+        decoding="async"
+      />
+    </div>
   </div>
 </section>
 
@@ -899,11 +909,18 @@
   .hero-content {
     position: relative;
     z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    width: 100%;
+    padding-top: clamp(3rem, 6vh, 5rem);
+    padding-bottom: clamp(3rem, 6vh, 5rem);
   }
   
   .hero-text {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 650px;
+    text-align: left;
   }
 
   .hero-title {
@@ -944,7 +961,7 @@
     font-size: 1.25rem;
     color: rgba(255, 245, 217, 0.7);
     max-width: 650px;
-    margin: 0 auto 2.5rem;
+    margin: 0 0 2.5rem;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.6s ease 0.6s;
@@ -965,6 +982,27 @@
   .hero-cta.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .hero-proof {
+    width: min(100%, 360px);
+    justify-self: center;
+    opacity: 0;
+    transform: translateY(24px) rotate(1.5deg);
+    transition: opacity 0.7s ease 0.7s, transform 0.7s ease 0.7s;
+  }
+
+  .hero-proof.visible {
+    opacity: 1;
+    transform: translateY(0) rotate(1.5deg);
+  }
+
+  .hero-proof img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
   }
   
   .btn-lg {
@@ -1964,6 +2002,11 @@
   
   /* Responsive */
   @media (max-width: 968px) {
+    .hero-content {
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+      gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
     .sticky-container {
       grid-template-columns: 1fr;
     }
@@ -2002,6 +2045,32 @@
   }
   
   @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding-top: 3rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tagline {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-proof {
+      width: min(270px, 76vw);
+    }
+
     .screenshots-grid {
       grid-template-columns: 1fr;
       max-width: 320px;
@@ -2053,6 +2122,16 @@
   }
 
   @media (max-width: 480px) {
+    .hero-content {
+      gap: 2rem;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-proof {
+      width: min(250px, 74vw);
+    }
+
     .screenshots-grid {
       max-width: 280px;
     }
