@@ -411,6 +411,9 @@
           <div class="feature-content">
             <h4>Guided Journaling Sessions</h4>
             <p>Four themed journeys, each a gentle five-step session. The AI adapts its questions to what you write, so no two sessions feel the same.</p>
+            <a class="feature-link" href="/innerecho/journal-when-nothing-happened">
+              Read 12 prompts for when nothing happened <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
 
@@ -1572,6 +1575,30 @@
     font-size: 0.95rem;
     color: rgba(255, 245, 217, 0.7);
     line-height: 1.6;
+  }
+
+  .feature-content .feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .feature-content .feature-link:hover {
+    color: var(--color-cream);
+  }
+
+  .feature-content .feature-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
   }
   
   /* Everywhere Section */
