@@ -1666,6 +1666,10 @@
     justify-content: center;
     text-align: center;
   }
+
+  .beginner-resource-actions .btn-outline-light {
+    color: var(--color-cream);
+  }
   
   /* Everywhere Section */
   .everywhere {
