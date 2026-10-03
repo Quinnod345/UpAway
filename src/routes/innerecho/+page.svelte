@@ -6,6 +6,7 @@
   let mounted = false;
   let secretPhrase = '';
   let showBreatheSecret = false;
+  const homepageAppStoreUrl = 'https://apps.apple.com/app/apple-store/id6683282892?pt=127324920&ct=ie_web_home_202610&mt=8';
 
   // ── InnerEcho support form ────────────────────────────────────────────────
   let support = { name: '', email: '', message: '', company: '' };
@@ -212,7 +213,7 @@
         Journal, track your mood, analyze your dreams, and discover patterns with thoughtful insights that help you understand yourself better.
       </p>
       <div class="hero-cta" class:visible={mounted}>
-        <a href="https://apps.apple.com/us/app/innerecho-mental-health/id6683282892" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-cursor-expand data-cursor-text="Link">
+        <a href={homepageAppStoreUrl} target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-cursor-expand data-cursor-text="Link">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
           </svg>
@@ -411,9 +412,6 @@
           <div class="feature-content">
             <h4>Guided Journaling Sessions</h4>
             <p>Four themed journeys, each a gentle five-step session. The AI adapts its questions to what you write, so no two sessions feel the same.</p>
-            <a class="feature-link" href="/innerecho/journal-when-nothing-happened">
-              Read 12 prompts for when nothing happened <span aria-hidden="true">→</span>
-            </a>
           </div>
         </div>
 
@@ -440,6 +438,32 @@
             <p>Your week, retold as a story-style recap. Set weekly goals and get AI summaries of how they're going — small ripples, tracked kindly.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beginner Resource -->
+<section class="beginner-resource section" aria-labelledby="beginner-resource-title">
+  <div class="container">
+    <div class="beginner-resource-card">
+      <div class="beginner-resource-copy">
+        <p class="section-label text-accent">Beginner resource</p>
+        <h2 id="beginner-resource-title">Nothing happened? Start there.</h2>
+        <p class="beginner-resource-description">
+          Write about a routine, an unfinished task, or something you wanted to say. This 12-prompt guide makes the first page easier.
+        </p>
+        <p class="beginner-resource-product">
+          InnerEcho is a private journal, mood tracker, and optional AI reflection companion for iPhone.
+        </p>
+      </div>
+      <div class="beginner-resource-actions">
+        <a href="/innerecho/journal-when-nothing-happened" class="btn btn-primary" data-cursor-expand>
+          Read the beginner guide
+        </a>
+        <a href={homepageAppStoreUrl} target="_blank" rel="noopener" class="btn btn-outline btn-outline-light" data-cursor-expand data-cursor-text="Link">
+          Download InnerEcho on the App Store
+        </a>
       </div>
     </div>
   </div>
@@ -643,7 +667,7 @@
       </blockquote>
       
       <div class="quote-cta">
-        <a href="https://apps.apple.com/us/app/innerecho-mental-health/id6683282892" target="_blank" rel="noopener" class="btn btn-primary" data-cursor-expand data-cursor-text="Link">
+        <a href={homepageAppStoreUrl} target="_blank" rel="noopener" class="btn btn-primary" data-cursor-expand data-cursor-text="Link">
           Start Your Journey Free
         </a>
         <a href="/privacy-policy" class="btn btn-outline btn-outline-light" data-cursor-expand>
@@ -1577,28 +1601,70 @@
     line-height: 1.6;
   }
 
-  .feature-content .feature-link {
-    display: inline-flex;
+  /* Beginner Resource */
+  .beginner-resource {
+    background: var(--color-cream);
+    padding: var(--space-lg) 0;
+  }
+
+  .beginner-resource-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+    gap: clamp(2rem, 6vw, 5rem);
     align-items: center;
-    gap: 0.4rem;
-    margin-top: 0.75rem;
-    color: var(--color-accent);
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
-    transition: color 0.2s ease;
+    padding: clamp(2rem, 6vw, 5rem);
+    overflow: hidden;
+    position: relative;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(123, 148, 156, 0.28), transparent 35%),
+      linear-gradient(135deg, var(--color-navy), var(--color-dark));
+    border: 1px solid rgba(123, 148, 156, 0.28);
+    border-radius: 28px;
+    box-shadow: 0 24px 64px rgba(15, 31, 42, 0.16);
   }
 
-  .feature-content .feature-link:hover {
+  .beginner-resource-copy,
+  .beginner-resource-actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  .beginner-resource-copy .section-label {
+    margin-bottom: 1rem;
+  }
+
+  .beginner-resource-copy h2 {
     color: var(--color-cream);
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
   }
 
-  .feature-content .feature-link:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 4px;
+  .beginner-resource-description {
+    max-width: 660px;
+    color: rgba(255, 245, 217, 0.86);
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .beginner-resource-product {
+    max-width: 660px;
+    margin-top: 1rem;
+    color: rgba(255, 245, 217, 0.62);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .beginner-resource-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+  }
+
+  .beginner-resource-actions .btn {
+    justify-content: center;
+    text-align: center;
   }
   
   /* Everywhere Section */
@@ -2014,6 +2080,14 @@
     .features-list {
       text-align: left;
     }
+
+    .beginner-resource-card {
+      grid-template-columns: 1fr;
+    }
+
+    .beginner-resource-actions {
+      max-width: 420px;
+    }
     
     .privacy-content {
       grid-template-columns: 1fr;
@@ -2138,6 +2212,15 @@
 
     .feature-card:hover {
       transform: none;
+    }
+
+    .beginner-resource-card {
+      padding: 2rem 1.25rem;
+      border-radius: 20px;
+    }
+
+    .beginner-resource-actions {
+      max-width: none;
     }
 
     .how-description {
