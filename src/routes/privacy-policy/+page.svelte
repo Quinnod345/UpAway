@@ -28,7 +28,7 @@
     </nav>
     
     <h1 class:visible={mounted}>Privacy Policy</h1>
-    <p class="last-updated" class:visible={mounted}>Last Updated: June 13, 2026</p>
+    <p class="last-updated" class:visible={mounted}>Last Updated: October 5, 2026</p>
   </div>
 </section>
 
@@ -73,26 +73,29 @@
           your Apple ID with us.
         </p>
         <p>
-          <strong>Anonymous usage data:</strong> we collect product analytics — which features are used and
-          in-app purchase events — along with basic device information such as device type and operating system
-          version, to understand how the app performs and where to improve it. This never includes your journal
-          entries or check-in content.
+          <strong>In version 2.1, analytics transmission is disabled.</strong> This version does not send
+          product-use or in-app purchase events to PostHog. Version 2.0 and earlier may continue sending
+          feature-use, purchase, and basic device information under the previous policy. Updating to version
+          2.1 does not delete historical analytics. Analytics never include your journal entries or check-in content.
         </p>
       </div>
       
       <div class="policy-section">
         <h2>2. How AI Features Use Your Words</h2>
         <p>
-          The only time the text you write leaves your device is when you choose to use a cloud AI feature —
-          such as insights, Echo chat, or dream analysis. That specific text is sent directly to OpenAI to
-          generate your response. It does not pass through our servers, and we never store it.
+          When you choose to use a cloud AI feature — such as insights, Echo chat, or dream analysis —
+          the relevant content is sent directly to OpenAI to generate your response. In version 2.1, this
+          sharing requires your permission, as described below. It does not pass through our servers,
+          and we never store it.
         </p>
         <p>
-          <strong>You're in control.</strong> AI is enabled by default but can be switched off at any time in
-          Settings — with it off, nothing is ever sent for AI processing. On supported devices you can also
-          choose <strong>on-device AI</strong>, which runs entirely on your iPhone so your words never leave it.
-          On-device processing is more private, with the trade-off that it is somewhat less in-depth than the
-          cloud model.
+          <strong>In version 2.1, cloud AI is off until you choose “Allow sharing with OpenAI”.</strong>
+          This applies to new installs and upgrades. You can change or revoke your permission in
+          Settings → Echo Settings. Revoking stops new cloud requests and cancels requests still in progress,
+          but cannot recall content already transmitted. In version 2.0 and earlier, AI was enabled by default
+          and could be turned off in Settings. On supported devices you can also choose
+          <strong>on-device AI</strong>, which runs entirely on your iPhone so your words never leave it.
+          On-device processing is more private, with the trade-off that it is somewhat less in-depth than the cloud model.
         </p>
       </div>
       
@@ -106,14 +109,15 @@
         <ul>
           <li>
             <strong>OpenAI</strong> — powers cloud-based AI features such as insights, Echo chat, and dream
-            analysis. Your text is sent to OpenAI only when you use these features with AI enabled, and you can
-            turn it off anytime. OpenAI does not use data sent through its API to train its models, and retains
+            analysis. In version 2.1, sharing content with OpenAI requires your permission, which you can revoke
+            in Settings → Echo Settings. Earlier versions use the AI setting described above.
+            OpenAI does not use data sent through its API to train its models, and retains
             it for at most 30 days for abuse monitoring before deleting it.
           </li>
           <li>
-            <strong>PostHog</strong> — product analytics, including purchase events, so we can understand
-            how features are used and improve the app. Analytics never include your journal entries or
-            check-in content.
+            <strong>PostHog</strong> — older app versions may send product analytics, including purchase
+            events, as described above. Version 2.1 does not transmit analytics to PostHog.
+            Analytics never include your journal entries or check-in content.
           </li>
           <li>
             <strong>Apple</strong> — processes App Store purchases, and stores and syncs your data via
