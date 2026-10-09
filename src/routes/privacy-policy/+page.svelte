@@ -28,7 +28,7 @@
     </nav>
     
     <h1 class:visible={mounted}>Privacy Policy</h1>
-    <p class="last-updated" class:visible={mounted}>Last Updated: October 5, 2026</p>
+    <p class="last-updated" class:visible={mounted}>Last Updated: October 9, 2026</p>
   </div>
 </section>
 
@@ -73,56 +73,83 @@
           your Apple ID with us.
         </p>
         <p>
-          <strong>In version 2.1, analytics transmission is disabled.</strong> This version does not send
+          <strong>Analytics transmission is disabled from version 2.1 on.</strong> These versions do not send
           product-use or in-app purchase events to PostHog. Version 2.0 and earlier may continue sending
-          feature-use, purchase, and basic device information under the previous policy. Updating to version
-          2.1 does not delete historical analytics. Analytics never include your journal entries or check-in content.
+          feature-use, purchase, and basic device information under the previous policy. Updating does not
+          delete historical analytics. Analytics never include your journal entries or check-in content.
         </p>
       </div>
       
       <div class="policy-section">
         <h2>2. How AI Features Use Your Words</h2>
         <p>
-          When you choose to use a cloud AI feature — such as insights, Echo chat, or dream analysis —
-          the relevant content is sent directly to OpenAI to generate your response. In version 2.1, this
-          sharing requires your permission, as described below. It does not pass through our servers,
-          and we never store it.
+          AI in InnerEcho is called Echo. It writes reflections on your entries, check-ins and dreams, offers
+          insights, and talks with you in Echo chat. Depending on your iPhone and your choices, Echo works in
+          up to three places, in this order:
+        </p>
+        <ul>
+          <li>
+            <strong>On your iPhone.</strong> Where Apple Intelligence is available, Echo uses Apple's
+            on-device model first. Nothing you write leaves your phone for these requests.
+          </li>
+          <li>
+            <strong>Apple Private Cloud Compute</strong> (version 2.2.1 and later, on iOS 27 with Apple
+            Intelligence). Echo chat, and anything too large for your iPhone's own model, is answered by
+            Apple's Private Cloud Compute. Apple uses your request only to answer it and doesn't keep it, and
+            Apple has published how its servers are built so independent experts can check that. It's on by
+            default, and you can turn it off in Settings → Echo Settings.
+          </li>
+          <li>
+            <strong>OpenAI, only if you allow it.</strong> Cloud AI from OpenAI is off until you choose
+            “Allow sharing with OpenAI”. With your permission, OpenAI is the backup: it answers Echo chat when
+            Apple's models can't, transcribes voice recordings your iPhone can't, and runs AI features on
+            iPhones without Apple Intelligence or Private Cloud Compute. You can change or revoke this in
+            Settings → Echo Settings. Revoking stops new requests and cancels requests in progress, but cannot
+            recall content already sent.
+          </li>
+        </ul>
+        <p>
+          <strong>What a request includes.</strong> Only what the feature needs: the entry (with its photos, if it
+          has any), check-in or dream you're reflecting on, your chat messages, anything you attach in Echo chat (entries, check-ins,
+          dreams, goals or photos), and, for Echo chat, your optional About You notes, your Echo personality
+          settings and the facts Echo remembers about you. Requests go straight from your iPhone to Apple or
+          OpenAI. They never pass through our servers, and we never store them.
         </p>
         <p>
-          <strong>In version 2.1, cloud AI is off until you choose “Allow sharing with OpenAI”.</strong>
-          This applies to new installs and upgrades. You can change or revoke your permission in
-          Settings → Echo Settings. Revoking stops new cloud requests and cancels requests still in progress,
-          but cannot recall content already transmitted. In version 2.0 and earlier, AI was enabled by default
-          and could be turned off in Settings. On supported devices you can also choose
-          <strong>on-device AI</strong>, which runs entirely on your iPhone so your words never leave it.
-          On-device processing is more private, with the trade-off that it is somewhat less in-depth than the cloud model.
+          <strong>What Echo remembers.</strong> Echo can remember a few lasting details you share, like your
+          dog's name. They're kept on your device, listed in Settings under What Echo remembers, and you can
+          delete any of them there.
+        </p>
+        <p>
+          <strong>Turning AI off.</strong> With Echo Support off in Settings → Echo Settings, nothing is sent to
+          Apple or OpenAI. Echo never contacts anyone on your behalf. If something you write suggests you may be
+          in danger, Echo shares crisis resources with you, and nothing more.
         </p>
       </div>
       
       <div class="policy-section">
         <h2>3. Insights, Analytics & Third-Party Services</h2>
         <p>
-          Your journaling content stays on your device and in your iCloud. Where your device supports
-          Apple Intelligence, AI features run on-device — your words never leave your phone. We work with a
-          small number of service providers, and this is the complete list:
+          Your journaling content stays on your device and in your iCloud. We work with a small number of
+          service providers, and this is the complete list:
         </p>
         <ul>
           <li>
-            <strong>OpenAI</strong> — powers cloud-based AI features such as insights, Echo chat, and dream
-            analysis. In version 2.1, sharing content with OpenAI requires your permission, which you can revoke
-            in Settings → Echo Settings. Earlier versions use the AI setting described above.
-            OpenAI does not use data sent through its API to train its models, and retains
-            it for at most 30 days for abuse monitoring before deleting it.
+            <strong>Apple</strong> — runs Apple Intelligence on your iPhone and Private Cloud Compute as
+            described above, processes App Store purchases and Sign in with Apple, and stores and syncs your
+            data through iCloud (CloudKit). Your journal entries are stored with encryption, so only you have
+            access to them.
+          </li>
+          <li>
+            <strong>OpenAI</strong> — only with your permission, the backup for Echo chat, voice transcription,
+            and AI features where Apple's models aren't available. OpenAI does not use data sent through its API
+            to train its models, and retains it for at most 30 days for abuse monitoring before deleting it.
+            InnerEcho asks OpenAI not to store responses.
           </li>
           <li>
             <strong>PostHog</strong> — older app versions may send product analytics, including purchase
-            events, as described above. Version 2.1 does not transmit analytics to PostHog.
+            events, as described above. Version 2.1 and later do not transmit analytics to PostHog.
             Analytics never include your journal entries or check-in content.
-          </li>
-          <li>
-            <strong>Apple</strong> — processes App Store purchases, and stores and syncs your data via
-            iCloud (CloudKit) and connects with HealthKit where you've enabled it. Your journal entries are
-            stored with encryption, so only you have access to them.
           </li>
         </ul>
       </div>
