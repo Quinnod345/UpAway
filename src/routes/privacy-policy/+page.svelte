@@ -93,17 +93,20 @@
             on-device model first. Nothing you write leaves your phone for these requests.
           </li>
           <li>
-            <strong>Apple Private Cloud Compute</strong> (version 2.2.1 and later, on iOS 27 with Apple
-            Intelligence). Echo chat, and anything too large for your iPhone's own model, is answered by
-            Apple's Private Cloud Compute. Apple uses your request only to answer it and doesn't keep it, and
-            Apple has published how its servers are built so independent experts can check that. It's on by
-            default, and you can turn it off in Settings → Echo Settings.
+            <strong>Apple Private Cloud Compute, with your OK</strong> (version 2.2.1 and later, on iOS 27
+            with Apple Intelligence). Echo chat, and anything too large for your iPhone's own model, is
+            answered by Apple's Private Cloud Compute, Apple's own servers. Apple uses your request only to
+            answer it and doesn't keep it, and Apple has published how its servers are built so independent
+            experts can check that. The app asks before sending anything there (“Send to Apple's servers?”),
+            and you can turn it off in Settings → Echo Settings. Apple isn't a third party: like iCloud, this
+            stays with Apple.
           </li>
           <li>
-            <strong>OpenAI, only if you allow it.</strong> Cloud AI from OpenAI is off until you choose
-            “Allow sharing with OpenAI”. With your permission, OpenAI is the backup: it answers Echo chat when
-            Apple's models can't, transcribes voice recordings your iPhone can't, and runs AI features on
-            iPhones without Apple Intelligence or Private Cloud Compute. You can change or revoke this in
+            <strong>OpenAI, the third-party backup, only if you allow it.</strong> In the app this is called
+            the “third-party backup”, and it's off until you choose “Allow Apple and the backup” (or “Allow
+            the backup” on iPhones without Private Cloud Compute). With your permission, OpenAI answers when
+            Apple can't: when Apple Intelligence isn't available on your iPhone, or Apple's models run into
+            an error. It also transcribes voice recordings your iPhone can't. You can change or revoke this in
             Settings → Echo Settings. Revoking stops new requests and cancels requests in progress, but cannot
             recall content already sent.
           </li>
@@ -141,8 +144,8 @@
             access to them.
           </li>
           <li>
-            <strong>OpenAI</strong> — only with your permission, the backup for Echo chat, voice transcription,
-            and AI features where Apple's models aren't available. OpenAI does not use data sent through its API
+            <strong>OpenAI</strong> — only with your permission, the third-party backup for Echo when Apple's
+            models aren't available or run into an error, and for voice transcription your iPhone can't do. OpenAI does not use data sent through its API
             to train its models, and retains it for at most 30 days for abuse monitoring before deleting it.
             InnerEcho asks OpenAI not to store responses.
           </li>
